@@ -73,7 +73,6 @@ LRUCache.prototype.put = function (key, value) {
         
 
         // but we also need to return it after updating it?
-
         }
     }
 }
@@ -177,4 +176,3 @@ console.log(lcache.put(1, 'c'));
 console.log(lcache.put(2, 'd'));
 console.log(lcache.get(1));
 console.log(lcache.get(2));
-
