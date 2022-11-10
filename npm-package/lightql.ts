@@ -19,12 +19,12 @@ const LRUCache = function(capacity) {
 
 
     // function for deleting items from the back during eviction
-
 }
 
 // Edge case handler to check if hashmap and dll are the same size
 LRUCache.prototype.equalSize = function() {
-    return this.map.size === this.dll.capacity;
+   // updated the below conditional as it was causing tests to fail:
+    return this.map.size === this.dll.currCapacity;
 }
 
 LRUCache.prototype.get = function(key) {
@@ -67,6 +67,12 @@ LRUCache.prototype.put = function (key, value) {
             let newNode = new DLLNode(key, value);
             this.map.set(key, newNode);
             this.dll.add(newNode);
+
+        // WE FORGOT ABOUT: WHAT IF IT IS NOT AT CAPACITY **AND** THE KEY VALUE PAIR DOES NOT YET EXIST:
+
+        
+
+        // but we also need to return it after updating it?
         }
     }
 }
@@ -159,6 +165,14 @@ let lcache = new LRUCache(3);
 // console.log(newLink)
 // newLink.delete(new DLLNode('value', 1))
 // console.log(newLink)
+
+console.log(lcache.capacity);
+console.log(lcache.equalSize());
+
 console.log(lcache.put(1, 'a'));
 console.log(lcache.put(2, 'b'));
 console.log(lcache.get(5));
+console.log(lcache.put(1, 'c'));
+console.log(lcache.put(2, 'd'));
+console.log(lcache.get(1));
+console.log(lcache.get(2));
