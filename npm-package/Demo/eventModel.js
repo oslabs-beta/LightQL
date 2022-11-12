@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 const uri = process.env.PG_URI;
-const PG_URI = 'postgres://tsqczxkd:qEzlpYv16gzQ9CHn9aRNnfYkipF1yhlQ@peanut.db.elephantsql.com/tsqczxkd';
+const PG_URI = 'postgres://hggnmyxh:yvicl-nyG6v9XTeNAEr5mJzaoCbfIn98@peanut.db.elephantsql.com/hggnmyxh';
 
 const pool = new Pool({
-  connectionString: uri,
+  connectionString: PG_URI,
 });
 
 module.exports = {
