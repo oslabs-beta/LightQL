@@ -21,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/LightQL/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/LightQL#readme"
+  "homepage": "https://github.com/oslabs-beta/LightQL#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
