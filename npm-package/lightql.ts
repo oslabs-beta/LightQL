@@ -26,6 +26,7 @@ LRUCache.prototype.equalSize = function () {
 LRUCache.prototype.get = function (key) {
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
+    return;
   }
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
@@ -33,11 +34,13 @@ LRUCache.prototype.get = function (key) {
     console.log(currNode);
     // remove dll from the origin place, add to head
     this.dll.remove(currNode);
+    
     this.dll.add(currNode);
+
     return currNode.value;
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
-    return 'this is not in the database';
+    return 'this is not in the cache';
   }
 };
 
@@ -46,7 +49,7 @@ LRUCache.prototype.put = function (key, value) {
   // if (this.equalSize() === false) {
   //   return console.log('Check hashmap and linked list');
   // }
-
+//zero net change in capacity and just update 
   if (this.map.has(key)) {
     //key does exist so we do an update
     //get the current node from the list and save in a temp variable
@@ -86,7 +89,7 @@ LRUCache.prototype.put = function (key, value) {
     this.map.set(key, newNode);
     return;
   }
-
+};
   //   // if the key exists in the map already, update the value of the node stored
   //   if (this.map.has(key)) {
   //     // Rhea--- maybe we can use (this.get(key))???
@@ -118,10 +121,9 @@ LRUCache.prototype.put = function (key, value) {
   //     this.dll.add(newNode);
   //   }
   //   // but we also need to return it after updating it?
-};
 
 // Doubly linked list node function
-const DLLNode = function (key, value) {
+const DLLNode = function (key?, value?) {
   this.key = key;
   this.value = value;
   this.next = null;
@@ -154,83 +156,139 @@ DoublyLinkedList.prototype.add = function (node) {
   return;
 };
 
-// function for removing nodes to the linked list
-DoublyLinkedList.prototype.remove = function (nodeToDelete) {
-  // use a boolean to keep track of whether the node exists and is found in the list
-  let found = false;
-  // check if list is empty; if it is, return
-  if (!this.head && !this.tail) {
-    return;
-    // if the nodeToDelete is the head or the tail, reassign found to true and delete the relevant node
-    //might be better to see if this this.head === this.tail to determine if we're using only a single node?
-  } else if (this.head === this.tail) {
-    this.head = null;
-    this.tail = null;
-    found = true;
-    //case where were deleting from the front and have >=2 nodes
-  } else if (this.head.value === nodeToDelete.value) {
-    this.head = this.head.next;
-    this.head.prev = null;
-    found = true;
-  } else if (this.tail.value === nodeToDelete.value) {
-    this.tail = this.tail.prev;
-    //this.tail.next = null;
-    found = true;
-    // if the nodeToDelete is not the head or the tail, traverse through the list to find the nodeToDelete
-  } else {
-    // declare a variable to keep track of the
-    let currNode = this.head;
-    while (currNode.next) {
-      if (currNode.value === nodeToDelete.value) {
-        currNode.prev.next = currNode.next;
-        currNode.next.prev = currNode.prev;
-        found = true;
+DoublyLinkedList.prototype.remove = function (nodeToRemove) {
+  let curr = this.head;
+  console.log(curr)
+  while (curr) {
+    // check if curr node's val equal to val, if yes...
+    if ((curr.value === nodeToRemove.value)) {
+      // check if the head's val is equal to val, if yes, remove the head
+      if (this.head.value === curr.value) {
+        // check if there's only one node left
+        if (this.tail.value === this.head.value) {
+          this.head = this.tail = null;
+          this.currCapacity--;
+          return;
+        }
+        // if more than one node insde, and head'val equal to val
+        this.head = curr.next;
+        this.head.prev = null;
+        this.currCapacity--;
+        return;
       }
-      currNode = currNode.next;
+      // if tail's val equal to val, yes, remove the tail
+      if (this.tail.value === curr.value) {
+        this.tail = curr.prev;
+        this.tail.next = null;
+        this.currCapacity--;
+        return;
+      }
+      // if the middle node's val equal to val
+      curr.prev.next = curr.next;
+      curr.next.prev = curr.prev;
+      this.currCapacity--;
+      return;
     }
+    curr = curr.next;
   }
+ };
 
-  if (found === true) {
-    this.currCapacity -= 1;
-  }
-  return;
-};
+// let newLink = new DoublyLinkedList();
+// const node1 = new DLLNode(1, 'a');
+// const node2 = new DLLNode(2, 'b');
+// const node3 = new DLLNode(3, 'c')
+// const node4 = new DLLNode(4, 'd');
+// newLink.add(node1);
+// console.log(newLink);
+// newLink.add(node2);
+// console.log(newLink);
+// newLink.add(node3);
+// console.log(newLink);
+// newLink.add(node4);
+// console.log(newLink);
 
-//let newLink = new DoublyLinkedList();
+// console.log("This is the remove part");
+// newLink.remove(node4);
+// console.log(newLink);
+// newLink.remove(node1);
+// console.log(newLink);
+// newLink.remove(node2);
+// console.log(newLink);
+// newLink.remove(node3);
+// console.log(newLink);
+
+
+
+
+// function for removing nodes to the linked list
+// DoublyLinkedList.prototype.remove = function (nodeToDelete) {
+//   // use a boolean to keep track of whether the node exists and is found in the list
+//   let found = false;
+//   // check if list is empty; if it is, return
+//   if (!this.head && !this.tail) {
+//     return;
+//     // if the nodeToDelete is the head or the tail, reassign found to true and delete the relevant node
+//     //might be better to see if this this.head === this.tail to determine if we're using only a single node?
+//   } else if (this.head === this.tail) {
+//     this.head = null;
+//     this.tail = null;
+//     found = true;
+//     //case where were deleting from the front and have >=2 nodes
+//   } else if (this.head.value === nodeToDelete.value) {
+//     this.head = this.head.next;
+//     this.head.prev = null;
+//     found = true;
+//   } else if (this.tail.value === nodeToDelete.value) {
+//     this.tail = this.tail.prev;
+//     //this.tail.next = null;
+//     found = true;
+//     // if the nodeToDelete is not the head or the tail, traverse through the list to find the nodeToDelete
+//   } else {
+//     // declare a variable to keep track of the
+//     let currNode = this.head;
+//     while (currNode.next) {
+//       if (currNode.value === nodeToDelete.value) {
+//         currNode.prev.next = currNode.next;
+//         currNode.next.prev = currNode.prev;
+//         found = true;
+//       }
+//       currNode = currNode.next;
+//     }
+//   }
+
+//   if (found === true) {
+//     this.currCapacity -= 1;
+//   }
+//   return;
+// };
+
+
 let lcache = new LRUCache(3);
-
-// newLink.add(new DLLNode('value1', 1));
-// newLink.add(new DLLNode('value2', 2));
-// console.log(newLink)
-// newLink.delete(new DLLNode('value2', 2))
-// console.log(lcache.get(1));
-// console.log(newLink)
-// newLink.delete(new DLLNode('value', 1))
-// console.log(newLink)
-
 console.log(lcache.capacity);
 console.log(lcache.map.size);
+console.log(lcache.dll.currCapacity);
 console.log(lcache.equalSize());
 
 lcache.put(1, 'a');
 console.log(lcache.map.size);
+console.log(lcache.dll.currCapacity);
 console.log(lcache.get(1));
 
-//console.log(lcache)
+console.log(lcache)
 
 lcache.put(2, 'b');
 console.log(lcache.map.size);
-//console.log(lcache.get(2));
+console.log(lcache.get(2));
 console.log(lcache);
 
 lcache.put(3, 'c');
 //  console.log(lcache.capacity);
 //  console.log(lcache.map.size);
-//  console.log(lcache.get(1));
-//  console.log(lcache.get(2));
+console.log(lcache.get(1));
+console.log(lcache.get(2));
 console.log(lcache.get(3));
 
-// // console.log(lcache);
+// console.log(lcache);
 lcache.put(4, 'd');
 console.log(lcache.get(4));
 console.log(lcache.map);
@@ -245,9 +303,8 @@ console.log(lcache.get(5));
 lcache.put(1, 'e');
 console.log(lcache.get(1));
 lcache.put(2, 'f');
-
-//console.log(lcache.get(1));
-// console.log(lcache.get(2));
+console.log(lcache.get(1));
+console.log(lcache.get(2));
 
 // Rhea's code...
 
@@ -293,46 +350,3 @@ lcache.put(2, 'f');
 // console.log(newLink.size);
 // console.log(newLink);
 
-// DoublyLinkedList.prototype.remove = function (val) {
-//   let curr = this.head;
-//   while (curr) {
-//     // check if curr node's val equal to val, if yes...
-//     if (curr.val === val) {
-//       // check if the head's val is equal to val, if yes, remove the head
-//       if (this.head.val === curr.val) {
-//         // check if there's only one node left
-//         if (this.tail.val === this.head.val) {
-//           this.head.val = this.tail.val = null;
-//           this.size--;
-//           return;
-//         }
-//         // if more than one node insde, and head'val equal to val
-//         this.head = curr.next;
-//         this.head.prev = null;
-//         this.size--;
-//         return;
-//       }
-//       // if tail's val equal to val, yes, remove the tail
-//       if (this.tail.val === val) {
-//         this.tail = curr.prev;
-//         this.tail.next = null;
-//         this.size--;
-//         return;
-//       }
-//       // if the middle node's val equal to val
-//       curr.prev.next = curr.next;
-//       curr.next.prev = curr.prev;
-//       this.size--;
-//       return;
-//     }
-//     curr = curr.next;
-//   }
-// };
-// newLink.remove('d');
-// console.log(newLink);
-// newLink.remove('a');
-// console.log(newLink);
-// newLink.remove('b');
-// console.log(newLink);
-// newLink.remove('c');
-// console.log(newLink);
