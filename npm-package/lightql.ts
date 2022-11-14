@@ -24,9 +24,9 @@ LRUCache.prototype.equalSize = function () {
 };
 
 LRUCache.prototype.get = function (key) {
-   if (this.equalSize() === false) {
-      console.log('Check hashmap and linked list');
-   }
+  if (this.equalSize() === false) {
+    console.log('Check hashmap and linked list');
+  }
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
     let currNode = this.map.get(key);
@@ -37,7 +37,7 @@ LRUCache.prototype.get = function (key) {
     return currNode.value;
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
-    return "this is not in the database";
+    return 'this is not in the database';
   }
 };
 
@@ -47,7 +47,8 @@ LRUCache.prototype.put = function (key, value) {
   //   return console.log('Check hashmap and linked list');
   // }
 
-  if (this.map.has(key)) { //key does exist so we do an update 
+  if (this.map.has(key)) {
+    //key does exist so we do an update
     //get the current node from the list and save in a temp variable
     let currNode = this.map.get(key);
     //then we need to delete the node from the linked list
@@ -62,22 +63,23 @@ LRUCache.prototype.put = function (key, value) {
     this.map.set(key, currNode);
     //return out and end logic statement
     return;
-  } else { // write to the cache as the key doesn't exist
+  } else {
+    // write to the cache as the key doesn't exist
     // if at capacity:
     if (this.map.size === this.capacity) {
-        //find the node at the tail of the DLL
-        let tempTail = this.dll.tail;
-        //save the key from the tail DLL Node
-        let tailToDeleteKey = tempTail.key;
-        //delete the tail node
-        this.dll.remove(tempTail);
-        //remove the tail node from the hash map
-        this.map.delete(tailToDeleteKey);
-        //now we have free space in the hash map and the DLL to add the new node
+      //find the node at the tail of the DLL
+      let tempTail = this.dll.tail;
+      //save the key from the tail DLL Node
+      let tailToDeleteKey = tempTail.key;
+      //delete the tail node
+      this.dll.remove(tempTail);
+      //remove the tail node from the hash map
+      this.map.delete(tailToDeleteKey);
+      //now we have free space in the hash map and the DLL to add the new node
     }
-   //We always do the below in both cases and dont worry about 66-70 if were not at capacity 
+    //We always do the below in both cases and dont worry about 66-70 if were not at capacity
     //we create a new node with the value and key passed in
-    const newNode = new DLLNode(key, value );
+    const newNode = new DLLNode(key, value);
     //add the node to the DLL
     this.dll.add(newNode);
     //add the node to the hashmap
@@ -85,38 +87,37 @@ LRUCache.prototype.put = function (key, value) {
     return;
   }
 
-
-//   // if the key exists in the map already, update the value of the node stored
-//   if (this.map.has(key)) {
-//     // Rhea--- maybe we can use (this.get(key))???
-//     // the 3 lines of code below are the exact same as get: making it the head as it is the most recently used:
-//     let currNode = this.map.get(key);
-//     this.dll.delete(currNode);
-//     this.dll.add(currNode);
-//     // and here we are updating the value of that MRU node (because it's a put):
-//     currNode.value = value;
-//     // if it does not exist already, we are creating a new node to add to our list
-//     // don't forget to exit:
-//     return;
-//   }
-//   // WE FORGOT ABOUT: WHAT IF IT IS NOT AT CAPACITY **AND** THE KEY VALUE PAIR DOES NOT YET EXIST:
-//   if (!this.map.has(key) && this.map.size <= this.capacity) {
-//     let newNode = new DLLNode(key, value);
-//     this.map.set(key, newNode);
-//     this.dll.add(newNode);
-//   }
-//   // IF IT DOES NOT EXIST BUT WE ARE AT CAPACITY
-//   if (this.map.size + 1 === this.capacity) {
-//     // first, we will check if our cache has no room to hold a new node, then we remove the tail (LRU) and add put key value to head (MRU)
-//     let currNode = this.dll.tail;
-//     //console.log(currNode)
-//     this.dll.delete(currNode);
-//     // edge case (add later): figure out how to make unique keys to each newNode
-//     let newNode = new DLLNode(key, value);
-//     this.map.set(key, newNode);
-//     this.dll.add(newNode);
-//   }
-//   // but we also need to return it after updating it?
+  //   // if the key exists in the map already, update the value of the node stored
+  //   if (this.map.has(key)) {
+  //     // Rhea--- maybe we can use (this.get(key))???
+  //     // the 3 lines of code below are the exact same as get: making it the head as it is the most recently used:
+  //     let currNode = this.map.get(key);
+  //     this.dll.delete(currNode);
+  //     this.dll.add(currNode);
+  //     // and here we are updating the value of that MRU node (because it's a put):
+  //     currNode.value = value;
+  //     // if it does not exist already, we are creating a new node to add to our list
+  //     // don't forget to exit:
+  //     return;
+  //   }
+  //   // WE FORGOT ABOUT: WHAT IF IT IS NOT AT CAPACITY **AND** THE KEY VALUE PAIR DOES NOT YET EXIST:
+  //   if (!this.map.has(key) && this.map.size <= this.capacity) {
+  //     let newNode = new DLLNode(key, value);
+  //     this.map.set(key, newNode);
+  //     this.dll.add(newNode);
+  //   }
+  //   // IF IT DOES NOT EXIST BUT WE ARE AT CAPACITY
+  //   if (this.map.size + 1 === this.capacity) {
+  //     // first, we will check if our cache has no room to hold a new node, then we remove the tail (LRU) and add put key value to head (MRU)
+  //     let currNode = this.dll.tail;
+  //     //console.log(currNode)
+  //     this.dll.delete(currNode);
+  //     // edge case (add later): figure out how to make unique keys to each newNode
+  //     let newNode = new DLLNode(key, value);
+  //     this.map.set(key, newNode);
+  //     this.dll.add(newNode);
+  //   }
+  //   // but we also need to return it after updating it?
 };
 
 // Doubly linked list node function
@@ -141,12 +142,12 @@ DoublyLinkedList.prototype.add = function (node) {
   if (!this.head && !this.tail) {
     this.head = node;
     this.tail = node;
-  } else { //this.head and this.tail are both not empty 
+  } else {
+    //this.head and this.tail are both not empty
     // if list has elements, place the pointers between the new node and the head
     node.next = this.head;
     this.head.prev = node;
     this.head = node;
-  
   }
   // update capacity to account for new node
   this.currCapacity += 1;
@@ -217,30 +218,29 @@ console.log(lcache.get(1));
 
 //console.log(lcache)
 
- lcache.put(2, 'b');
- console.log(lcache.map.size);
- //console.log(lcache.get(2));
- console.log(lcache)
+lcache.put(2, 'b');
+console.log(lcache.map.size);
+//console.log(lcache.get(2));
+console.log(lcache);
 
- lcache.put(3, 'c');
+lcache.put(3, 'c');
 //  console.log(lcache.capacity);
 //  console.log(lcache.map.size);
 //  console.log(lcache.get(1));
 //  console.log(lcache.get(2));
- console.log(lcache.get(3));
+console.log(lcache.get(3));
 
- 
 // // console.log(lcache);
-  lcache.put(4, 'd');
-  console.log(lcache.get(4));
-  console.log(lcache.map);
-  console.log(lcache.capacity);
-  console.log(lcache.map.size);
-  console.log(lcache.dll.currCapacity);
+lcache.put(4, 'd');
+console.log(lcache.get(4));
+console.log(lcache.map);
+console.log(lcache.capacity);
+console.log(lcache.map.size);
+console.log(lcache.dll.currCapacity);
 
-  console.log(lcache.get(1));
-   console.log(lcache.get(2));
-  console.log(lcache.get(5));
+console.log(lcache.get(1));
+console.log(lcache.get(2));
+console.log(lcache.get(5));
 
 lcache.put(1, 'e');
 console.log(lcache.get(1));
@@ -248,3 +248,91 @@ lcache.put(2, 'f');
 
 //console.log(lcache.get(1));
 // console.log(lcache.get(2));
+
+// Rhea's code...
+
+// const DoublyLinkedList = function () {
+//   this.head = null;
+//   this.tail = null;
+//   this.size = 0;
+//   // new node instance inside add/remove function
+// };
+
+// const Node = function (key, val) {
+//   this.key = key;
+//   this.val = val;
+//   this.next = null;
+//   this.prev = null;
+// };
+
+// DoublyLinkedList.prototype.add = function (val) {
+//   let newNode = new Node(val);
+//   // check if head is existed, if no, set head and tail to newNode
+//   if (!this.head) {
+//     this.head = this.tail = newNode;
+//     this.size++;
+//     return;
+//   } else {
+//     // if head exists, set the newNode as new head
+//     this.head.prev = newNode;
+//     newNode.next = this.head;
+//     this.head = newNode;
+//     this.size++;
+//     return;
+//   }
+// };
+
+// let newLink = new DoublyLinkedList();
+// newLink.add('a');
+// console.log(newLink.size);
+// newLink.add('b');
+// console.log(newLink.size);
+// newLink.add('c');
+// console.log(newLink.size);
+// newLink.add('d');
+// console.log(newLink.size);
+// console.log(newLink);
+
+// DoublyLinkedList.prototype.remove = function (val) {
+//   let curr = this.head;
+//   while (curr) {
+//     // check if curr node's val equal to val, if yes...
+//     if (curr.val === val) {
+//       // check if the head's val is equal to val, if yes, remove the head
+//       if (this.head.val === curr.val) {
+//         // check if there's only one node left
+//         if (this.tail.val === this.head.val) {
+//           this.head.val = this.tail.val = null;
+//           this.size--;
+//           return;
+//         }
+//         // if more than one node insde, and head'val equal to val
+//         this.head = curr.next;
+//         this.head.prev = null;
+//         this.size--;
+//         return;
+//       }
+//       // if tail's val equal to val, yes, remove the tail
+//       if (this.tail.val === val) {
+//         this.tail = curr.prev;
+//         this.tail.next = null;
+//         this.size--;
+//         return;
+//       }
+//       // if the middle node's val equal to val
+//       curr.prev.next = curr.next;
+//       curr.next.prev = curr.prev;
+//       this.size--;
+//       return;
+//     }
+//     curr = curr.next;
+//   }
+// };
+// newLink.remove('d');
+// console.log(newLink);
+// newLink.remove('a');
+// console.log(newLink);
+// newLink.remove('b');
+// console.log(newLink);
+// newLink.remove('c');
+// console.log(newLink);
