@@ -1,6 +1,5 @@
-
 // LRU Cache
-const LRUCache = function(capacity) {
+function LRUCache(capacity) {
   this.capacity = capacity;
   this.map = new Map();
   this.dll = new DoublyLinkedList();
@@ -150,6 +149,9 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
     curr = curr.next;
   }
  };
+
+
+module.exports = { LRUCache, DoublyLinkedList, DLLNode};
 
 // let newLink = new DoublyLinkedList();
 // const node1 = new DLLNode(1, 'a');
