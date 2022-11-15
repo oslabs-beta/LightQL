@@ -81,7 +81,7 @@ LRUCache.prototype.put = function (key, value) {
 };
  
 // Doubly linked list node function
-const DLLNode = function (key?, value?) {
+const DLLNode = function (key, value) {
   this.key = key;
   this.value = value;
   this.next = null;
