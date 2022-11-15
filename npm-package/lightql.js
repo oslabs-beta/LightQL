@@ -320,7 +320,6 @@ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
 // Early iteration of the cache. get : Edited above for working version 
    //   // if the key exists in the map already, update the value of the node stored
   //   if (this.map.has(key)) {
-  //     // Rhea--- maybe we can use (this.get(key))???
   //     // the 3 lines of code below are the exact same as get: making it the head as it is the most recently used:
   //     let currNode = this.map.get(key);
   //     this.dll.delete(currNode);
