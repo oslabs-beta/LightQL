@@ -1,29 +1,47 @@
-const express = requrie('express');
-const expressGraphQL = require('express_graphql');
-const { buildSchema } = require('graphql;')
+const path = require('path');
+const express = require('express');
+const expressGraphQL = require('express-graphql').graphqlHTTP;
+const schema = require('./graphQLSchemas');
+const app = express();
+const cors = require('cors');
+const PORT = 3000;
 
+//const { buildSchema } = require('graphql');
+
+
+ // user_name: String!,
+// fav_song: String,
+// fav_movie: String
 
 // construct a schema, using GraphQL schema language
-let schema = buildSchema(`
-  type Query {
-        user_name: String!,
-        fav_song: String,
-        fav_movie: String
-    }
-`);
+// 
+app.use(cors());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Root resolver
-let root = {
-    message: () => 'Hello World!'
-};
-
-const app = express();
 app.use('/graphql', expressGraphQL({
   schema: schema,
-  rootValue: root,
-  graphiql : true
+//   rootValue: root,
+  graphiql: true
 }));
 
 //have the server running up on the 3000
-app.listen(3000, () => console.log('Express GraphQL server Now running on Localhost: 3000/graphql'));
+app.listen(PORT, () => console.log(`Express GraphQL server now running on localhost:${PORT}/graphql`));
+
+
+
+// let schema = buildSchema(`
+// //   type Query {
+// //     hello: String
+// //     }
+// // `);
+
+
+// // Root resolver
+// let root = {
+//     hello: () => {
+//       return 'Hello World!'
+//     }
+    
+// };
