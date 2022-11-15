@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
+const lightQL = require('../npm-package/lightql.ts')
 const schema = require('./graphQLSchemas');
 const app = express();
 const cors = require('cors');
@@ -24,7 +25,14 @@ app.use('/graphql', expressGraphQL({
   schema: schema,
 //   rootValue: root,
   graphiql: true
-}));
+},
+//store in instance of lightql cache
+
+
+//console.log cache
+
+
+));
 
 //have the server running up on the 3000
 app.listen(PORT, () => console.log(`Express GraphQL server now running on localhost:${PORT}/graphql`));
