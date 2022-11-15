@@ -2,9 +2,10 @@
   "name": "lightql",
   "version": "1.0.0",
   "description": "A lightweight, ultra-fast client-side cache for GraphQL.",
-  "main": "./simulation/server.js",
+  "main": "index.js",
   "scripts": {
-    "simulationRun": "nodemon ./simulation/server.js"
+    "simulationRun": "nodemon ./web-app/simulation/server.js",
+    "web-app": "webpack-dev-server --mode development --open --hot"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/oslabs-beta/LightQL#readme",
   "dependencies": {
+    "concurrently": "^7.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -30,7 +32,8 @@
     "graphql": "^15.8.0",
     "pg": "^8.8.0"
   },
-  "devDependencies": {
+    "react-dom": "^18.2.0",
+    "webpack-dev-server": "^4.11.1",
     "nodemon": "^2.0.20"
   }
-}
+
