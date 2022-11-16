@@ -15,7 +15,7 @@ const {LRUCache, DLLNode, DoublyLinkedList} = require('../../npm-package/lightql
 const cache1 = new LRUCache(3);
 cache1.put(1,3);
 cache1.put(2, 4)
-console.log('cache1:' + JSON.stringify(cache1));
+// console.log('cache1:' + JSON.stringify(cache1));
 
 // function (req, res, next) {
 //   lightQL(10);
