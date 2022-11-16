@@ -12,9 +12,9 @@ const {LRUCache, DLLNode, DoublyLinkedList} = require('../../npm-package/lightql
 //const cache = lightQL(6);
 //const cache = lightQL(6);
 // console.log(cache);
-const cache1 = new LRUCache(3);
-cache1.put(1,3);
-cache1.put(2, 4)
+// const cache1 = new LRUCache(3);
+// cache1.put(1,3);
+// cache1.put(2, 4)
 // console.log('cache1:' + JSON.stringify(cache1));
 
 // function (req, res, next) {
@@ -36,8 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/graphql', expressGraphQL({
   schema: schema,
   //rootValue: resolvers,
-  graphiql: true})
-  );
+  graphiql: true}),
+  
+);
 
 
   // unknown route handler:
