@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
-import lightql from '../../../npm-package/lightql';
-const db = require('./models.js.js');
+import lightql from './npm-package/lightql';
+const db = require('./simulation/models');
 
 const App = () => {
 
