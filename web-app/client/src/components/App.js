@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import lightql from '../../../../npm-package/lightql';
+import lightql, { LRUCache } from '../../../../npm-package/lightql';
 import '../styles.scss'
 // const db = require('../../../simulation/models');
 
@@ -9,14 +9,27 @@ const App = () => {
     const [pulledData, setPulledData] = useState(null);
 	const [user, setUser] = useState('');
     
+	//Wednesday the 16th Notes (Day Before MVP)
+		//modify the cache logic constructor to accept the endpoint. cache.get to check if the key exists and if so return it, if not then go to the graphql endpoint  
     
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
 		const fetchData = async () => {
 			console.log('user: ' + user);
-			const queryMessage = 'SELECT * FROM user_info';
-			const response = await fetch('http://localhost:3000/graphql');
-			const gqlData = await response.json();
+			
+			//import the lighql cache
+			const clientSideCache = new LRUCache(5);
+
+			//const query = function buildQuery('name front frend"  ex: cyrus, rhea);
+			const query = 
+			 	`\n`
+				`   query{ \n` +
+				`		${name_from_dropdown} {\n` +
+				`		Fav_Song\n` +		
+				`	}\n` +
+				`	}`;	
+			dataWeFeedToFrontEnd = lightql.get(query);
+			
 			setPulledData(gqlData.data);
 			console.log('response: ' + JSON.stringify(response));
 			console.log('pulled data: ' + pulledData);
