@@ -6,12 +6,24 @@ import '../styles.scss'
 const App = () => {
 
     // if error, check this line
-    const [pulledData, setPulledData] = useState(null);
+    const [pulledData, setPulledData] = useState([]);
 	const [user, setUser] = useState('');
     
 	//Wednesday the 16th Notes (Day Before MVP)
 		//modify the cache logic constructor to accept the endpoint. cache.get to check if the key exists and if so return it, if not then go to the graphql endpoint  
     
+	
+	
+
+	// let favData = [];
+
+	const setFavData = () => {
+		console.log('favData:' + JSON.stringify(favData));
+		// setPulledData(favData);
+		//console.log('pulledData: ' + pulledData);
+		//return JSON.stringify(favData);
+	}
+
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
 		const fetchData = () => {
@@ -43,7 +55,12 @@ const App = () => {
 				}`})
 			})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				const favData = data.data.user;
+				console.log(favData)
+				setPulledData(favData);
+				
+			})
 			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
 			//setPulledData(dataWeFeedToFrontEnd);
 			// console.log('dataWeFeedToFrontEnd: ' + JSON.stringify(dataWeFeedToFrontEnd));
@@ -52,8 +69,9 @@ const App = () => {
 			// console.log('gqlData.data: ' + gqlData.data)
 		};
 		fetchData();
-	}, pulledData)
-    
+	}, [])
+    	console.log(pulledData);
+
 	
 	// function fetchData() {
 	// 	fetch('http://localhost:3')
@@ -100,12 +118,15 @@ const App = () => {
 				</select>
 			</form>
 			<section id='result-boxes'>
-				<p id='cache' className='data-box'>
-					Cache
-				</p>
-				<p id='database' className='data-box'>
-					Database
-				</p>
+				<section id='cache' className='data-box'>
+					<h2>Cache</h2>
+				</section>
+				<section id='database' className='data-box'>
+					<h2>Database</h2>
+					{pulledData.map((data, i) => {
+						return <ul><li key={i}>{JSON.stringify(data)}</li></ul>
+					})}
+				</section>
 			</section>
 		</div>
 	)
