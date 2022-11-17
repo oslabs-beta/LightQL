@@ -29,18 +29,14 @@ LRUCache.prototype.get = function(key) {
     return currNode.value;
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
-     const fetchData = async (key) => {
-      const response = await fetch('http://localhost:3000/graphql');
-      return response.json();
-     }
-			
+    return "this is not in the cache";
+};
+		
 			// const gqlData = await response.json();
 
     //require in fetch and use the endpoint to send a fetch request to the graphql endpoint with the key "query"
     //store the returned data in our cache 
-    return 'this is not in the cache';
-  }
-};
+    
 
 // we are either updating our node, or creating a new node:
 LRUCache.prototype.put = function (key, value) {
@@ -87,7 +83,7 @@ LRUCache.prototype.put = function (key, value) {
     this.map.set(key, newNode);
     return;
   }
-};
+}};
  
 // Doubly linked list node function
 const DLLNode = function (key, value) {
@@ -358,3 +354,4 @@ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
   //     this.dll.add(newNode);
   //   }
   //   // but we also need to return it after updating it?
+  

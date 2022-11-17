@@ -8,13 +8,37 @@ const App = () => {
     // if error, check this line
     const [pulledData, setPulledData] = useState([]);
 	const [user, setUser] = useState('');
+
+	let arr = JSON.stringify(pulledData).split(',')
+	let queryArr = JSON.stringify(pulledData).split('}');
+	let firstQuery =JSON.stringify(queryArr).split(',')
     
 	//Wednesday the 16th Notes (Day Before MVP)
 		//modify the cache logic constructor to accept the endpoint. cache.get to check if the key exists and if so return it, if not then go to the graphql endpoint  
     
+	const queryStr = `{
+		user (user_name : "Drew"){
+		  user_name,
+		  song_name,
+		  movie_name
+		}
+	  }`;
+	  const fakeQueryData = ` {
+        "user_name": "Cassidy",
+        "song_name": "Vigilante Shit",
+        "movie_name": "Heathers"
+      },
+      {
+        "user_name": "Rhea",
+        "song_name": "Iris",
+        "movie_name": "The Legend of 1900"
+      } `
 	
-	
-
+	const cache = new LRUCache(3);
+	console.log("cache:" + JSON.stringify(cache));
+	const checkKey = (keyName) => {
+		if (cache.get(keyName)) return;	
+	}
 	// let favData = [];
 
 	const setFavData = () => {
@@ -57,9 +81,9 @@ const App = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				const favData = data.data.user;
+				//slice fav_data put each in the cache by name 
 				console.log(favData)
 				setPulledData(favData);
-				
 			})
 			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
 			//setPulledData(dataWeFeedToFrontEnd);
@@ -119,12 +143,23 @@ const App = () => {
 			</form>
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
-					<h2>Cache</h2>
+					<h2>Query Input</h2>
+					{queryStr}
+					<br />
+					<br />
+					<h2>Query Result</h2> 
+					{queryArr[0]}
+				
+
 				</section>
 				<section id='database' className='data-box'>
 					<h2>Database</h2>
-					{pulledData.map((data, i) => {
-						return <ul><li key={i}>{JSON.stringify(data)}</li></ul>
+					{arr.map((data, i = -1) => {
+						i += 1;
+						if (data[0] === '{' || data[0] === "[") {
+							return <li className='names' key={i}>{data}<br /></li>
+						}
+						return <li className='data' key={i}>{data}<br /></li>
 					})}
 				</section>
 			</section>
@@ -140,7 +175,3 @@ const App = () => {
 
 
 export default App;
-
-
-
-
