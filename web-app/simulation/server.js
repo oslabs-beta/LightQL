@@ -36,13 +36,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/graphql', expressGraphQL({
   schema: schema,
   //rootValue: resolvers,
-  graphiql: true}), 
-  (req, res) => { return res.status(200).json(data.rows); }
+  graphiql: true}), (req, res)=>{
+    console.log(res);
+    return res.sendStatus(200);
+  }
 );
 
 
   // unknown route handler:
-  app.use((req, res) => res.status(404).send('Cannot get route'));
+  //app.use((req, res) => res.status(404).send('Cannot get route'));
 
   // global error handler:
   app.use((err, req, res, next) => {

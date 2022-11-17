@@ -29,16 +29,17 @@ const App = () => {
 			// 	`	}\n` +
 			// 	`	}`;	
 			//const dataWeFeedToFrontEnd = lightql.get(query);
-			fetch('api/graphql', {
+			fetch('http://localhost:3000/graphql', {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
 					'Accept' : 'application/json',
 			},
 				body: JSON.stringify({query: `{
-				user{
-					user_name
-					song_name
-					movie_name
+					user{
+						user_name
+						song_name
+						movie_name
+					}
 				}`})
 			})
 			.then((res) => res.json())
