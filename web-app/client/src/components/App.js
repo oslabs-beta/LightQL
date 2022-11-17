@@ -14,31 +14,60 @@ const App = () => {
     
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData = async () => {
+		const fetchData = () => {
 			console.log('user: ' + user);
 			
-			//import the lighql cache
-			const clientSideCache = new LRUCache(5);
-
+			//import the lighql cache add the endpoint into Lrucache 
+			// const clientSideCache = new LRUCache(5, 'http://localhost:3000/graphql');
+			// console.log('clientSideCache: ' + JSON.stringify(clientSideCache));
+			// console.log('lightql: ' + JSON.stringify(lightql));
 			//const query = function buildQuery('name front frend"  ex: cyrus, rhea);
-			const query = 
-			 	`\n`
-				`   query{ \n` +
-				`		${name_from_dropdown} {\n` +
-				`		Fav_Song\n` +		
-				`	}\n` +
-				`	}`;	
-			dataWeFeedToFrontEnd = lightql.get(query);
-			
-			setPulledData(gqlData.data);
-			console.log('response: ' + JSON.stringify(response));
-			console.log('pulled data: ' + pulledData);
-			console.log("gqldata: " + JSON.stringify(gqlData));
-			console.log('gqlData.data: ' + gqlData.data)
+			// const query = 
+			//  	`\n`
+			// 	`   query{ \n` +
+			// 	`		 (${user}) {\n` +
+			// 	`	}\n` +
+			// 	`	}`;	
+			//const dataWeFeedToFrontEnd = lightql.get(query);
+			fetch('api/graphql', {
+				method: 'POST',
+				headers: {'Content-type' : 'application/json',
+					'Accept' : 'application/json',
+			},
+				body: JSON.stringify({query: `{
+				user{
+					user_name
+					song_name
+					movie_name
+				}`})
+			})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
+			//setPulledData(dataWeFeedToFrontEnd);
+			// console.log('dataWeFeedToFrontEnd: ' + JSON.stringify(dataWeFeedToFrontEnd));
+			// console.log('dataWeFeedToFrontEnd: ' + dataWeFeedToFrontEnd);
+			// console.log("gqldata: " + JSON.stringify(gqlData));
+			// console.log('gqlData.data: ' + gqlData.data)
 		};
 		fetchData();
 	}, pulledData)
     
+	
+	// function fetchData() {
+	// 	fetch('http://localhost:3')
+	// 	  .then((response) => response.json())
+	// 	  .then((data) => {
+	// 		//whatever you want to do with data:
+	// 		for (const m of data) {
+	// 		 console.log(m.title)
+	// 		}
+	// 	  });
+	//   }
+	//   fetchData();
+
+	
+	
 
     // need invoke our cache passing in the query we are after
 
@@ -89,3 +118,7 @@ const App = () => {
 
 
 export default App;
+
+
+
+

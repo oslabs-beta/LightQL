@@ -1,8 +1,9 @@
 // LRU Cache
-function LRUCache(capacity) {
+function LRUCache(capacity, graphqlEndpoint) {
   this.capacity = capacity;
   this.map = new Map();
   this.dll = new DoublyLinkedList();
+  this.graphqlEndpoint = graphqlEndpoint;
 };
 
 // Edge case handler to check if hashmap and dll are the same size:
@@ -28,6 +29,15 @@ LRUCache.prototype.get = function(key) {
     return currNode.value;
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
+     const fetchData = async (key) => {
+      const response = await fetch('http://localhost:3000/graphql');
+      return response.json();
+     }
+			
+			// const gqlData = await response.json();
+
+    //require in fetch and use the endpoint to send a fetch request to the graphql endpoint with the key "query"
+    //store the returned data in our cache 
     return 'this is not in the cache';
   }
 };
