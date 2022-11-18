@@ -24,7 +24,7 @@ const App = () => {
 			const query = 
 			 	`\n`
 				`   query{ \n` +
-				`		${name_from_dropdown} {\n` +
+				`		${user} {\n` +
 				`		Fav_Song\n` +		
 				`	}\n` +
 				`	}`;	
