@@ -60,14 +60,14 @@ const User1 = new GraphQLObjectType({
 //modify/ add the rootquery to have a filed that gets the specific users fav movie and favsong 
 
 const RootQueryType = new GraphQLObjectType({
-    name : 'query',
-    description: 'Root Query',
-    type : 'query',
+    name : 'Query',
+    description: 'Root query',
+    type : 'Query',
     fields: () =>({
         user: {
             type: new GraphQLList(User1),
             resolve: async (parentValue, args) => {
-                const query =`SELECT * FROM user_info1;`;
+                const query =`SELECT * FROM user_info1 WHERE user_name = '${args}';`;
                 console.log(query);
                 const data = await db.query(query);
                 return data.rows;
