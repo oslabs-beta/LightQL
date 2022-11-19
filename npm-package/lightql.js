@@ -30,7 +30,7 @@ LRUCache.prototype.get = function(key) {
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
     return "this is not in the cache";
-};
+}};
 		
 			// const gqlData = await response.json();
 
@@ -83,7 +83,7 @@ LRUCache.prototype.put = function (key, value) {
     this.map.set(key, newNode);
     return;
   }
-}};
+};
  
 // Doubly linked list node function
 const DLLNode = function (key, value) {
