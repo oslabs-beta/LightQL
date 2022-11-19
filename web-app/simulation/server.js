@@ -36,10 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/graphql', expressGraphQL({
   schema: schema,
   //rootValue: resolvers,
-  graphiql: true}), (req, res)=>{
-    console.log(res);
-    return res.sendStatus(200);
-  }
+  graphiql: true})
 );
 
 
