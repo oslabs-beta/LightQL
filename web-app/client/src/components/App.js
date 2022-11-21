@@ -1,8 +1,8 @@
 import React, { Component, useEffect, useState } from 'react';
 import lightql, { LRUCache } from '../../../../npm-package/lightql';
-import '../styles.scss'
-import Demo from './Demo.js'
-// const db = require('../../../simulation/models');
+import '../styles.scss';
+import { motion } from 'framer-motion';
+import Demo from './Demo.js';
 
 const App = () => {
 

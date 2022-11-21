@@ -1,20 +1,20 @@
 import React, { Component, useEffect, useState } from 'react';
 import lightql, { LRUCache } from '../../../../npm-package/lightql';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import '../styles.scss'
 // const db = require('../../../simulation/models');
 
 const Demo = () => {
 
-    // if error, check this line
     const [pulledData, setPulledData] = useState([]);
 	const [user, setUser] = useState('');
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
-	// let firstQuery =JSON.stringify(queryArr).split(',')
-    
-	//Wednesday the 16th Notes (Day Before MVP)
-		//modify the cache logic constructor to accept the endpoint. cache.get to check if the key exists and if so return it, if not then go to the graphql endpoint  
     
 	const queryStr = `{
 		user (user_name : "Drew"){
@@ -39,32 +39,15 @@ const Demo = () => {
 	const checkKey = (keyName) => {
 		if (cache.get(keyName)) return;	
 	}
-	// let favData = [];
 
 	const setFavData = () => {
 		console.log('favData:' + JSON.stringify(favData));
-		// setPulledData(favData);
-		//console.log('pulledData: ' + pulledData);
-		//return JSON.stringify(favData);
 	}
 
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
 		const fetchData = () => {
 			console.log('user: ' + user);
-			
-			//import the lighql cache add the endpoint into Lrucache 
-			// const clientSideCache = new LRUCache(5, 'http://localhost:3000/graphql');
-			// console.log('clientSideCache: ' + JSON.stringify(clientSideCache));
-			// console.log('lightql: ' + JSON.stringify(lightql));
-			//const query = function buildQuery('name front frend"  ex: cyrus, rhea);
-			// const query = 
-			//  	`\n`
-			// 	`   query{ \n` +
-			// 	`		 (${user}) {\n` +
-			// 	`	}\n` +
-			// 	`	}`;	
-			//const dataWeFeedToFrontEnd = lightql.get(query);
 			fetch('http://localhost:3000/graphql', {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
@@ -81,39 +64,14 @@ const Demo = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				const favData = data.data.user;
-				//slice fav_data put each in the cache by name 
 				console.log(favData)
 				setPulledData(favData);
 			})
 			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
-			//setPulledData(dataWeFeedToFrontEnd);
-			// console.log('dataWeFeedToFrontEnd: ' + JSON.stringify(dataWeFeedToFrontEnd));
-			// console.log('dataWeFeedToFrontEnd: ' + dataWeFeedToFrontEnd);
-			// console.log("gqldata: " + JSON.stringify(gqlData));
-			// console.log('gqlData.data: ' + gqlData.data)
 		};
 		fetchData();
 	}, [])
     	console.log(pulledData);
-
-	
-	// function fetchData() {
-	// 	fetch('http://localhost:3')
-	// 	  .then((response) => response.json())
-	// 	  .then((data) => {
-	// 		//whatever you want to do with data:
-	// 		for (const m of data) {
-	// 		 console.log(m.title)
-	// 		}
-	// 	  });
-	//   }
-	//   fetchData();
-
-	
-	
-
-    // need invoke our cache passing in the query we are after
-
 
 // also we display our retrieved data (object) in the return statement below
 // just an idea: we could have two boxes here: one showing data in cache, and one showing data in database for demo purpose (one will be slower without eviction policy and larger)
@@ -141,6 +99,27 @@ const Demo = () => {
 					<option value='Cassidy'>Cassidy</option>
 				</select>
 			</form>
+			{/* <Box>
+				<FormControl>
+					<InputLabel id="input-label">User</InputLabel>
+					<Select
+						name="user"
+						id="input-box"
+						value={user}
+						onChange={(e) => {
+							setUser(e.target.value);
+						}}
+					>
+					<MenuItem value='Drew'>Drew</MenuItem>
+					<MenuItem value='Cyrus'>Cyrus</MenuItem>
+					<MenuItem value='Rhea'>Rhea</MenuItem>
+					<MenuItem value='Pierce'>Pierce</MenuItem>
+					<MenuItem value='Cassidy'>Cassidy</MenuItem>
+					</Select>
+				</FormControl>
+			</Box> */}
+
+
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
 					<h2>Query Input</h2>
@@ -165,11 +144,5 @@ const Demo = () => {
 	)
 
 }
-
-//buildquery function (Compiles a GraphQL query string tailored to the engine it's intended for)
-			//input are the cache and any extrafields 
-
-
-
 
 export default Demo;
