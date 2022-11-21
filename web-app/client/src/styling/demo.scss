@@ -6,23 +6,6 @@ $title-font: 'B612', sans-serif;
 $body-font: 'Noto Serif', serif;
 $code-font: 'B612 Mono', monospace;
 
-html {
-    margin: 0;
-    height: 100vh;
-}
-
-body {
-    height: 100vh;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#root {
-    width: 80%
-}
-
 h1 {
     margin: 0
 }
@@ -94,8 +77,3 @@ h1 {
         width: 400px;
     }
 }
-
-
-
-
-
