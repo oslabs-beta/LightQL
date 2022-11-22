@@ -19,7 +19,7 @@ body {
     height: 10vh;
     display: grid;
     grid-template-columns: 30% auto 15%;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.9);
     position: sticky;
     top: 0px;
     z-index: 1;
@@ -68,4 +68,22 @@ body {
     justify-content: space-around;
     align-items: center;
     padding-right: 30px;
+}
+
+#footer {
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    background-color: rgba($black, .1);
+    padding-left: 3vw;
+}
+
+#black-logo {
+    height: 65%;
+    padding-right: 1vw;
+}
+
+#footer-text {
+    font-family: $body-font;
+    color: $black;
 }

@@ -1,11 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
-import lightql, { LRUCache } from '../../../../npm-package/lightql';
+import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import '../styles.scss'
+import '../../styling/demo.scss'
 // const db = require('../../../simulation/models');
 
 const Demo = () => {
@@ -75,14 +75,14 @@ const Demo = () => {
 		// 	.catch((err) => console.log(`Error in useEffect fetch: ` + err))
 		// };
 		fetchData();
-	}, [])
+	}})
     	console.log(pulledData);
 
 // also we display our retrieved data (object) in the return statement below
 // just an idea: we could have two boxes here: one showing data in cache, and one showing data in database for demo purpose (one will be slower without eviction policy and larger)
 	return (
 		<div id='demo-body'> 
-			<h1 id='page-title'>Welcome to LightQL</h1>
+			<h1 id='page-title'>Watch it work!</h1>
 			<form>
 				<select 
 				name='user'

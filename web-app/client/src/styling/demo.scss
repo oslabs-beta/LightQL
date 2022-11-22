@@ -15,7 +15,7 @@ h1 {
     grid-template-rows: 10% 7% auto;
     justify-items: center;
     height: 80vh;
-    width: 90%;
+    width: 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -23,6 +23,7 @@ h1 {
 #page-title {
     grid-row: inherit;
     font-family: $title-font;
+    font-weight: 400;
     color: $black;
 }
 

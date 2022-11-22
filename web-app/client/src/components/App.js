@@ -5,11 +5,13 @@ import '../styling/sitewide.scss';
 import Homepage from './Homepage.js';
 import Docs from './Docs.js';
 import AboutUs from './AboutUs.js';
+import Demo from './homepageComponents/Demo'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 // import { motion } from 'framer-motion';
 const logo = require('../../../assets/LightQL.png')
+const blackLogo = require('../../../assets/black-logo.png')
 
 const App = () => {
 
@@ -78,7 +80,21 @@ const App = () => {
 						/>
 					}
 				/>
+				<Route
+					path='/demo'
+					element={
+						<Demo
+						/* props placeholder */
+						/* props placeholder */
+						/* props placeholder */
+						/>
+					}
+				/>
 			</Routes>
+			<section id='footer'>
+				<img id='black-logo' src={blackLogo.default}></img>
+				<p id='footer-text'>Made with love by LightQL.</p>
+			</section>
 		</>
 	)
 
