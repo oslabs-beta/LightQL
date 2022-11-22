@@ -46,6 +46,7 @@ $code-font: 'B612 Mono', monospace;
     font-family: $title-font;
     color: $black;
     font-size: 5rem;
+    text-align: center;
     margin: 0;
 }
 
@@ -59,6 +60,48 @@ $code-font: 'B612 Mono', monospace;
 #clipboard-docs {
     display: flex;
     width: 100%;
+    justify-content: center;
+}
+
+
+
+#copy-npm {
+    background-color: rgba($black, .1);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+}
+
+#dollar-sign {
+    color: rgba($black, .7);
+}
+
+#npm-link {
+    color: $black;
+    margin: 0.6em;
+}
+
+.npm-text {
+    font-family: $code-font;
+    margin: 0;
+}
+
+.button-text {
+    font-family: $title-font;
+    margin: 0;
+}
+
+#blue-docs-button {
+    background-color: $blue;
+    border: none;
+    border-radius: 10px;
+    color: $white;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    width: 20%
 }
 
 .hero-imgs {

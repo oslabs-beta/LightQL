@@ -5,6 +5,8 @@ import '../styling/sitewide.scss';
 import Homepage from './Homepage.js';
 import Docs from './Docs.js';
 import AboutUs from './AboutUs.js';
+import GitHubIcon from '@mui/icons-material/GitHub';
+
 
 // import { motion } from 'framer-motion';
 const logo = require('../../../assets/LightQL.png')
@@ -16,7 +18,7 @@ const App = () => {
 		<>
 			 <section id='navbar'>
 				<section id='left-nav'>
-					<img id='navbar-logo' src={logo.default} />
+					<img id='navbar-logo' src={logo.default} alt='LightQL Logo'/>
 					<Link to='/'>
 						<button id='home-btn' className='nav-btns'>
 						Home
@@ -37,8 +39,7 @@ const App = () => {
 				</section>
 				<section id='right-nav'>
 					<Link to='https://github.com/oslabs-beta/LightQL'>
-						{/* github icon image */}
-						<div id='placeholder'></div>
+						<GitHubIcon sx={{color: '#323949'}}></GitHubIcon>
 					</Link>
 					<Link to='https://www.npmjs.com/package/lightql-cache'>
 						{/* npm icon image */}
