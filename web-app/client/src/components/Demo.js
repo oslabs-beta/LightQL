@@ -47,28 +47,33 @@ const Demo = () => {
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
 		const fetchData = () => {
-			console.log('user: ' + user);
-			fetch('http://localhost:3000/graphql', {
-				method: 'POST',
-				headers: {'Content-type' : 'application/json',
-					'Accept' : 'application/json',
-			},
-				body: JSON.stringify({query: `{
-					user{
-						user_name
-						song_name
-						movie_name
-					}
-				}`})
-			})
-			.then((res) => res.json())
-			.then((data) => {
-				const favData = data.data.user;
-				console.log(favData)
-				setPulledData(favData);
-			})
-			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
-		};
+		//helper function to format the query which will be the key in the hashmap
+		//perform the get method with formatted query 
+		//Lighql.get(query)
+		
+		
+			// 	console.log('user: ' + user);
+		// 	fetch('http://localhost:3000/graphql', {
+		// 		method: 'POST',
+		// 		headers: {'Content-type' : 'application/json',
+		// 			'Accept' : 'application/json',
+		// 	},
+		// 		body: JSON.stringify({query: `{
+		// 			user{
+		// 				user_name
+		// 				song_name
+		// 				movie_name
+		// 			}
+		// 		}`})
+		// 	})
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		const favData = data.data.user;
+		// 		console.log(favData)
+		// 		setPulledData(favData);
+		// 	})
+		// 	.catch((err) => console.log(`Error in useEffect fetch: ` + err))
+		// };
 		fetchData();
 	}, [])
     	console.log(pulledData);
