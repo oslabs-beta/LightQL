@@ -26,6 +26,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
     "framer-motion": "^7.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

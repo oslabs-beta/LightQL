@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion'
+import GitHubIcon from '@mui/icons-material/GitHub';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
 let rightLines = require('../../../../assets/upper-right-lines.png');
@@ -11,20 +13,25 @@ const Hero = () => {
     return (
         <div id='hero-layout'>
             <div id='hero'>
-                <section id='hero-left'>
+                <aside id='hero-left'>
                     <img id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
-                </section>
+                </aside>
                 <section id='main-info-section'>
-                    <img id='logo'src={logo.default}></img>
+                    <img id='logo' src={logo.default} alt='LightQL Logo'></img>
                     <h1 id='welcome-text' className='text'>This is LightQL.</h1>
                     <p id='description-text' className='text'>An ultra-fast, lightweight client-side cache for GraphQL.</p>
-                    <section id='clipboard-docs'>
-                        
-                    </section>
+                    <span id='clipboard-docs'>
+                        <section id='copy-npm'>
+                            <p id='dollar-sign' className='npm-text'>$</p>
+                            <p id='npm-link' className='npm-text'>npm install lightql-cache</p>
+                            <ContentPasteIcon sx={{color: '#323949'}}></ContentPasteIcon>
+                        </section>
+                        <button id='blue-docs-button' className='button-text'>Read our docs</button>
+                    </span>
                 </section>
-                <section id='hero-right'>
+                <aside id='hero-right'>
                 <img id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
-                </section>
+                </aside>
             </div>
             
         </div>
