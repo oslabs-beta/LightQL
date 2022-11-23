@@ -3,6 +3,7 @@ import '../../styling/hero.scss';
 import { motion } from 'framer-motion'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
 let rightLines = require('../../../../assets/upper-right-lines.png');
@@ -26,8 +27,13 @@ const Hero = () => {
                             <p id='npm-link' className='npm-text'>npm install lightql-cache</p>
                             <ContentPasteIcon sx={{color: '#323949'}}></ContentPasteIcon>
                         </section>
-                        <button id='blue-docs-button' className='button-text'>Read our docs</button>
+                        <Link to='/docs' id='blue-docs-link'>
+                            <button id='blue-docs-button' className='button-text'>Read our docs</button>
+                        </Link>
                     </span>
+                    <Link to='/demo' id='demo-link'>
+                       <p >View our demo</p> 
+                    </Link>
                 </section>
                 <aside id='hero-right'>
                 <img id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
