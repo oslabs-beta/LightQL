@@ -2,8 +2,11 @@
   "name": "lightql",
   "version": "1.0.0",
   "description": "A lightweight, ultra-fast client-side cache for GraphQL.",
-  "main": "index.js",
-  "scripts": {},
+  "main": "./client/index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --open --hot & nodemon ./src/simulation/server.js",
+    "build": "webpack --mode production"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oslabs-beta/LightQL.git"
@@ -29,7 +32,16 @@
     "graphql": "^15.8.0",
     "pg": "^8.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
+    "framer-motion": "^7.6.7",
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.4.3",
+    "react-scroll": "^1.8.8",
+    "node-fetch": "^3.3.0"
   },
   "react-dom": "^18.2.0",
   "webpack-dev-server": "^4.11.1",
@@ -42,6 +54,13 @@
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "css-loader": "^6.7.2",
+    "file-loader": "^6.2.0",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1"
   }
 }
