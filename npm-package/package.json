@@ -1,7 +1,6 @@
 {
   "name": "lightql-cache",
   "version": "1.0.1",
-
   "description": "A lightweight, ultra-fast client-side cache for GraphQL.",
   "main": "lightql.ts",
   "scripts": {
@@ -25,6 +24,7 @@
   "homepage": "https://github.com/oslabs-beta/LightQL#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-graphql": "^0.12.0"
+    "express-graphql": "^0.12.0",
+    "node-fetch": "^3.3.0"
   }
 }

@@ -12,13 +12,15 @@ LRUCache.prototype.equalSize = function() {
   return this.map.size === this.dll.currCapacity;
 };
 
-LRUCache.prototype.get = function(key) {
+LRUCache.prototype.retrieve = function(key) {
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
     return;
   }
+  console.log("you can see me in lightql cache");
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
+    console.log(" I have the key");
     let currNode = this.map.get(key);
     console.log(currNode);
     // remove dll from the origin place, add to head
@@ -26,11 +28,36 @@ LRUCache.prototype.get = function(key) {
     
     this.dll.add(currNode);
 
-    return currNode.value;
+    return Promise.resolve(currNode.value);
   } else {
     // PLACEHOLDER FOR CHECKING THE DATABASE
-    return "this is not in the cache";
-}};
+    //LAZY LOADING IMPLEMENTATION
+     fetch(this.graphqlEndpoint, {
+				method: 'POST',
+				headers: {'Content-type' : 'application/json',
+					'Accept' : 'application/json',
+			},
+      //the key being passed in should already be formatted 
+				body: JSON.stringify({query: key})
+			})
+			.then((res) => res.json())
+			.then((data) => {
+				//clean, normalize, and flatten data
+
+        //accessing the right data where we need to patch
+        //test one level deeper -> data.data.xyz
+        const actualData = data.data;
+        //store idea clean data in the cache
+        console.log("you just used the put function");
+        this.put(key, actualData);
+        //return the data to the user
+        console.log('youre about to send the right data back');
+        console.log('this is the cache:',this.map);
+        return actualData;
+			})
+			.catch((err) => console.log(`Error in data fetch: ` + err))
+		};
+};
 		
 			// const gqlData = await response.json();
 
@@ -155,6 +182,14 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
     curr = curr.next;
   }
  };
+
+// const newCache = new LRUCache(3, 'http://localhost:3000/graphql');
+// console.log(newCache.get(`{
+//   user (){
+//     user_name,
+//     song_name,
+//     movie_name
+//   }`));
 
 
 module.exports = { LRUCache, DoublyLinkedList, DLLNode};

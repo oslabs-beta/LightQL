@@ -6,23 +6,6 @@ $title-font: 'B612', sans-serif;
 $body-font: 'Noto Serif', serif;
 $code-font: 'B612 Mono', monospace;
 
-html {
-    margin: 0;
-    height: 100vh;
-}
-
-body {
-    height: 100vh;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#root {
-    width: 80%
-}
-
 h1 {
     margin: 0
 }
@@ -32,7 +15,7 @@ h1 {
     grid-template-rows: 10% 7% auto;
     justify-items: center;
     height: 80vh;
-    width: 90%;
+    width: 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -40,6 +23,7 @@ h1 {
 #page-title {
     grid-row: inherit;
     font-family: $title-font;
+    font-weight: 400;
     color: $black;
 }
 
@@ -94,8 +78,3 @@ h1 {
         width: 400px;
     }
 }
-
-
-
-
-

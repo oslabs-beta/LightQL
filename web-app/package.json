@@ -14,12 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.14",
-    "concurrently": "^7.5.0",
-    "framer-motion": "^7.6.7",
-    "react-router": "^6.4.3",
-    "react-router-dom": "^6.4.3"
+    "concurrently": "^7.5.0"
   }
 }
