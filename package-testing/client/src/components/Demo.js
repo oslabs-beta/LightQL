@@ -7,6 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import '../styles.scss'
 // const db = require('../../../simulation/models');
+const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+console.log("cache:" + JSON.stringify(cache));
 
 const Demo = () => {
 
@@ -15,64 +17,51 @@ const Demo = () => {
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
-    
+	
 	const queryStr = `{
-		user (user_name : "Drew"){
+		user{
 		  user_name,
 		  song_name,
 		  movie_name
 		}
 	  }`;
-	  const fakeQueryData = ` {
-        "user_name": "Cassidy",
-        "song_name": "Vigilante Shit",
-        "movie_name": "Heathers"
-      },
-      {
-        "user_name": "Rhea",
-        "song_name": "Iris",
-        "movie_name": "The Legend of 1900"
-      } `
 	
-	const cache = new LRUCache(3);
-	console.log("cache:" + JSON.stringify(cache));
-	const checkKey = (keyName) => {
-		if (cache.get(keyName)) return;	
-	}
+	//create an instance of cache and pass in the correct endpoint
+	
+	
+	// const checkKey = (keyName) => {
+	// 	if (cache.get(keyName)) return;	
+	// }
 
 	const setFavData = () => {
 		console.log('favData:' + JSON.stringify(favData));
 	}
-
+	
     // need to do classic JS fetch request 
-	useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData = () => {
+		useEffect(() => { //same as component did mount and component did update aggregated
+		const fetchData =  async (queryStr) => {
+			console.log('queryStr:', queryStr);
 			console.log('user: ' + user);
-			fetch('http://localhost:3000/graphql', {
+			const fetchD = await fetch('http://localhost:3000/graphql', {
 				method: 'POST',
-				headers: {'Content-type' : 'application/json',
-					'Accept' : 'application/json',
-			},
-				body: JSON.stringify({query: `{
-					user{
-						user_name
-						song_name
-						movie_name
-					}
-				}`})
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(queryStr)
 			})
-			.then((res) => res.json())
-			.then((data) => {
-				const favData = data.data.user;
-				console.log('favData:', favData)
-				setPulledData(favData);
-			})
-			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
-		};
+			
+			const fetchData = await fetchD.json();
+			//const retrieved = await cache.get(queryStr);
+			//setPulledData(await cache.retrieve(queryStr));
+			setPulledData(getData);
+		}
 		fetchData();
+		console.log('queryStr:', cache.get(queryStr))
 	}, [])
-    	console.log(pulledData);
 
+	
+	//'
+    //console.log(pulledData);
 // also we display our retrieved data (object) in the return statement below
 // just an idea: we could have two boxes here: one showing data in cache, and one showing data in database for demo purpose (one will be slower without eviction policy and larger)
 	return (
@@ -146,3 +135,28 @@ const Demo = () => {
 }
 
 export default Demo;
+
+
+
+
+// 	fetch('http://localhost:3000/graphql', {
+		// 		method: 'POST',
+		// 		headers: {'Content-type' : 'application/json',
+		// 			'Accept' : 'application/json',
+		// 	},
+		// 		body: JSON.stringify({query: `{
+		// 			user{
+		// 				user_name
+		// 				song_name
+		// 				movie_name
+		// 			}
+		// 		}`})
+		// 	})
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		const favData = data.data.user;
+		// 		console.log(favData)
+		// 		setPulledData(favData);
+		// 	})
+		// 	.catch((err) => console.log(`Error in useEffect fetch: ` + err))
+		// };
