@@ -1,5 +1,4 @@
 // LRU Cache
-//testing rhea
 function LRUCache(capacity, graphqlEndpoint) {
   this.capacity = capacity;
   this.map = new Map();
