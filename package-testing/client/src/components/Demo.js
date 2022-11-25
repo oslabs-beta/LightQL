@@ -64,7 +64,7 @@ const Demo = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				const favData = data.data.user;
-				console.log(favData)
+				console.log('favData:', favData)
 				setPulledData(favData);
 			})
 			.catch((err) => console.log(`Error in useEffect fetch: ` + err))
