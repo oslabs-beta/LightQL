@@ -6,7 +6,7 @@ const schema = require('./graphQLSchemas');
 const app = express();
 const cors = require('cors');
 const PORT = 3000;
-const {LRUCache, DLLNode, DoublyLinkedList} = require('../../npm-package/lightql');
+//const {LRUCache, DLLNode, DoublyLinkedList} = require('../../npm-package/lightql');
 //const { buildSchema } = require('graphql');
 
 //const cache = lightQL(6);
