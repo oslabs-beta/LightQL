@@ -1,13 +1,11 @@
 import React from 'react';
 import '../../styling/boxes.scss'
 import OneBox from './OneBox'
-
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 
 const ThreeBox = () => {
-
-    const easyIcon = 'ElectricBoltIcon';
-    const fastIcon = 'ThumbUpAltOutlinedIcon';
-    const mutationIcon = 'ArchiveOutlinedIcon';
 
     const easyTitle = 'Easy to use';
     const fastTitle = 'Ultra-fast';
@@ -19,9 +17,9 @@ const ThreeBox = () => {
 
     return (
         <div id='three-box-layout'>
-            <OneBox icon={easyIcon} title={easyTitle} text={easyText}/>
-            <OneBox icon={fastIcon} title={fastTitle} text={fastText}/>
-            <OneBox icon={mutationIcon} title={mutationTitle} text={mutationText}/>
+            <OneBox icon={ThumbUpAltOutlinedIcon} title={easyTitle} text={easyText}/>
+            <OneBox icon={ElectricBoltIcon} title={fastTitle} text={fastText}/>
+            <OneBox icon={ArchiveOutlinedIcon} title={mutationTitle} text={mutationText}/>
         </div>
     )
 

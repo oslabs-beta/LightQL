@@ -12,7 +12,7 @@ h1 {
 
 #demo-body {
     display: grid;
-    grid-template-rows: 10% 7% auto;
+    grid-template-rows: 7% 7% auto;
     justify-items: center;
     height: 80vh;
     width: 100%;
@@ -23,7 +23,7 @@ h1 {
 #page-title {
     grid-row: inherit;
     font-family: $title-font;
-    font-weight: 400;
+    font-weight: 700;
     color: $black;
 }
 
@@ -47,30 +47,26 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     line-height: 2rem;
 }
 
 .data-box {
-    background-color: $blue;
+    background-color: $black;
     color: $white;
-    height: 90%;
+    height: 80%;
     width: 50%;
     margin: 20px;
+    margin-top: 0px;
     border-radius: 20px;
     padding: 20px;
     font-family: $code-font;
     font-size: 0.85rem;
 }
 
-#database {
-    
-}
-
 .names {
     font-weight: 700;
-    // text-decoration: underline;
 }
 
 @media screen and (min-width: 900px) {
