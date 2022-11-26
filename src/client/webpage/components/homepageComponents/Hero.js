@@ -7,10 +7,11 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
 let rightLines = require('../../../../assets/upper-right-lines.png');
-let logo = require('../../../../assets/LightQL.png');
+let logo = require('../../../../assets/nobg-LightQL.png');
 
 
 const Hero = () => {
+
     return (
         <div id='hero-layout'>
             <div id='hero'>
@@ -18,7 +19,17 @@ const Hero = () => {
                     <img id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
                 </aside>
                 <section id='main-info-section'>
-                    <img id='logo' src={logo.default} alt='LightQL Logo'></img>
+                    <motion.img 
+                        id='logo' 
+                        whileHover={{
+                            scale: 1.1
+                        }}
+                        initial={{ opacity: 0.6, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        src={logo.default} 
+                        alt='LightQL Logo'>
+                    </motion.img>
                     <h1 id='welcome-text' className='text'>This is LightQL.</h1>
                     <p id='description-text' className='text'>An ultra-fast, lightweight client-side cache for GraphQL.</p>
                     <span id='clipboard-docs'>
