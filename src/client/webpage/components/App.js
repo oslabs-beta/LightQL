@@ -40,13 +40,13 @@ const App = () => {
 					</Link>				
 				</section>
 				<section id='right-nav'>
-					<Link to='https://github.com/oslabs-beta/LightQL'>
+					<a href="https://github.com/oslabs-beta/LightQL" target="_blank">
 						<GitHubIcon sx={{color: '#323949'}}></GitHubIcon>
-					</Link>
-					<Link to='https://www.npmjs.com/package/lightql-cache'>
+					</a>
+					<a href="https://www.npmjs.com/package/lightql-cache" target="_blank">
 						{/* npm icon image */}
 						<div id='placeholder'></div>
-					</Link>
+					</a>
 				</section>
 			 </section>
 			<Routes>
