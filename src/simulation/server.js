@@ -59,7 +59,4 @@ app.use('/graphql', expressGraphQL({
 //have the server running up on the 3000
 app.listen(PORT, () => console.log(`Express GraphQL server now running on localhost:${PORT}/graphql`));
 
-// export (uncomment):
-//export default app;
-
 

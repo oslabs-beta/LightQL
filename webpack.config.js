@@ -11,6 +11,7 @@ module.exports = {
 	},
 	
 	devServer: {
+		historyApiFallback: true,
 		hot: true,
 		proxy: {
 		  '/api/**': {
@@ -21,9 +22,7 @@ module.exports = {
 		compress: true,
 		port: 8080,
 		static: {
-		  // match the output path
 		  directory: path.resolve(__dirname, 'dist'),
-		  // match the output 'publicPath'
 		  publicPath: '/',
 		},
 	  },
