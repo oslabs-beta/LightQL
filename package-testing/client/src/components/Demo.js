@@ -8,9 +8,11 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import '../styles.scss'
 // const db = require('../../../simulation/models');
 const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+console.log("cache:" + JSON.stringify(cache));
+
 const Demo = () => {
 
-    // const [pulledData, setPulledData] = useState([]);
+    const [pulledData, setPulledData] = useState([]);
 	const [user, setUser] = useState('');
 
 	let arr = JSON.stringify(pulledData).split(',')
@@ -26,7 +28,7 @@ const Demo = () => {
 	
 	//create an instance of cache and pass in the correct endpoint
 	
-	console.log("cache:" + JSON.stringify(cache));
+	
 	// const checkKey = (keyName) => {
 	// 	if (cache.get(keyName)) return;	
 	// }
@@ -36,21 +38,27 @@ const Demo = () => {
 	}
 	
     // need to do classic JS fetch request 
-	const testing = () => {
-		const [pulledData, setPulledData] = useState([]);
 		useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData =  async () => {
-			console.log(queryStr);
+		const fetchData =  async (queryStr) => {
+			console.log('queryStr:', queryStr);
 			console.log('user: ' + user);
-			const retrieved = await cache.retrieve(queryStr);
-			//setPulledData(await cache.retrieve(queryStr));
+			const fetchD = await fetch('http://localhost:3000/graphql', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(queryStr)
+			})
 			
-			setPulledData(retrieved);
+			const fetchData = await fetchD.json();
+			//const retrieved = await cache.get(queryStr);
+			//setPulledData(await cache.retrieve(queryStr));
+			setPulledData(getData);
 		}
 		fetchData();
-		console.log('queryStr:', cache.retrieve(queryStr))
-	}, [setPulledData])
-	}
+		console.log('queryStr:', cache.get(queryStr))
+	}, [])
+	console.log('setdadta:', pulledData);
 	
 	//'
     //console.log(pulledData);
