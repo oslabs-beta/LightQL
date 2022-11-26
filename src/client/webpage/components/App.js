@@ -1,6 +1,7 @@
 import React from 'react';
 import lightql, { LRUCache } from '../../../../npm-package/lightql';
 import { Link, Route, Routes } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import '../styling/sitewide.scss';
 import Homepage from './Homepage.js';
 import Docs from './Docs.js';
@@ -20,33 +21,72 @@ const App = () => {
 		<>
 			 <section id='navbar'>
 				<section id='left-nav'>
-					<img id='navbar-logo' src={logo.default} alt='LightQL Logo'/>
+				<Link to='/'>
+					<motion.img 
+						whileHover={{
+							rotate: -20,
+							bounce: 2
+						}}
+						id='navbar-logo' 
+						src={logo.default} 
+						alt='LightQL Logo'
+					/>
+				</Link>
 					<Link to='/'>
-						<button id='home-btn' className='nav-btns'>
+						<motion.button 
+						whileHover={{
+							scale: 1.1
+						}}
+						id='home-btn' 
+						className='nav-btns'>
 						Home
-						</button>
+						</motion.button>
 					</Link>
 
 					<Link to='/docs'>
-						<button id='docs-btn' className='nav-btns'>
+						<motion.button 
+							whileHover={{
+								scale: 1.1
+							}} 
+							id='docs-btn' 
+							className='nav-btns'
+						>
 						Docs
-						</button>
+						</motion.button>
 					</Link>
 
 					<Link to='/aboutus'>
-						<button id='aboutus-btn' className='nav-btns'>
+						<motion.button 
+							whileHover={{
+								scale: 1.1
+							}} 
+							id='aboutus-btn' 
+							className='nav-btns'
+						>
 						About Us
-						</button>
+						</motion.button>
 					</Link>				
 				</section>
 				<section id='right-nav'>
-					<a href="https://github.com/oslabs-beta/LightQL" target="_blank">
+					<motion.a 
+						whileHover={{
+							type: "bounce",
+							scale: 1.2
+						}}
+						href="https://github.com/oslabs-beta/LightQL" 
+						target="_blank">
 						<GitHubIcon sx={{color: '#323949'}}></GitHubIcon>
-					</a>
-					<a href="https://www.npmjs.com/package/lightql-cache" target="_blank">
+					</motion.a>
+					<motion.a 
+						whileHover={{
+							type: "bounce",
+							scale: 1.2
+						}}
+						href="https://www.npmjs.com/package/lightql-cache" 
+						target="_blank">
 						{/* npm icon image */}
 						<div id='placeholder'></div>
-					</a>
+					</motion.a>
 				</section>
 			 </section>
 			<Routes>
