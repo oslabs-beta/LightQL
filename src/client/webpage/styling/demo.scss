@@ -69,8 +69,15 @@ h1 {
     font-weight: 700;
 }
 
+#chart-container {
+    height: 200px;
+    color: #11b5e4;
+	border-width: 20px,
+}
+
+
 #line-chart {
-    width: 40px;
+    color: $black;
     
 }
 
