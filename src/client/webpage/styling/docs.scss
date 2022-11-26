@@ -6,14 +6,20 @@ $title-font: 'B612', sans-serif;
 $body-font: 'Noto Serif', serif;
 $code-font: 'B612 Mono', monospace;
 
+#main {
+  margin-left: 500px;
+  margin-right: 500px;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 #text-box {
     margin-top: -100px;
     margin-left: 30px;
     width: 75%;
 }
 
-
-#code-box {
+.code-box {
     text-align: left;
     background-color: #2e2e2e; 
     font-family: monospace; 
@@ -23,16 +29,18 @@ $code-font: 'B612 Mono', monospace;
     justify-content: space-between;
 }
 
-#code-text {
+.code-text {
     color: #8ddeec;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 5px;
     font-weight: bold;
+    margin-left: 20px;
+    font-family: monospace;
 }
 
-#copy-button {
+.copy-button {
     height: auto;
     margin-top: -5px;
     display: flex;
@@ -44,4 +52,17 @@ $code-font: 'B612 Mono', monospace;
     background-color: #fff;
     color: #1d5cfa;
     border: 1px solid #1d5cfa;
+}
+
+
+.divider {
+    border-top: 3px solid; 
+    color: lightgrey;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.bluecodestyle {
+    color: #0c24f8;
+    font-size: 18px;
 }
