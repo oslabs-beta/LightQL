@@ -1,53 +1,29 @@
 import React, { Component, useEffect, useState } from 'react';
 import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import 'chart.js/auto';
+// import { MotionProps, useReducedMotion } from "framer-motion";
 import { Chart } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
+import months from '../Utils'
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const Demo = () => {
 
-	const MONTHS = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	  ];
-
-	  function months(config) {
-		var cfg = config || {};
-		var count = cfg.count || 12;
-		var section = cfg.section;
-		var values = [];
-		var i, value;
-	  
-		for (i = 0; i < count; ++i) {
-		  value = MONTHS[Math.ceil(i) % 12];
-		  values.push(value.substring(0, section));
-		}
-		return values;
-	  };
+	// const [open, setOpen] = useState(false);
+  	// const reducedMotion = useReducedMotion();
 
 	const labels = months({count: 7})
 	console.log(labels)
 		const chartData = {
 		labels: labels,
 		datasets: [{
-			label: 'My First Dataset',
+			label: 'Response Times',
 			data: [65, 59, 80, 81, 56, 55, 40],
 			fill: false,
-			borderColor: 'rgb(75, 192, 192)',
-			tension: 0.1
+			borderColor: '#11b5e4',
+			color: '#323949'
 		}]
 	};
 
@@ -164,7 +140,17 @@ const Demo = () => {
 						return <li className='data' key={i}>{data}<br /></li>
 					})}
 				</section>
-				<Chart id='line-chart' type='line' data={chartData}/>
+				
+			</section>
+			<section id='chart-container'>
+				<Chart 
+					id='line-chart' 
+					options={{
+						responsive: true,
+						maintainAspectRatio: true
+					}}
+					type='line' 
+					data={chartData}/>
 			</section>
 		</div>
 	)
