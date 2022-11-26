@@ -58,7 +58,7 @@ const Demo = () => {
 		fetchData();
 		console.log('queryStr:', cache.get(queryStr))
 	}, [])
-
+	console.log('setdadta:', pulledData);
 	
 	//'
     //console.log(pulledData);
