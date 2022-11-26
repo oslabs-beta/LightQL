@@ -168,7 +168,5 @@ const Demo = () => {
 			</section>
 		</div>
 	)
-
 }
-
 export default Demo;
