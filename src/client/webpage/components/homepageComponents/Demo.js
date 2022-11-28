@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import 'chart.js/auto';
-// import { MotionProps, useReducedMotion } from "framer-motion";
 import { Chart } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
@@ -10,9 +9,6 @@ import months from '../Utils'
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const Demo = () => {
-
-	// const [open, setOpen] = useState(false);
-  	// const reducedMotion = useReducedMotion();
 
 	const labels = months({count: 7})
 	console.log(labels)
@@ -63,13 +59,13 @@ const Demo = () => {
 
     // need to do classic JS fetch request 
 	useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData = () => {
-		//helper function to format the query which will be the key in the hashmap
-		//perform the get method with formatted query 
-		//Lighql.get(query)
+		// const fetchData = () => {
+		// //helper function to format the query which will be the key in the hashmap
+		// //perform the get method with formatted query 
+		// //Lighql.get(query)
 		
 		
-			// 	console.log('user: ' + user);
+		// 	// 	console.log('user: ' + user);
 		// 	fetch('http://localhost:3000/graphql', {
 		// 		method: 'POST',
 		// 		headers: {'Content-type' : 'application/json',
@@ -91,8 +87,8 @@ const Demo = () => {
 		// 	})
 		// 	.catch((err) => console.log(`Error in useEffect fetch: ` + err))
 		// };
-		fetchData();
-	}})
+		// fetchData();
+	})
     	console.log(pulledData);
 
 // also we display our retrieved data (object) in the return statement below
