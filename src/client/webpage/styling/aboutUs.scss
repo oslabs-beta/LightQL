@@ -11,7 +11,6 @@ $code-font: 'B612 Mono', monospace;
     font-family: $title-font;
     color: $black;
     font-size: 3rem;
-    // margin-top: 90px;
 }
 
 #aboutUsLayout {
@@ -57,6 +56,11 @@ $code-font: 'B612 Mono', monospace;
     margin: 0;
 }
 
-.au-links {
-    
+.au-icons {
+    height: 50px;
+}
+
+.contact-text {
+    font-family: $body-font;
+    font-size: 0.9rem;
 }

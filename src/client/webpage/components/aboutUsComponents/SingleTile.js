@@ -5,7 +5,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
-const SingleTile = ({key, name, headshot, githubLink, linkedInLink}) => {
+const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
+
+    let emailTo = `mailto: ${email}`;
 
     return (
         <div id='singleTile'>
@@ -13,6 +15,7 @@ const SingleTile = ({key, name, headshot, githubLink, linkedInLink}) => {
             <section id='bottom-of-tile'>
                 <h2 id='name'>{name}</h2>
                 <section id='contact-links'>
+                <a href={emailTo} className='contact-text'>{email}</a>
                 <a 
 					href={githubLink}
 					target="_blank">
