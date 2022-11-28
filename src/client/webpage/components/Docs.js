@@ -11,13 +11,12 @@ const Docs = () => {
   const [buttonTextE, setButtonTextE] = useState('Copy');
 
   const codestring = `
-    \napp.use(              
-    \n'/graphql',
-    \nlightql({}, capacity, endpoint),
-    \nexpressGraphQL({
-    \n schema: schema,    
-    \n  graphiql: true,
-    \n}) 
+    \napp.use('/graphql',
+    \n\tlightql({}, capacity, endpoint),
+    \n\texpressGraphQL({
+    \n\t\tschema: schema,    
+    \n\t\tgraphiql: true,
+    \n\t}) 
   \n);`;
 
   const objy = `{}`;
@@ -28,8 +27,8 @@ const Docs = () => {
         <main id="main">
           <div className="text-box">
             <div className="lightql-docs">
-              <h1>LightQL</h1>
-              <p>
+              <h1 className='section-titles'>LightQL</h1>
+              <p className='section-paragraphs'>
                 LightQL is an open-source developer tool that leverages the
                 pinpoint accuracy of GraphQL's queries and implements caching to
                 improve your website's query efficiency.
@@ -37,8 +36,8 @@ const Docs = () => {
             </div>
 
             <div id="using-lightql">
-              <p>Prerequisites:</p>
-              <ul>
+              <p className='section-paragraphs'>Prerequisites:</p>
+              <ul className='section-paragraphs'>
                 <li>GraphQL schemas setup with your database.</li>
                 <li>
                   Fullstack Application where frontend makes query request to
@@ -48,15 +47,14 @@ const Docs = () => {
               <div id="breakline" className="divider"></div>
             </div>
 
-            <div id="gettingstarted" className="gettingstarted">
-              <h1>Getting Started</h1>
-              <p>
+            <div id="gettingstarted" >
+              <h1 className='section-titles'>Getting Started</h1>
+              <p className='section-paragraphs'>
                 If this is your first time using LightQL, run the following
                 command in your terminal:
               </p>
               <div className="code-box">
-                <section className="code-text">
-                  <pre>npm install lightql-cache</pre>
+                  <pre className='blue-code-text'>npm install lightql-cache</pre>
                   <button
                     className="copy-button"
                     onClick={() =>
@@ -67,17 +65,15 @@ const Docs = () => {
                   >
                     {buttonTextA}
                   </button>
-                </section>
               </div>
 
-              <p id="below">
+              <p id="below" className='section-paragraphs'>
                 In your server file, you want to require our middleware to
                 handle GraphQL requests using the CommonJS format.
               </p>
 
               <div className="code-box">
-                <section className="code-text">
-                  <pre>const lightql = require('lightql-cache');</pre>
+                  <pre className="blue-code-text">const lightql = require('lightql-cache');</pre>
                   <button
                     className="copy-button"
                     onClick={() =>
@@ -88,23 +84,21 @@ const Docs = () => {
                   >
                     {buttonTextB}
                   </button>
-                </section>
               </div>
 
-              <p id="below">
+              <p id="below" className='section-paragraphs'>
                 LightQL functionality depends on Express' built-in method
                 express.json() middleware function in order to parse incoming
                 JSON payloads.
               </p>
 
-              <p id="below">
+              <p id="below" className='section-paragraphs'>
                 If you haven't already set up your server file with Express, add
                 the following code to require Express:
               </p>
 
               <div className="code-box">
-                <section className="code-text">
-                  <pre>
+                  <pre className="blue-code-text">
                     const expressGraphQL =
                     require('express-graphql').graphqlHTTP;
                   </pre>
@@ -118,17 +112,15 @@ const Docs = () => {
                   >
                     {buttonTextC}
                   </button>
-                </section>
               </div>
 
-              <p id="below">
+              <p id="below" className='section-paragraphs'>
                 Add the following code to use the express.json() middleware
                 function:
               </p>
 
               <div className="code-box">
-                <section className="code-text">
-                  <pre>app.use(express.json());</pre>
+                  <pre className="blue-code-text">app.use(express.json());</pre>
                   <button
                     className="copy-button"
                     onClick={() =>
@@ -139,26 +131,25 @@ const Docs = () => {
                   >
                     {buttonTextD}
                   </button>
-                </section>
               </div>
 
               <div id="breakline" className="divider"></div>
 
               <div id="usinglightql" className="clientsidecache">
-                <h1>Using LightQL</h1>
-                <p>
+                <h1 className='section-titles'>Using LightQL</h1>
+                <p className='section-paragraphs'>
                   LightQL provides a middleware for caching using memory on the
                   client-side with our custom cache that leverages an LRU
                   eviction policy. The arguments you should input for this
                   middleware are as follows:
                 </p>
-                <p>
+                <p className='section-paragraphs'>
                   For the first parameter, simply pass in an empty object like
                   so:
                 </p>
-                <h4 className="bluecodestyle">{objy}</h4>
+                <h4 className="blue-code-text">{objy}</h4>
 
-                <p>
+                <p className='section-paragraphs'>
                   Next, is the capacity you would like your cache to hold. This
                   capacity refers to when our cache will begin evicting items.
                   For example, if you set the capacity to 50, it will evict an
@@ -168,18 +159,16 @@ const Docs = () => {
                   will default to simply creating a GraphQL fetch without
                   storing values in the cache.
                 </p>
-                <p>
+                <p className='section-paragraphs'>
                   The third parameter is the endpoint at which you are actually
                   using GraphQL. For example, this endpoint may be
                 </p>
-                <p className="bluecodestyle">http://localhost:3000/graphql</p>
+                <p className="blue-code-text">http://localhost:3000/graphql</p>
 
-                <p>Now you are good to cache your GraphQL responses!</p>
-                <div className="code-box">
-                  <p className="code-text">
-                    {codestring}
-
-                    <button
+                <p className='section-paragraphs'>Now you are good to cache your GraphQL responses!</p>
+                <div id='big-code-box' className="code-box">
+                  <pre id='big-codestring' className="blue-code-text">{codestring}</pre>
+                  <button
                       className="copy-button"
                       onClick={() =>
                         navigator.clipboard.writeText(
@@ -189,18 +178,18 @@ const Docs = () => {
                     >
                       {buttonTextE}
                     </button>
-                  </p>
                 </div>
+                 
 
-                <p id="below">
+                <p id="below" className='section-paragraphs'>
                   Now, you have properly set up the middleware functions in
                   order to use LightQL's caching tools!
                 </p>
 
                 <div id="builtwith">
                   <div id="breakline" className="divider"></div>
-                  <h1>Technology Stack</h1>
-                  <ul>
+                  <h1 className='section-titles'>Technology Stack</h1>
+                  <ul className='section-paragraphs'>
                     <li>GraphQL</li>
                     <li>Typescript</li>
                     <li>Node/Express</li>
