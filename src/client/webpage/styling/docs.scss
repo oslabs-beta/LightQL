@@ -9,8 +9,16 @@ $code-font: 'B612 Mono', monospace;
 #main {
   margin-left: 500px;
   margin-right: 500px;
+  margin-top: 50px;
+  margin-bottom: 100px;
   display: flex;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  
+
 }
 
 #text-box {
@@ -24,9 +32,11 @@ $code-font: 'B612 Mono', monospace;
     background-color: #2e2e2e; 
     font-family: monospace; 
     font-size: 20px; 
-    display: flex;
+    display: grid;
+    grid-template-columns: 98% 2%;
     border: none;
     justify-content: space-between;
+    
 }
 
 .code-text {
@@ -52,6 +62,13 @@ $code-font: 'B612 Mono', monospace;
     background-color: #fff;
     color: #1d5cfa;
     border: 1px solid #1d5cfa;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.copy-button:hover {
+    background-color: #1d5cfa;
+    color: #fff;
 }
 
 
@@ -60,9 +77,12 @@ $code-font: 'B612 Mono', monospace;
     color: lightgrey;
     margin-left: 0px;
     margin-right: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .bluecodestyle {
     color: #0c24f8;
     font-size: 18px;
+    font-family: monospace;
 }
