@@ -38,27 +38,50 @@ const Demo = () => {
 	}
 	
     // need to do classic JS fetch request 
-		useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData =  async (queryStr) => {
-			console.log('queryStr:', queryStr);
-			console.log('user: ' + user);
+	useEffect(() => { //same as component did mount and component did update aggregated
+		const fetchData =  async () => {
+			//console.log('queryStr:', queryStr);
+			//console.log('user: ' + user);
 			const fetchD = await fetch('http://localhost:3000/graphql', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(queryStr)
+				body: JSON.stringify({query: queryStr})
 			})
 			
-			const fetchData = await fetchD.json();
+			const fetchDataHere = await fetchD.json();
+			//console.log('fetchDataHere:', fetchDataHere);
 			//const retrieved = await cache.get(queryStr);
 			//setPulledData(await cache.retrieve(queryStr));
-			setPulledData(getData);
+			setPulledData(fetchDataHere);
 		}
 		fetchData();
-		console.log('queryStr:', cache.get(queryStr))
+		//fetchData();
+		//console.log('queryStr:', cache.get(queryStr))
 	}, [])
-	console.log('setdadta:', pulledData);
+	//console.log('setdadta:', pulledData);
+	// console.log('queryStr:', cache.get(queryStr));
+	const callTime = () => {
+		let start = performance.now();
+		console.log('queryStr:', cache.get(queryStr));
+		let end = performance.now();
+		console.log(`Execution time after: ${end - start} ms`);
+		return;
+	}
+	callTime();
+	callTime();
+	// let start = performance.now();
+	// //console.log('start:', start);
+	// console.log('queryStr:', cache.get(queryStr));
+	// let end = performance.now();
+	// //console.log('end:', end);
+	// console.log(`Execution time before: ${end - start} ms`);
+	// start = performance.now();
+	// console.log('queryStr:', cache.get(queryStr));
+	// end = performance.now();
+	// console.log(`Execution time after: ${end - start} ms`);
+
 	
 	//'
     //console.log(pulledData);
