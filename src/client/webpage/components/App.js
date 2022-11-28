@@ -12,8 +12,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 // import { motion } from 'framer-motion';
-const logo = require('../../../assets/LightQL.png')
+const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
+const npmLogo = require('../../../assets/npm-vector.png')
 
 const App = () => {
 
@@ -43,7 +44,6 @@ const App = () => {
 						Home
 						</motion.button>
 					</Link>
-
 					<Link to='/docs'>
 						<motion.button 
 							whileHover={{
@@ -55,7 +55,6 @@ const App = () => {
 						Docs
 						</motion.button>
 					</Link>
-
 					<Link to='/aboutus'>
 						<motion.button 
 							whileHover={{
@@ -75,8 +74,11 @@ const App = () => {
 							scale: 1.2
 						}}
 						href="https://github.com/oslabs-beta/LightQL" 
-						target="_blank">
-						<GitHubIcon sx={{color: '#323949'}}></GitHubIcon>
+						target="_blank"
+						
+						>
+						
+						<GitHubIcon sx={{color: '#323949'}} className='top-right-icons'></GitHubIcon>
 					</motion.a>
 					<motion.a 
 						whileHover={{
@@ -84,9 +86,10 @@ const App = () => {
 							scale: 1.2
 						}}
 						href="https://www.npmjs.com/package/lightql-cache" 
-						target="_blank">
-						{/* npm icon image */}
-						<div id='placeholder'></div>
+						target="_blank"
+						
+						>
+						<motion.img id='npm-logo' className='top-right-icons' src={npmLogo.default}></motion.img>
 					</motion.a>
 				</section>
 			 </section>

@@ -2,31 +2,30 @@ import React from 'react';
 import SingleTile from './aboutUsComponents/SingleTile';
 import '../styling/aboutUs.scss';
 
-const exPic = require('../../../assets/prof-pic-placeholder.jpeg');
-
+const cassidy = require('../../../assets/cassidy.png')
 const drew = require('../../../assets/drew.png');
-
+const pierce = require('../../../assets/pierce.png');
 const cyrus = require('../../../assets/cyrus.png');
 const rhea = require('../../../assets/rhea.png');
 
 const AboutUs = () => {
 
     return (
-        <div>
-            <h1 id="aboutUsTitle">Meet the Team</h1>
-            <section id='aboutUsLayout'>
+        <div id='about-us-page-layout'>
+            <h1 id="about-us-title">Meet the Team</h1>
+            <section id='about-us-layout'>
                     <SingleTile 
                         key='Cassidy' 
                         name='Cassidy Johnson' 
                         email='cassidyrose56@gmail.com'
                         githubLink='https://github.com/cassidyrose56'
                         linkedInLink='https://www.linkedin.com/in/cassidy-r-johnson/'
-                        headshot={exPic} 
+                        headshot={cassidy} 
                     />
                     <SingleTile 
                         key='Drew' 
                         name='Drew Tucker' 
-                        email='example@gmail.com'
+                        email='drewtucker19@gmail.com'
                         githubLink='https://github.com/Drew-tucker33'
                         linkedInLink='https://www.linkedin.com/in/drew-t-4369199b/'
                         headshot={drew} 
@@ -34,15 +33,15 @@ const AboutUs = () => {
                     <SingleTile 
                         key='Pierce' 
                         name='Pierce Heska' 
-                        email='example@gmail.com'
+                        email='pierceheska@gmail.com'
                         githubLink='https://github.com/pheska'
                         linkedInLink='https://www.linkedin.com/in/pheska/'
-                        headshot={exPic} 
+                        headshot={pierce} 
                     /> 
                     <SingleTile 
                         key='Cyrus' 
                         name='Cyrus Yari' 
-                        email='example@gmail.com'
+                        email='cyrus.brk@gmail.com'
                         githubLink='https://github.com/cyrusyari'
                         linkedInLink='https://www.linkedin.com/in/cyrusyari/'
                         headshot={cyrus} 
@@ -50,7 +49,7 @@ const AboutUs = () => {
                     <SingleTile 
                         key='Rhea' 
                         name='Rhea Wu' 
-                        email='example@gmail.com'
+                        email='rheawu1212@gmail.com'
                         githubLink='https://github.com/rheawu1212'
                         linkedInLink='https://www.linkedin.com/in/rheawu-tech/'
                         headshot={rhea} 

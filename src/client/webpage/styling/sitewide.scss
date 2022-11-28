@@ -13,6 +13,8 @@ html {
 body {
     height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 #navbar {
@@ -50,24 +52,20 @@ body {
     height: 7vh;
 }
 
-#home-btn {
-    
-}
-
-#docs-btn {
-
-}
-
-#aboutus-btn {
-
-}
-
 #right-nav {
     grid-column: 3 / 4;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
-    padding-right: 30px;
+}
+
+.top-right-icons {
+    margin: 0 3vw 0 0;
+}
+
+#npm-logo {
+    width: 21px;
+    height: 21px;
 }
 
 #footer {

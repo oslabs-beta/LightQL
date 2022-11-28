@@ -6,48 +6,94 @@ $title-font: 'B612', sans-serif;
 $body-font: 'Noto Serif', serif;
 $code-font: 'B612 Mono', monospace;
 
-#aboutUsTitle {
+#about-us-page-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#about-us-title {
     text-align: center;
     font-family: $title-font;
     color: $black;
     font-size: 3rem;
 }
 
-#aboutUsLayout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 73vh;
+#about-us-layout {
+    margin: 0;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-flow: row dense;
+    place-items: center;
+    height: 72vh;
     margin: 0 40px 0 40px;
 }
 
-#topOfPage {
-    display: flex;
+@media (max-width: 1350px) {
+    #about-us-layout {
+      display: grid;  
+      grid-template-columns: 1fr 1fr 1fr;
+      height: auto;
+    }
 }
 
-#bottomOfPage {
-    display: flex;
+@media (max-width: 900px) {
+    #about-us-layout {
+      display: grid;  
+      grid-template-columns: 1fr 1fr;
+      height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    #about-us-layout {
+      display: grid;  
+      grid-template-columns: 1fr;
+      height: auto;
+    }
 }
 
 #singleTile {
-    background-color: rgba($black, 0.15);
-    height: 50vh;
-    width: 25vw;
-    max-width: 215px;
+    background-color: rgba($black, 0.05);
+    height: 53vh;
+    width: 235px;
+    min-width: 235px;
     margin: 20px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
+}
+
+#singleTile:hover {
+    box-shadow:
+      0 3px 3px hsl(0deg 0% 0% / 0.1),
+      0 6px 6px hsl(0deg 0% 0% / 0.1),
+      0 12px 12px hsl(0deg 0% 0% / 0.1),
+      0 24px 24px hsl(0deg 0% 0% / 0.1),
+      0 48px 48px hsl(0deg 0% 0% / 0.1)
+    ;
 }
 
 #headshots {
     width: 100%;
-    height: 60%;
+    min-height: 260px;
     border-radius: 20px 20px 0 0;
 }
 
 #bottom-of-tile {
     margin: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #name {
@@ -56,11 +102,34 @@ $code-font: 'B612 Mono', monospace;
     margin: 0;
 }
 
-.au-icons {
-    height: 50px;
+#contact-links {
+    display: flex;
+    flex-direction: column;
+}
+
+#email-button {
+    display: flex;
+    justify-content: center;
+    border: 0.5px solid $black;
+    border-radius: 8px;
+    width: 45%;
+    background-color: $white;
+    padding: 3%;
+    margin: 2% 0 2% 0;
 }
 
 .contact-text {
     font-family: $body-font;
     font-size: 0.9rem;
+    text-decoration: none;
+    color: $black;
+}
+
+.au-icons {
+    transform: scale(1.4);
+    margin: 0 10px;
+}
+
+#linkedin-icon {
+    transform: scale(1.65);
 }
