@@ -10,26 +10,63 @@ const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
     let emailTo = `mailto: ${email}`;
 
     return (
-        <div id='singleTile'>
+        <motion.div 
+            whileHover={{
+                scale: 1.1
+            }}
+            transition={{
+                type: "spring",
+                stiffness: 400, 
+                damping: 14
+            }}
+            id='singleTile'
+        >
             <img id='headshots' src={headshot.default} />
             <section id='bottom-of-tile'>
                 <h2 id='name'>{name}</h2>
-                <section id='contact-links'>
-                <a href={emailTo} className='contact-text'>{email}</a>
-                <a 
-					href={githubLink}
-					target="_blank">
-					<GitHubIcon className='au-icons' sx={{color: '#323949'}}></GitHubIcon>
-				</a>
-                <a 
-					href={linkedInLink}
-					target="_blank">
-					<LinkedInIcon className='au-icons' sx={{color: '#323949'}}></LinkedInIcon>
-				</a>
+                <motion.a 
+                    id='email-button'
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ 
+                    type: "spring", 
+                    stiffness: 400, 
+                    damping: 17 
+                    }}
+                    href={emailTo}
+                    className='contact-text'
+                >Email me!</motion.a>
+                <section id='contact-icons'>
+                    <motion.a 
+                        whileHover={{
+                            scale: 1.1
+                        }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 400, 
+                            damping: 14
+                        }}
+                        href={githubLink}
+                        target="_blank">
+                        <GitHubIcon className='au-icons' sx={{color: '#323949'}}></GitHubIcon>
+                    </motion.a>
+                    <motion.a 
+                        whileHover={{
+                            scale: 1.1
+                        }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 400, 
+                            damping: 14
+                        }}
+                        href={linkedInLink}
+                        target="_blank">
+                        <LinkedInIcon id='linkedin-icon'className='au-icons' sx={{color: '#323949'}}></LinkedInIcon>
+                    </motion.a>
                 </section>
-            </section>
+                </section>
 
-        </div>
+        </motion.div>
     )
 
 }
