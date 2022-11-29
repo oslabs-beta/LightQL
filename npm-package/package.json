@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/LightQL/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/LightQL#readme"
+  "homepage": "https://github.com/oslabs-beta/LightQL#readme",
+  "dependencies": {
+    "localforage": "^1.10.0"
+  }
 }
