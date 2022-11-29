@@ -27,11 +27,25 @@ LRUCache.prototype.getIDBCache = function (){
       }else{
         if(!value){
           return false;
-        }else{
+        } 
+        else{
           this.capacity = value.capacity;
-          this.map = value.map;
-          this.dll = value.dll;
           this.graphqlEndpoint = value.graphqlEndpoint;
+          //build a custom function for the dll and the map to put them back in
+          
+          this.map = new Map();
+          //object keys needs to be greater than 0
+          value.map.forEach((val, key) => {
+            this.map.set(key, val);
+          })
+        
+          this.dll = new DoublyLinkedList();
+          
+          let currNode = value.dll.head;
+          while(currNode){
+            this.dll.add(currNode);
+            currNode = currNode.next;
+          }
           return true;
         }
       }
@@ -57,10 +71,13 @@ LRUCache.prototype.saveIDBCache = function (){
 }
 
 
-LRUCache.prototype.get = function(key) {
+LRUCache.prototype.get = async function(key) {
+  
 //Need a better way to make sure there is something in IDB beforehand 
-    this.saveIDBCache();
-    if(this.map.size !== 0) this.getIDBCache();
+     if(this.map.size > 0){
+     this.saveIDBCache();
+     this.getIDBCache();
+   }
   //Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
@@ -83,9 +100,8 @@ LRUCache.prototype.get = function(key) {
     this.saveIDBCache();
     return currNode.value;
   } else {
-   
     //LAZY LOADING IMPLEMENTATION
-     fetch(this.graphqlEndpoint, {
+     return await fetch(this.graphqlEndpoint, {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
 					'Accept' : 'application/json',
@@ -95,20 +111,16 @@ LRUCache.prototype.get = function(key) {
 			})
 			.then((res) => res.json())
 			.then((data) => {
-				//clean, normalize, and flatten data
-
-        //accessing the right data where we need to patch
-        //test one level deeper -> data.data.xyz
         const actualData = data.data;
         //store idea clean data in the cache
         this.put(key, actualData);
         //return the data to the user
-
         //save to the cache in IDB here
         this.saveIDBCache();
+        console.log('this is actual data', actualData);
         return actualData;
 			})
-			.catch((err) => console.log(`Error in data fetch: ` + err))
+			.catch((err) => console.log(`Error in data fetch: ` + err));
 		};
 };
 		
@@ -243,14 +255,14 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
 
 
 
-// const newCache = new LRUCache(3.5, 'http://localhost:3000');
-// console.log(newCache.get);
-// console.log(newCache.get(`{
+// const newCache = new LRUCache(3, 'http://localhost:3000/graphql');
+// newCache.get(`{
 //   user (){
 //     user_name,
 //     song_name,
 //     movie_name
-//   }`));
+//   }`);
+// console.log(newCache)
 
 
 //Make a query that doesnt exist in the cache previously BUT does exist in the DB

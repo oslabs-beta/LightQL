@@ -31,16 +31,26 @@ const Demo = () => {
 
 	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
 
-	const callLightQL = () => {
-		const cacheGet = cache.get(`
-		{
+	const queryStr = 
+	`	{
+		user {
+			user_name,
+			song_name,
+			movie_name
+		}
+	}`
+
+	let userData = {};
+
+	const callLightQL = async () => {
+		const cacheGet = await cache.get(`{
 		user {
 		  user_name,
 		  song_name,
 		  movie_name
 		}
 	  }`);
-	  console.log(JSON.stringify(cacheGet))
+		userData = cacheGet.user;
 	  //console.log("cache:" + JSON.stringify(cache));
 	}
 
@@ -78,23 +88,20 @@ const Demo = () => {
 			</form> */}
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
-					<h2>Query Input</h2>
-					{/* {queryStr} */}
-					<br />
-					<br />
-					<h2>Query Result</h2> 
-					{queryArr[0]}
+					<h2>Query:</h2>
+					<pre id='query-string'>{queryStr}</pre>
 				</section>
 				<section id='database' className='data-box'>
-					<h2>Database</h2>
-					<ul>
+					<h2>Query Result:</h2>
+					{/* <pre>{userData}</pre> */}
+					{/* <ul>
 					{arr.map((data, i = -1) => {
 						i += 1;
 							if (data[0] === '{' || data[0] === "[") {
 								return <li className='names' key={i}>{data}<br /></li>
 								} return <li className='data' key={i}>{data}<br /></li>
 							})}
-					</ul>
+					</ul> */}
 				</section>
 			</section>
 			<section id='chart-container'>
