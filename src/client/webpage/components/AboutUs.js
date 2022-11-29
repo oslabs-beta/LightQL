@@ -13,7 +13,7 @@ const AboutUs = () => {
     return (
         <div id='about-us-page-layout'>
             <h1 id="about-us-title">Meet the Team</h1>
-            <section id='about-us-layout'>
+            <main id='about-us-layout'>
                     <SingleTile 
                         emailIdName='cassEmail'
                         name='Cassidy Johnson' 
@@ -69,7 +69,7 @@ const AboutUs = () => {
                         linkedInLink='https://www.linkedin.com/in/rheawu-tech/'
                         headshot={rhea} 
                     /> 
-            </section> 
+            </main> 
         </div>
         )
 }

@@ -96,8 +96,9 @@ const Demo = () => {
 	return (
 		<div id='demo-body'> 
 			<h1 id='page-title'>Watch it work!</h1>
-			<form>
+			<form for='input-box'>
 				<select 
+				aria-label='Whose favorites would you like to see?'
 				name='User Selector'
 				id='input-box'
 				type='text'
@@ -136,11 +137,7 @@ const Demo = () => {
 								} return <li className='data' key={i}>{data}<br /></li>
 							})}
 					</ul>
-						
-						
-					
 				</section>
-				
 			</section>
 			<section id='chart-container'>
 				<Chart 

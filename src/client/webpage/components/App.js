@@ -10,8 +10,6 @@ import AboutUs from './AboutUs.js';
 import Demo from './homepageComponents/Demo'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-
-// import { motion } from 'framer-motion';
 const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
 const npmLogo = require('../../../assets/npm-vector.png')
@@ -23,7 +21,6 @@ const App = () => {
 		<>
 			 <section id='navbar'>
 				<section id='left-nav'>
-				<Link to='/'>
 					<motion.img 
 						whileHover={{
 							rotate: -20,
@@ -33,14 +30,16 @@ const App = () => {
 						src={logo.default} 
 						alt='LightQL Homepage'
 					/>
-				</Link>
-					<Link to='/'>
+					<Link 
+					to='/'
+					>
 						<motion.button 
 						whileHover={{
 							scale: 1.1
 						}}
 						id='home-btn' 
-						className='nav-btns'>
+						className='nav-btns'
+						>
 						Home
 						</motion.button>
 					</Link>
