@@ -1,4 +1,4 @@
-import localforage from 'localforage'
+const localforage = require("localforage");
 
 // LRU Cache
 function LRUCache(capacity, graphqlEndpoint) {
@@ -27,15 +27,20 @@ LRUCache.prototype.getIDBCache = function (){
       }else{
         if(!value){
           return false;
-        }else{
+        } 
+        else{
           this.capacity = value.capacity;
           this.graphqlEndpoint = value.graphqlEndpoint;
           //build a custom function for the dll and the map to put them back in
+          
           this.map = new Map();
+          //object keys needs to be greater than 0
           value.map.forEach((val, key) => {
             this.map.set(key, val);
           })
+        
           this.dll = new DoublyLinkedList();
+          
           let currNode = value.dll.head;
           while(currNode){
             this.dll.add(currNode);
@@ -66,10 +71,13 @@ LRUCache.prototype.saveIDBCache = function (){
 }
 
 
-LRUCache.prototype.get = function(key) {
+LRUCache.prototype.get = async function(key) {
+  
 //Need a better way to make sure there is something in IDB beforehand 
-    this.saveIDBCache();
+     if(this.map.size > 0){
+     this.saveIDBCache();
      this.getIDBCache();
+   }
   //Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
@@ -83,22 +91,17 @@ LRUCache.prototype.get = function(key) {
   if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
     throw new Error({log: 'Capacity is invalid'})
   }
-  console.log("you can see me in lightql cache");
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
     console.log(" I have the key");
     let currNode = this.map.get(key);
-    console.log('currNode:', currNode);
-    // remove dll from the origin place, add to head
-    console.log('remove testing:', this.dll.remove)
     this.dll.remove(currNode);
     this.dll.add(currNode);
     this.saveIDBCache();
     return currNode.value;
   } else {
-   
     //LAZY LOADING IMPLEMENTATION
-     fetch(this.graphqlEndpoint, {
+     return await fetch(this.graphqlEndpoint, {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
 					'Accept' : 'application/json',
@@ -108,22 +111,16 @@ LRUCache.prototype.get = function(key) {
 			})
 			.then((res) => res.json())
 			.then((data) => {
-				//clean, normalize, and flatten data
-
-        //accessing the right data where we need to patch
-        //test one level deeper -> data.data.xyz
         const actualData = data.data;
         //store idea clean data in the cache
-        console.log("you just used the put function");
         this.put(key, actualData);
         //return the data to the user
-        //console.log('youre about to send the right data back');
-       // console.log('this is the cache:',this.map);
         //save to the cache in IDB here
         this.saveIDBCache();
+        console.log('this is actual data', actualData);
         return actualData;
 			})
-			.catch((err) => console.log(`Error in data fetch: ` + err))
+			.catch((err) => console.log(`Error in data fetch: ` + err));
 		};
 };
 		
@@ -150,7 +147,6 @@ LRUCache.prototype.put = function (key, value) {
     //update the value to the new value passed in
     currNode.value = value;
     //add the node to the list
-   // console.log("right before error")
     this.dll.add(currNode);
     //add the node to hash map
     this.map.set(key, currNode);
@@ -174,7 +170,6 @@ LRUCache.prototype.put = function (key, value) {
     //we create a new node with the value and key passed in
     const newNode = new DLLNode(key, value);
     //add the node to the DLL
-   // console.log("right before error");
     this.dll.add(newNode);
     //add the node to the hashmap
     this.map.set(key, newNode);
@@ -218,7 +213,6 @@ DoublyLinkedList.prototype.add = function (node) {
 
 DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   let curr = this.head;
-  console.log(`I'm in dll.remove function`)
   while (curr) {
     // check if curr node's val equal to val, if yes...
     if ((curr.value === nodeToRemove.value)) {
@@ -253,7 +247,7 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   }
  };
 
- export { LRUCache, DoublyLinkedList, DLLNode};
+ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
 
 
 /// END OF OFFICIAL LINES OF CODE
@@ -261,14 +255,14 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
 
 
 
-// const newCache = new LRUCache(3.5, 'http://localhost:3000');
-// console.log(newCache.get);
-// console.log(newCache.get(`{
+// const newCache = new LRUCache(3, 'http://localhost:3000/graphql');
+// newCache.get(`{
 //   user (){
 //     user_name,
 //     song_name,
 //     movie_name
-//   }`));
+//   }`);
+// console.log(newCache)
 
 
 //Make a query that doesnt exist in the cache previously BUT does exist in the DB

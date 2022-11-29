@@ -4,7 +4,7 @@ import '../../styling/descriptions.scss'
 const jestLogo = require('../../../../assets/jest-js-icon.png');
 const typescriptLogo = require('../../../../assets/typescript-logo.png');
 const graphqlLogo = require('../../../../assets/graphql-logo.png');
-const chartjsLogo = require('../../../../assets/chartjs-logo.png');
+const localForageLogo = require('../../../../assets/local-forage.png');
 
 const Descriptions = () => {
 
@@ -37,9 +37,9 @@ const Descriptions = () => {
                         <img alt='' className='tech-stack-logos' src={jestLogo.default} />
                         <p id='jest-text' className='icon-text'>Jest</p>
                     </section>
-                    <section id='chartjs' className='logo-section'>
-                        <img alt='' className='tech-stack-logos' src={chartjsLogo.default} />
-                        <p id='chartjs-text' className='icon-text'>Chart.js</p>
+                    <section id='local-forage' className='logo-section'>
+                        <img alt='' className='tech-stack-logos' src={localForageLogo.default} />
+                        <p id='localforage-text' className='icon-text'>Local Forage</p>
                     </section>
                 </section>
             </section>

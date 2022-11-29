@@ -11,7 +11,7 @@ ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 const Demo = () => {
 
 	const labels = months({count: 7})
-	console.log(labels)
+	// console.log(labels)
 		const chartData = {
 		labels: labels,
 		datasets: [{
@@ -23,80 +23,45 @@ const Demo = () => {
 		}]
 	};
 
-    const [pulledData, setPulledData] = useState([]);
+    const [pulledData, setPulledData] = useState('');
 	const [user, setUser] = useState('');
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
-    
-	const queryStr = `{
-		user (user_name : "Drew"){
+
+	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+
+	const queryStr = 
+	`	{
+		user {
+			user_name,
+			song_name,
+			movie_name
+		}
+	}`
+
+	const callLightQL = async () => {
+		const cacheGet = await cache.get(`{
+		user {
 		  user_name,
 		  song_name,
 		  movie_name
 		}
-	  }`;
-	  const fakeQueryData = ` {
-        "user_name": "Cassidy",
-        "song_name": "Vigilante Shit",
-        "movie_name": "Heathers"
-      },
-      {
-        "user_name": "Rhea",
-        "song_name": "Iris",
-        "movie_name": "The Legend of 1900"
-      } `
-	
-	const cache = new LRUCache(3);
-	console.log("cache:" + JSON.stringify(cache));
-	const checkKey = (keyName) => {
-		if (cache.get(keyName)) return;	
+	  }`);
+		const userData = cacheGet.user;
+		setPulledData(JSON.stringify(userData, null, 2));
 	}
 
-	const setFavData = () => {
-		console.log('favData:' + JSON.stringify(favData));
-	}
-
-    // need to do classic JS fetch request 
-	useEffect(() => { //same as component did mount and component did update aggregated
-		// const fetchData = () => {
-		// //helper function to format the query which will be the key in the hashmap
-		// //perform the get method with formatted query 
-		// //Lighql.get(query)
-		
-		
-		// 	// 	console.log('user: ' + user);
-		// 	fetch('http://localhost:3000/graphql', {
-		// 		method: 'POST',
-		// 		headers: {'Content-type' : 'application/json',
-		// 			'Accept' : 'application/json',
-		// 	},
-		// 		body: JSON.stringify({query: `{
-		// 			user{
-		// 				user_name
-		// 				song_name
-		// 				movie_name
-		// 			}
-		// 		}`})
-		// 	})
-		// 	.then((res) => res.json())
-		// 	.then((data) => {
-		// 		const favData = data.data.user;
-		// 		console.log(favData)
-		// 		setPulledData(favData);
-		// 	})
-		// 	.catch((err) => console.log(`Error in useEffect fetch: ` + err))
-		// };
-		// fetchData();
-	})
-    	console.log(pulledData);
-
-// also we display our retrieved data (object) in the return statement below
-// just an idea: we could have two boxes here: one showing data in cache, and one showing data in database for demo purpose (one will be slower without eviction policy and larger)
 	return (
 		<div id='demo-body'> 
 			<h1 id='page-title'>Watch it work!</h1>
-			<form for='input-box'>
+			<button 
+				id='demo-btn' 
+				className='button-text'
+				onClick={callLightQL}
+				>Run the demo
+			</button>
+			{/* <form htmlFor='input-box'>
 				<select 
 				aria-label='Whose favorites would you like to see?'
 				name='User Selector'
@@ -105,6 +70,7 @@ const Demo = () => {
 				value={user}
 				onChange={(e) => {
 					setUser(e.target.value);
+					callQuery();
 					// console.log('e.target.value: ' + e.target.value)
 				}}
 				>
@@ -117,26 +83,25 @@ const Demo = () => {
 					<option value='Pierce'>Pierce</option>
 					<option value='Cassidy'>Cassidy</option>
 				</select>
-			</form>
+			</form> */}
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
-					<h2>Query Input</h2>
-					{queryStr}
-					<br />
-					<br />
-					<h2>Query Result</h2> 
-					{queryArr[0]}
+					<h2 className='result-box-titles'>Query:</h2>
+					<pre id='query-string'>{queryStr}</pre>
 				</section>
-				<section id='database' className='data-box'>
-					<h2>Database</h2>
-					<ul>
+				<section id='query-result' className='data-box'>
+					<h2 className='result-box-titles'>Query Result:</h2>
+					<pre>
+						<code>{pulledData}</code>
+					</pre>
+					{/* <ul>
 					{arr.map((data, i = -1) => {
 						i += 1;
 							if (data[0] === '{' || data[0] === "[") {
 								return <li className='names' key={i}>{data}<br /></li>
 								} return <li className='data' key={i}>{data}<br /></li>
 							})}
-					</ul>
+					</ul> */}
 				</section>
 			</section>
 			<section id='chart-container'>

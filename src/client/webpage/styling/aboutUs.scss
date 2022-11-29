@@ -25,7 +25,7 @@ $code-font: 'B612 Mono', monospace;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-auto-flow: row dense;
     place-items: center;
-    height: 72vh;
+    height: 74vh;
     margin: 0 40px 0 40px;
 }
 
@@ -55,7 +55,7 @@ $code-font: 'B612 Mono', monospace;
 
 #singleTile {
     background-color: rgba($black, 0.05);
-    height: 53vh;
+    height: 400px;
     min-height: 389px; 
     width: 235px;
     min-width: 235px;
