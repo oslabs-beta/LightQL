@@ -10,8 +10,6 @@ import AboutUs from './AboutUs.js';
 import Demo from './homepageComponents/Demo'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-
-// import { motion } from 'framer-motion';
 const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
 const npmLogo = require('../../../assets/npm-vector.png')
@@ -23,7 +21,6 @@ const App = () => {
 		<>
 			 <section id='navbar'>
 				<section id='left-nav'>
-				<Link to='/'>
 					<motion.img 
 						whileHover={{
 							rotate: -20,
@@ -31,16 +28,18 @@ const App = () => {
 						}}
 						id='navbar-logo' 
 						src={logo.default} 
-						alt='LightQL Logo'
+						alt='LightQL Homepage'
 					/>
-				</Link>
-					<Link to='/'>
+					<Link 
+					to='/'
+					>
 						<motion.button 
 						whileHover={{
 							scale: 1.1
 						}}
 						id='home-btn' 
-						className='nav-btns'>
+						className='nav-btns'
+						>
 						Home
 						</motion.button>
 					</Link>
@@ -69,6 +68,8 @@ const App = () => {
 				</section>
 				<section id='right-nav'>
 					<motion.a 
+						name='Github Link'
+						aria-label='Click to access our Github repository'
 						whileHover={{
 							type: "bounce",
 							scale: 1.2
@@ -81,15 +82,16 @@ const App = () => {
 						<GitHubIcon sx={{color: '#323949'}} className='top-right-icons'></GitHubIcon>
 					</motion.a>
 					<motion.a 
+						name='NPM Link'
+						aria-label='Click to view our NPM package on npmjs.com'
 						whileHover={{
 							type: "bounce",
 							scale: 1.2
 						}}
 						href="https://www.npmjs.com/package/lightql-cache" 
 						target="_blank"
-						
 						>
-						<motion.img id='npm-logo' className='top-right-icons' src={npmLogo.default}></motion.img>
+						<motion.img alt='NPM Link' id='npm-logo' className='top-right-icons' src={npmLogo.default}></motion.img>
 					</motion.a>
 				</section>
 			 </section>
@@ -136,7 +138,7 @@ const App = () => {
 				/>
 			</Routes>
 			<section id='footer'>
-				<img id='black-logo' src={blackLogo.default}></img>
+				<img alt='LightQL Logo' id='black-logo' src={blackLogo.default}></img>
 				<p id='footer-text'>Made with love by LightQL.</p>
 			</section>
 		</>

@@ -7,7 +7,7 @@ const OneBox = ({icon, title, text}) => {
 
     return (
         <div id='one-box-layout'>
-            <Icon className='box-icons'/>
+            <Icon alt='' className='box-icons'/>
             <h1 id='box-title' className='text-color'>{title}</h1>
             <p id='box-paragraph'>{text}</p>
         </div>

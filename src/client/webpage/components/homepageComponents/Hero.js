@@ -12,11 +12,12 @@ let logo = require('../../../../assets/nobg-LightQL.png');
 
 const Hero = () => {
 
+
     return (
         <div id='hero-layout'>
             <div id='hero'>
                 <aside id='hero-left'>
-                    <img id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
+                    <img alt='' id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
                 </aside>
                 <section id='main-info-section'>
                     <motion.img 
@@ -35,19 +36,27 @@ const Hero = () => {
                     <span id='clipboard-docs'>
                         <section id='copy-npm'>
                             <p id='dollar-sign' className='npm-text'>$</p>
-                            <p id='npm-link' className='npm-text'>npm install lightql-cache</p>
-                            <ContentPasteIcon sx={{color: '#323949'}}></ContentPasteIcon>
+                            <p id='npm-link'
+                            className='npm-text'>npm install lightql-cache</p>
+                            <ContentPasteIcon 
+                            id='clipboard-icon'
+                            onClick={() =>
+                            navigator.clipboard.writeText(
+                                'npm install lightql-cache'
+                            )} 
+                            sx={{color: '#323949'}}
+                            ></ContentPasteIcon>
                         </section>
                         <Link to='/docs' id='blue-docs-link'>
                             <button id='blue-docs-button' className='button-text'>Read our docs</button>
                         </Link>
                     </span>
-                    <Link to='/demo' id='demo-link'>
+                    {/* <Link to='/demo' id='demo-link'>
                        <p >View our demo</p> 
-                    </Link>
+                    </Link> */}
                 </section>
                 <aside id='hero-right'>
-                <img id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
+                <img alt='' id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
                 </aside>
             </div>
             

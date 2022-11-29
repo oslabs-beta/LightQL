@@ -96,9 +96,10 @@ const Demo = () => {
 	return (
 		<div id='demo-body'> 
 			<h1 id='page-title'>Watch it work!</h1>
-			<form>
+			<form for='input-box'>
 				<select 
-				name='user'
+				aria-label='Whose favorites would you like to see?'
+				name='User Selector'
 				id='input-box'
 				type='text'
 				value={user}
@@ -128,18 +129,19 @@ const Demo = () => {
 				</section>
 				<section id='database' className='data-box'>
 					<h2>Database</h2>
+					<ul>
 					{arr.map((data, i = -1) => {
 						i += 1;
-						if (data[0] === '{' || data[0] === "[") {
-							return <li className='names' key={i}>{data}<br /></li>
-						}
-						return <li className='data' key={i}>{data}<br /></li>
-					})}
+							if (data[0] === '{' || data[0] === "[") {
+								return <li className='names' key={i}>{data}<br /></li>
+								} return <li className='data' key={i}>{data}<br /></li>
+							})}
+					</ul>
 				</section>
-				
 			</section>
 			<section id='chart-container'>
 				<Chart 
+					name='Chart tracking caching speed'
 					id='line-chart' 
 					options={{
 						responsive: true,
