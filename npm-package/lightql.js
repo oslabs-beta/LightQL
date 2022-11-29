@@ -1,10 +1,14 @@
+
+
 // LRU Cache
 function LRUCache(capacity, graphqlEndpoint) {
-  this.capacity = capacity;
-  this.map = new Map();
-  this.dll = new DoublyLinkedList();
-  this.graphqlEndpoint = graphqlEndpoint;
-};
+    this.capacity = Math.floor(capacity);
+    this.map = new Map();
+    this.dll = new DoublyLinkedList();
+    this.graphqlEndpoint = graphqlEndpoint;
+}
+
+
 
 // Edge case handler to check if hashmap and dll are the same size:
 LRUCache.prototype.equalSize = function() {
@@ -12,11 +16,21 @@ LRUCache.prototype.equalSize = function() {
   return this.map.size === this.dll.currCapacity;
 };
 
-LRUCache.prototype.retrieve = function(key) {
+LRUCache.prototype.get = function(key) {
+//Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
     return;
   }
+   // Checks if the grapql endpoint is null
+   if(!this.graphqlEndpoint){
+    throw new Error({log : 'Graphql Endpoint Argument is invalid or missing'})
+  }
+// checks if the capacity is greater than 0, and it's interger
+  if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
+    throw new Error({log: 'Capacity is invalid'})
+  }
+
   console.log("you can see me in lightql cache");
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
@@ -30,7 +44,7 @@ LRUCache.prototype.retrieve = function(key) {
 
     return Promise.resolve(currNode.value);
   } else {
-    // PLACEHOLDER FOR CHECKING THE DATABASE
+   
     //LAZY LOADING IMPLEMENTATION
      fetch(this.graphqlEndpoint, {
 				method: 'POST',
@@ -183,7 +197,16 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   }
  };
 
-// const newCache = new LRUCache(3, 'http://localhost:3000/graphql');
+ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
+
+
+/// END OF OFFICIAL LINES OF CODE
+
+
+
+
+// const newCache = new LRUCache(3.5, 'http://localhost:3000');
+// console.log(newCache.get);
 // console.log(newCache.get(`{
 //   user (){
 //     user_name,
@@ -192,7 +215,32 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
 //   }`));
 
 
-module.exports = { LRUCache, DoublyLinkedList, DLLNode};
+//Make a query that doesnt exist in the cache previously BUT does exist in the DB
+//Should go through the cache to the DB then add to the cache
+//newCache.get("Pierce")
+
+//Check the same query to see if it comes back from the cache 
+//Should return from the cache
+//newCache.get("Pierce")
+
+//Add querires to cache that exceed capacity 
+//Should evict the tail and add to the head
+//SUCCESS
+
+//get request the tail from the cache 
+//should move tail to head 
+//SUCCESS
+
+
+//get request the head from the cache
+//should stay the head 
+//SUCCESS
+
+//get request from the middle of the LL
+//should move to the head 
+//SUCCESS
+
+
 
 // let newLink = new DoublyLinkedList();
 // const node1 = new DLLNode(1, 'a');
@@ -390,3 +438,11 @@ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
   //   }
   //   // but we also need to return it after updating it?
   
+
+
+  // function LightQL(capacity = 10, graphqlEndpoint = '', TTL){
+//   if(!graphqlEndpoint){
+//     throw new Error({log : 'Graphql Endpoint Argument is invalid or missing'})
+//   }
+//    this.cache = new LRUCache(capacity, graphqlEndpoint);
+// }
