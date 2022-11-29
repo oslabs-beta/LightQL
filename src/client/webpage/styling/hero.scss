@@ -74,6 +74,7 @@ $code-font: 'B612 Mono', monospace;
     align-items: center;
     justify-content: space-around;
     width: 40%;
+    
 }
 
 #dollar-sign {
@@ -88,6 +89,10 @@ $code-font: 'B612 Mono', monospace;
 .npm-text {
     font-family: $code-font;
     margin: 0;
+}
+
+#clipboard-icon {
+    cursor: pointer;
 }
 
 .button-text {

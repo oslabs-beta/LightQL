@@ -12,6 +12,7 @@ let logo = require('../../../../assets/nobg-LightQL.png');
 
 const Hero = () => {
 
+
     return (
         <div id='hero-layout'>
             <div id='hero'>
@@ -35,8 +36,16 @@ const Hero = () => {
                     <span id='clipboard-docs'>
                         <section id='copy-npm'>
                             <p id='dollar-sign' className='npm-text'>$</p>
-                            <p id='npm-link' className='npm-text'>npm install lightql-cache</p>
-                            <ContentPasteIcon sx={{color: '#323949'}}></ContentPasteIcon>
+                            <p id='npm-link'
+                            className='npm-text'>npm install lightql-cache</p>
+                            <ContentPasteIcon 
+                            id='clipboard-icon'
+                            onClick={() =>
+                            navigator.clipboard.writeText(
+                                'npm install lightql-cache'
+                            )} 
+                            sx={{color: '#323949'}}
+                            ></ContentPasteIcon>
                         </section>
                         <Link to='/docs' id='blue-docs-link'>
                             <button id='blue-docs-button' className='button-text'>Read our docs</button>
