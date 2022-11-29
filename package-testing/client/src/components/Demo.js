@@ -19,7 +19,7 @@ const Demo = () => {
 	let queryArr = JSON.stringify(pulledData).split('}');
 	
 	const queryStr = `{
-		user{
+		user {
 		  user_name,
 		  song_name,
 		  movie_name
