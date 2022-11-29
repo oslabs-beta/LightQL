@@ -40,8 +40,6 @@ const Demo = () => {
 		}
 	}`
 
-	let userData = {};
-
 	const callLightQL = async () => {
 		const cacheGet = await cache.get(`{
 		user {
@@ -50,8 +48,8 @@ const Demo = () => {
 		  movie_name
 		}
 	  }`);
-		userData = cacheGet.user;
-	  //console.log("cache:" + JSON.stringify(cache));
+		const userData = cacheGet.user;
+		setPulledData(userData);
 	}
 
 	return (
@@ -93,7 +91,7 @@ const Demo = () => {
 				</section>
 				<section id='database' className='data-box'>
 					<h2>Query Result:</h2>
-					{/* <pre>{userData}</pre> */}
+					<pre><code>{JSON.stringify(pulledData)}</code></pre>
 					{/* <ul>
 					{arr.map((data, i = -1) => {
 						i += 1;
