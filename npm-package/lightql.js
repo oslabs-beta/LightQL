@@ -29,9 +29,18 @@ LRUCache.prototype.getIDBCache = function (){
           return false;
         }else{
           this.capacity = value.capacity;
-          this.map = value.map;
-          this.dll = value.dll;
           this.graphqlEndpoint = value.graphqlEndpoint;
+          //build a custom function for the dll and the map to put them back in
+          this.map = new Map();
+          value.map.forEach((val, key) => {
+            this.map.set(key, val);
+          })
+          this.dll = new DoublyLinkedList();
+          let currNode = value.dll.head;
+          while(currNode){
+            this.dll.add(currNode);
+            currNode = currNode.next;
+          }
           return true;
         }
       }
@@ -60,7 +69,7 @@ LRUCache.prototype.saveIDBCache = function (){
 LRUCache.prototype.get = function(key) {
 //Need a better way to make sure there is something in IDB beforehand 
     this.saveIDBCache();
-    if(this.map.size !== 0) this.getIDBCache();
+     this.getIDBCache();
   //Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
@@ -108,8 +117,8 @@ LRUCache.prototype.get = function(key) {
         console.log("you just used the put function");
         this.put(key, actualData);
         //return the data to the user
-        console.log('youre about to send the right data back');
-        console.log('this is the cache:',this.map);
+        //console.log('youre about to send the right data back');
+       // console.log('this is the cache:',this.map);
         //save to the cache in IDB here
         this.saveIDBCache();
         return actualData;
@@ -141,7 +150,7 @@ LRUCache.prototype.put = function (key, value) {
     //update the value to the new value passed in
     currNode.value = value;
     //add the node to the list
-    console.log("right before error")
+   // console.log("right before error")
     this.dll.add(currNode);
     //add the node to hash map
     this.map.set(key, currNode);
@@ -165,7 +174,7 @@ LRUCache.prototype.put = function (key, value) {
     //we create a new node with the value and key passed in
     const newNode = new DLLNode(key, value);
     //add the node to the DLL
-    console.log("right before error");
+   // console.log("right before error");
     this.dll.add(newNode);
     //add the node to the hashmap
     this.map.set(key, newNode);
