@@ -23,7 +23,7 @@ const Demo = () => {
 		}]
 	};
 
-    const [pulledData, setPulledData] = useState([]);
+    const [pulledData, setPulledData] = useState('');
 	const [user, setUser] = useState('');
 
 	let arr = JSON.stringify(pulledData).split(',')
@@ -49,7 +49,7 @@ const Demo = () => {
 		}
 	  }`);
 		const userData = cacheGet.user;
-		setPulledData(userData);
+		setPulledData(JSON.stringify(userData, null, 2));
 	}
 
 	return (
@@ -86,12 +86,14 @@ const Demo = () => {
 			</form> */}
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
-					<h2>Query:</h2>
+					<h2 className='result-box-titles'>Query:</h2>
 					<pre id='query-string'>{queryStr}</pre>
 				</section>
-				<section id='database' className='data-box'>
-					<h2>Query Result:</h2>
-					<pre><code>{JSON.stringify(pulledData)}</code></pre>
+				<section id='query-result' className='data-box'>
+					<h2 className='result-box-titles'>Query Result:</h2>
+					<pre>
+						<code>{pulledData}</code>
+					</pre>
 					{/* <ul>
 					{arr.map((data, i = -1) => {
 						i += 1;

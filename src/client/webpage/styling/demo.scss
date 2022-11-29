@@ -72,23 +72,41 @@ h1 {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    align-self: center;
+    align-self: flex-start;
     height: 80%;
     width: 100%;
     line-height: 2rem;
 }
 
+.result-box-titles {
+    position: sticky;
+    top: 0;
+    background-color: $black;
+    width: 100%;
+    margin: 0;
+    padding: 20px 0 20px 0;
+}
+
 .data-box {
     background-color: $black;
     color: $white;
-    height: 90%;
+    height: 40vh;
     width: 50%;
     margin: 20px;
-    margin-top: 0px;
+    margin-top: 20px;
     border-radius: 20px;
     padding: 20px;
+    padding-top: 0;
     font-family: $code-font;
     font-size: 0.85rem;
+}
+
+#query-result::-webkit-scrollbar {
+    display: none;
+  }
+
+#query-result {
+    overflow-y: scroll;
 }
 
 .names {
