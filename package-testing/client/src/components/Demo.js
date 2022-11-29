@@ -39,7 +39,7 @@ const Demo = () => {
 	}
 	
     // need to do classic JS fetch request 
-	// useEffect(() => { //same as component did mount and component did update aggregated
+	 useEffect(() => { //same as component did mount and component did update aggregated
 	// 	const fetchData =  async () => {
 	// 		//console.log('queryStr:', queryStr);
 	// 		//console.log('user: ' + user);
@@ -57,10 +57,13 @@ const Demo = () => {
 	// 		//setPulledData(await cache.retrieve(queryStr));
 	// 		setPulledData(fetchDataHere);
 	// 	}
-	// 	fetchData();
-	// 	//fetchData();
-	// 	//console.log('queryStr:', cache.get(queryStr))
-	// }, [])
+		// fetchData();
+		//fetchData();
+		console.log('queryStr:', cache.get(queryStr));
+		setTimeout(() => {
+			console.log(cache.get(queryStr));
+		}, 1000);
+	}, [])
 	//console.log('setdadta:', pulledData);
 	// console.log('queryStr:', cache.get(queryStr));
 	// const callTime = () => {
