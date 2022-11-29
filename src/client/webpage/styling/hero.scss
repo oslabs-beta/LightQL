@@ -78,12 +78,14 @@ $code-font: 'B612 Mono', monospace;
 }
 
 #dollar-sign {
+    margin-left: 5%;
     color: rgba($black, .7);
 }
 
 #npm-link {
     color: $black;
     margin: 0.6em;
+    margin-right: 25%;
 }
 
 .npm-text {

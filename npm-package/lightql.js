@@ -1,4 +1,4 @@
-import localforage from 'localforage'
+const localforage = require("localforage");
 
 // LRU Cache
 function LRUCache(capacity, graphqlEndpoint) {
@@ -74,14 +74,10 @@ LRUCache.prototype.get = function(key) {
   if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
     throw new Error({log: 'Capacity is invalid'})
   }
-  console.log("you can see me in lightql cache");
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
     console.log(" I have the key");
     let currNode = this.map.get(key);
-    console.log('currNode:', currNode);
-    // remove dll from the origin place, add to head
-    console.log('remove testing:', this.dll.remove)
     this.dll.remove(currNode);
     this.dll.add(currNode);
     this.saveIDBCache();
@@ -105,11 +101,9 @@ LRUCache.prototype.get = function(key) {
         //test one level deeper -> data.data.xyz
         const actualData = data.data;
         //store idea clean data in the cache
-        console.log("you just used the put function");
         this.put(key, actualData);
         //return the data to the user
-        console.log('youre about to send the right data back');
-        console.log('this is the cache:',this.map);
+
         //save to the cache in IDB here
         this.saveIDBCache();
         return actualData;
@@ -141,7 +135,6 @@ LRUCache.prototype.put = function (key, value) {
     //update the value to the new value passed in
     currNode.value = value;
     //add the node to the list
-    console.log("right before error")
     this.dll.add(currNode);
     //add the node to hash map
     this.map.set(key, currNode);
@@ -165,7 +158,6 @@ LRUCache.prototype.put = function (key, value) {
     //we create a new node with the value and key passed in
     const newNode = new DLLNode(key, value);
     //add the node to the DLL
-    console.log("right before error");
     this.dll.add(newNode);
     //add the node to the hashmap
     this.map.set(key, newNode);
@@ -209,7 +201,6 @@ DoublyLinkedList.prototype.add = function (node) {
 
 DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   let curr = this.head;
-  console.log(`I'm in dll.remove function`)
   while (curr) {
     // check if curr node's val equal to val, if yes...
     if ((curr.value === nodeToRemove.value)) {
@@ -244,7 +235,7 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   }
  };
 
- export { LRUCache, DoublyLinkedList, DLLNode};
+ module.exports = { LRUCache, DoublyLinkedList, DLLNode};
 
 
 /// END OF OFFICIAL LINES OF CODE

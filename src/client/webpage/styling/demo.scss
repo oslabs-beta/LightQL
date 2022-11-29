@@ -27,6 +27,24 @@ h1 {
     color: $black;
 }
 
+#demo-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid $black;
+    border-radius: 8px;
+    height: 60%;
+    width: auto;
+    justify-self: center;
+    background-color: $white;
+    padding: 2%;
+    margin-bottom: 20px;
+    font-family: $body-font;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: $black;
+}
+
 #input-box {
     grid-row: inherit;
     font-family: $body-font;
@@ -48,6 +66,8 @@ h1 {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+    align-self: center;
+    height: 80%;
     width: 100%;
     line-height: 2rem;
 }
@@ -55,7 +75,7 @@ h1 {
 .data-box {
     background-color: $black;
     color: $white;
-    height: 80%;
+    height: 90%;
     width: 50%;
     margin: 20px;
     margin-top: 0px;

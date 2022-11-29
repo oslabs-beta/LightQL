@@ -1,5 +1,5 @@
 import React from 'react';
-import lightql, { LRUCache } from '../../../../npm-package/lightql';
+// import lightql, { LRUCache } from '../../../../npm-package/lightql';
 import { browserHistory } from 'react-router'
 import { Link, Route, Routes } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -78,7 +78,6 @@ const App = () => {
 						target="_blank"
 						
 						>
-						
 						<GitHubIcon sx={{color: '#323949'}} className='top-right-icons'></GitHubIcon>
 					</motion.a>
 					<motion.a 

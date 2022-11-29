@@ -51,9 +51,9 @@ const Hero = () => {
                             <button id='blue-docs-button' className='button-text'>Read our docs</button>
                         </Link>
                     </span>
-                    {/* <Link to='/demo' id='demo-link'>
-                       <p >View our demo</p> 
-                    </Link> */}
+                    <Link to='/aboutUs' id='demo-link'>
+                       <p>Contact us</p> 
+                    </Link>
                 </section>
                 <aside id='hero-right'>
                 <img alt='' id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
