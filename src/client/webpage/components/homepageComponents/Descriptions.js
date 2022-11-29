@@ -26,19 +26,19 @@ const Descriptions = () => {
                 <p id='tech-stack-desc' className='paragraph-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper ut ligula ut ornare. Suspendisse. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper ut ligula ut ornare. Suspendisse.</p>
                 <section id='icon-section'>
                     <section id='typescript' className='logo-section'>
-                        <img className='tech-stack-logos' src={typescriptLogo.default} />
+                        <img alt='' className='tech-stack-logos' src={typescriptLogo.default} />
                         <p id='ts-text' className='icon-text'>Typescript</p>
                     </section>
                     <section id='graphql' className='logo-section'>
-                        <img className='tech-stack-logos' src={graphqlLogo.default} />
+                        <img alt='' className='tech-stack-logos' src={graphqlLogo.default} />
                         <p id='graphql-text' className='icon-text'>GraphQL</p>
                     </section>
                     <section id='jest' className='logo-section'>
-                        <img className='tech-stack-logos' src={jestLogo.default} />
+                        <img alt='' className='tech-stack-logos' src={jestLogo.default} />
                         <p id='jest-text' className='icon-text'>Jest</p>
                     </section>
                     <section id='chartjs' className='logo-section'>
-                        <img className='tech-stack-logos' src={chartjsLogo.default} />
+                        <img alt='' className='tech-stack-logos' src={chartjsLogo.default} />
                         <p id='chartjs-text' className='icon-text'>Chart.js</p>
                     </section>
                 </section>

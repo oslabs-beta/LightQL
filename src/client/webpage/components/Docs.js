@@ -147,7 +147,7 @@ const Docs = () => {
                   For the first parameter, simply pass in an empty object like
                   so:
                 </p>
-                <h4 className="blue-code-text">{objy}</h4>
+                <p className="darker-blue-code-text">{objy}</p>
 
                 <p className='section-paragraphs'>
                   Next, is the capacity you would like your cache to hold. This
@@ -163,7 +163,7 @@ const Docs = () => {
                   The third parameter is the endpoint at which you are actually
                   using GraphQL. For example, this endpoint may be
                 </p>
-                <p className="blue-code-text">http://localhost:3000/graphql</p>
+                <p className="darker-blue-code-text">http://localhost:3000/graphql</p>
 
                 <p className='section-paragraphs'>Now you are good to cache your GraphQL responses!</p>
                 <div id='big-code-box' className="code-box">

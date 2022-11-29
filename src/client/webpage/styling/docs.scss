@@ -53,6 +53,15 @@ $code-font: 'B612 Mono', monospace;
     margin-left: 25px;
 }
 
+.darker-blue-code-text {
+    color: darken($blue, 5%);
+    font-size: 18px;
+    font-family: $code-font;
+    grid-column: 1 / 2;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
 .copy-button {
     grid-column: 2 / 3;
     display: flex;
@@ -64,7 +73,7 @@ $code-font: 'B612 Mono', monospace;
     width: 70%;
     justify-self: center;
     background-color: $white;
-    color: $blue;
+    color: darken($blue, 5%);
     border: 1px solid $blue;
     cursor: pointer;
     font-family: $code-font;

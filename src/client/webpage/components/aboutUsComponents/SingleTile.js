@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
-const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
+const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headshot, githubLink, linkedInLink}) => {
 
     let emailTo = `mailto: ${email}`;
 
@@ -21,11 +21,13 @@ const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
             }}
             id='singleTile'
         >
-            <img id='headshots' src={headshot.default} />
+            <img id='headshots' alt='' src={headshot.default} />
             <section id='bottom-of-tile'>
                 <h2 id='name'>{name}</h2>
                 <motion.a 
-                    id='email-button'
+                    id={emailIdName}
+                    aria-label={emailAria}
+                    className='email-button'
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ 
@@ -34,10 +36,10 @@ const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
                     damping: 17 
                     }}
                     href={emailTo}
-                    className='contact-text'
                 >Email me!</motion.a>
                 <section id='contact-icons'>
                     <motion.a 
+                        aria-label={GHAria}
                         whileHover={{
                             scale: 1.1
                         }}
@@ -51,6 +53,7 @@ const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
                         <GitHubIcon className='au-icons' sx={{color: '#323949'}}></GitHubIcon>
                     </motion.a>
                     <motion.a 
+                        aria-label={LIAria}
                         whileHover={{
                             scale: 1.1
                         }}
@@ -61,7 +64,7 @@ const SingleTile = ({key, name, email, headshot, githubLink, linkedInLink}) => {
                         }}
                         href={linkedInLink}
                         target="_blank">
-                        <LinkedInIcon id='linkedin-icon'className='au-icons' sx={{color: '#323949'}}></LinkedInIcon>
+                        <LinkedInIcon id='linkedin-icon' className='au-icons' sx={{color: '#323949'}}></LinkedInIcon>
                     </motion.a>
                 </section>
                 </section>

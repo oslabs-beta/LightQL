@@ -16,7 +16,7 @@ const Hero = () => {
         <div id='hero-layout'>
             <div id='hero'>
                 <aside id='hero-left'>
-                    <img id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
+                    <img alt='' id='lower-left' className='hero-imgs' src={leftLines.default}></img> 
                 </aside>
                 <section id='main-info-section'>
                     <motion.img 
@@ -42,12 +42,12 @@ const Hero = () => {
                             <button id='blue-docs-button' className='button-text'>Read our docs</button>
                         </Link>
                     </span>
-                    <Link to='/demo' id='demo-link'>
+                    {/* <Link to='/demo' id='demo-link'>
                        <p >View our demo</p> 
-                    </Link>
+                    </Link> */}
                 </section>
                 <aside id='hero-right'>
-                <img id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
+                <img alt='' id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
                 </aside>
             </div>
             
