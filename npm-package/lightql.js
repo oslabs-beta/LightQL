@@ -1,4 +1,4 @@
-
+import localforage from 'localforage'
 
 // LRU Cache
 function LRUCache(capacity, graphqlEndpoint) {
@@ -16,8 +16,52 @@ LRUCache.prototype.equalSize = function() {
   return this.map.size === this.dll.currCapacity;
 };
 
+
+
+//localforage get
+//this function retrives our cache from the IndexedDB Browser storage and gives access to our in-memory caching solution
+LRUCache.prototype.getIDBCache = function (){
+    localforage.getItem('LightQL', (err, value) =>{
+      if(err){
+        return false; 
+      }else{
+        if(!value){
+          return false;
+        }else{
+          this.capacity = value.capacity;
+          this.map = value.map;
+          this.dll = value.dll;
+          this.graphqlEndpoint = value.graphqlEndpoint;
+          return true;
+        }
+      }
+    })
+}
+
+//locaforage set 
+//A function to save the current Cache data structures in memory to INdexedDB using localforage
+LRUCache.prototype.saveIDBCache = function (){
+  let data = {
+    capacity : this.capacity,
+    map : this.map,
+    dll : this.dll,
+    graphqlEndpoint: this.graphqlEndpoint
+  }
+  localforage.setItem('LightQL', data, (err, result)=>{
+    if(err){
+      return false;
+    }else{
+      return true;
+    }
+  })
+}
+
+
 LRUCache.prototype.get = function(key) {
-//Error Checkers
+//Need a better way to make sure there is something in IDB beforehand 
+    this.saveIDBCache();
+    if(this.map.size !== 0) this.getIDBCache();
+  //Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
     return;
@@ -30,19 +74,18 @@ LRUCache.prototype.get = function(key) {
   if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
     throw new Error({log: 'Capacity is invalid'})
   }
-
   console.log("you can see me in lightql cache");
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
     console.log(" I have the key");
     let currNode = this.map.get(key);
-    console.log(currNode);
+    console.log('currNode:', currNode);
     // remove dll from the origin place, add to head
+    console.log('remove testing:', this.dll.remove)
     this.dll.remove(currNode);
-    
     this.dll.add(currNode);
-
-    return Promise.resolve(currNode.value);
+    this.saveIDBCache();
+    return currNode.value;
   } else {
    
     //LAZY LOADING IMPLEMENTATION
@@ -67,6 +110,8 @@ LRUCache.prototype.get = function(key) {
         //return the data to the user
         console.log('youre about to send the right data back');
         console.log('this is the cache:',this.map);
+        //save to the cache in IDB here
+        this.saveIDBCache();
         return actualData;
 			})
 			.catch((err) => console.log(`Error in data fetch: ` + err))
@@ -96,6 +141,7 @@ LRUCache.prototype.put = function (key, value) {
     //update the value to the new value passed in
     currNode.value = value;
     //add the node to the list
+    console.log("right before error")
     this.dll.add(currNode);
     //add the node to hash map
     this.map.set(key, currNode);
@@ -119,6 +165,7 @@ LRUCache.prototype.put = function (key, value) {
     //we create a new node with the value and key passed in
     const newNode = new DLLNode(key, value);
     //add the node to the DLL
+    console.log("right before error");
     this.dll.add(newNode);
     //add the node to the hashmap
     this.map.set(key, newNode);
@@ -162,7 +209,7 @@ DoublyLinkedList.prototype.add = function (node) {
 
 DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   let curr = this.head;
-  console.log(curr)
+  console.log(`I'm in dll.remove function`)
   while (curr) {
     // check if curr node's val equal to val, if yes...
     if ((curr.value === nodeToRemove.value)) {
@@ -197,7 +244,7 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
   }
  };
 
- module.exports = { LRUCache, DoublyLinkedList, DLLNode};
+ export { LRUCache, DoublyLinkedList, DLLNode};
 
 
 /// END OF OFFICIAL LINES OF CODE

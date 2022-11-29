@@ -10,6 +10,7 @@ import '../styles.scss'
 const cache = new LRUCache(3, 'http://localhost:3000/graphql');
 console.log("cache:" + JSON.stringify(cache));
 
+
 const Demo = () => {
 
     const [pulledData, setPulledData] = useState([]);
@@ -25,7 +26,7 @@ const Demo = () => {
 		  movie_name
 		}
 	  }`;
-	
+	console.log('get function: ', cache.get(queryStr));
 	//create an instance of cache and pass in the correct endpoint
 	
 	
@@ -38,39 +39,40 @@ const Demo = () => {
 	}
 	
     // need to do classic JS fetch request 
-	useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData =  async () => {
-			//console.log('queryStr:', queryStr);
-			//console.log('user: ' + user);
-			const fetchD = await fetch('http://localhost:3000/graphql', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({query: queryStr})
-			})
+	// useEffect(() => { //same as component did mount and component did update aggregated
+	// 	const fetchData =  async () => {
+	// 		//console.log('queryStr:', queryStr);
+	// 		//console.log('user: ' + user);
+	// 		const fetchD = await fetch('http://localhost:3000/graphql', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			},
+	// 			body: JSON.stringify({query: queryStr})
+	// 		})
 			
-			const fetchDataHere = await fetchD.json();
-			//console.log('fetchDataHere:', fetchDataHere);
-			//const retrieved = await cache.get(queryStr);
-			//setPulledData(await cache.retrieve(queryStr));
-			setPulledData(fetchDataHere);
-		}
-		fetchData();
-		//fetchData();
-		//console.log('queryStr:', cache.get(queryStr))
-	}, [])
+	// 		const fetchDataHere = await fetchD.json();
+	// 		//console.log('fetchDataHere:', fetchDataHere);
+	// 		//const retrieved = await cache.get(queryStr);
+	// 		//setPulledData(await cache.retrieve(queryStr));
+	// 		setPulledData(fetchDataHere);
+	// 	}
+	// 	fetchData();
+	// 	//fetchData();
+	// 	//console.log('queryStr:', cache.get(queryStr))
+	// }, [])
 	//console.log('setdadta:', pulledData);
 	// console.log('queryStr:', cache.get(queryStr));
-	const callTime = () => {
-		let start = performance.now();
-		console.log('queryStr:', cache.get(queryStr));
-		let end = performance.now();
-		console.log(`Execution time after: ${end - start} ms`);
-		return;
-	}
-	callTime();
-	callTime();
+	// const callTime = () => {
+	// 	let start = performance.now();
+	// 	console.log('queryStr:', cache.get(queryStr));
+	// 	let end = performance.now();
+	// 	console.log(`Execution time after: ${end - start} ms`);
+	// 	return;
+	// }
+	// callTime();
+	// callTime();
+	
 	// let start = performance.now();
 	// //console.log('start:', start);
 	// console.log('queryStr:', cache.get(queryStr));
