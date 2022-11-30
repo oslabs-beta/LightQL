@@ -4,18 +4,14 @@ import 'chart.js/auto';
 import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
+import months from '../Utils';
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const Demo = () => {
 
-	
-
-    const [pulledData, setPulledData] = useState('');
+  const [pulledData, setPulledData] = useState('');
 	const [user, setUser] = useState('');
-	const [chartData, setChartData] = useState({
-		datasets: []
-	})
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
@@ -31,27 +27,28 @@ const Demo = () => {
 		}
 	}`
 
-	const labels = [];
-	const data = [];
+	const callLightQL = async () => {
+		const cacheGet = await cache.get(queryStr)
+		// cache.get(queryStr);
+		.then(() => {
+			const userData = cacheGet.user;
+			setPulledData(JSON.stringify(userData, null, 2));
+		})
 
-	const useEffect = async () => {
-
-	
-		const cacheGet = await cache.get(`{
-			user {
-			user_name,
-			song_name,
-			movie_name
-			}
-		}`);
-		return JSON.stringify(cacheGet)
-	}
-
-	let cacheGet = '';
-
-	const setPull = () => {
-		setPulledData(JSON.stringify(cacheGet, null, 2));
-	}
+	//const useEffect = async () => {
+		//const cacheGet = await cache.get(`{
+			//user {
+			//user_name,
+			//song_name,
+			//movie_name
+			//}
+		//}`);
+		//return JSON.stringify(cacheGet)
+	//}
+	//let cacheGet = '';
+	//const setPull = () => {
+		//setPulledData(JSON.stringify(cacheGet, null, 2));
+	//}
 
 	return (
 		<div id='demo-body'> 
@@ -120,5 +117,6 @@ const Demo = () => {
 			</section>
 		</div>
 	)
+}
 }
 export default Demo;
