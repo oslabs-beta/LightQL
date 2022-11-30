@@ -1,30 +1,21 @@
 import React, { Component, useEffect, useState } from 'react';
 import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import 'chart.js/auto';
-import { Chart } from 'react-chartjs-2';
+import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
-import months from '../Utils'
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const Demo = () => {
 
-	const labels = months({count: 7})
-	// console.log(labels)
-		const chartData = {
-		labels: labels,
-		datasets: [{
-			label: 'Response Times',
-			data: [65, 59, 80, 81, 56, 55, 40],
-			fill: false,
-			borderColor: '#11b5e4',
-			color: '#323949'
-		}]
-	};
+	
 
     const [pulledData, setPulledData] = useState('');
 	const [user, setUser] = useState('');
+	const [chartData, setChartData] = useState({
+		datasets: []
+	})
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
@@ -40,16 +31,26 @@ const Demo = () => {
 		}
 	}`
 
-	const callLightQL = async () => {
+	const labels = [];
+	const data = [];
+
+	const useEffect = async () => {
+
+	
 		const cacheGet = await cache.get(`{
-		user {
-		  user_name,
-		  song_name,
-		  movie_name
-		}
-	  }`);
-		const userData = cacheGet.user;
-		setPulledData(JSON.stringify(userData, null, 2));
+			user {
+			user_name,
+			song_name,
+			movie_name
+			}
+		}`);
+		return JSON.stringify(cacheGet)
+	}
+
+	let cacheGet = '';
+
+	const setPull = () => {
+		setPulledData(JSON.stringify(cacheGet, null, 2));
 	}
 
 	return (
@@ -58,7 +59,9 @@ const Demo = () => {
 			<button 
 				id='demo-btn' 
 				className='button-text'
-				onClick={callLightQL}
+				onClick={() => {
+					setPulledData(JSON.stringify(useEffect()))
+				}}
 				>Run the demo
 			</button>
 			{/* <form htmlFor='input-box'>
@@ -87,12 +90,12 @@ const Demo = () => {
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
 					<h2 className='result-box-titles'>Query:</h2>
-					<pre id='query-string'>{queryStr}</pre>
+					<pre className='query-string'>{queryStr}</pre>
 				</section>
 				<section id='query-result' className='data-box'>
 					<h2 className='result-box-titles'>Query Result:</h2>
-					<pre>
-						<code>{pulledData}</code>
+					<pre >
+						<code className='query-string'>{pulledData}</code>
 					</pre>
 					{/* <ul>
 					{arr.map((data, i = -1) => {
