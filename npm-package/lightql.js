@@ -19,8 +19,8 @@ LRUCache.prototype.equalSize = function() {
 
 
 //This function retrieves relevant data structures (this.map, this.dll, etc) stored in the IndexedDB browser storage and maps them with the corresponding structures in our LighQL cache solution using localForage.getItem()
-LRUCache.prototype.getIDBCache = function () {
-  localforage.getItem('LightQL', (err, value) => {
+LRUCache.prototype.getIDBCache = async function () {
+  await localforage.getItem('LightQL', (err, value) => {
     if(err) {
       return false; 
     } else {
@@ -49,14 +49,14 @@ LRUCache.prototype.getIDBCache = function () {
 
 
 //A function to save the current LighQL cache data structures to IndexedDB using localforage.setItem()
-LRUCache.prototype.saveIDBCache = function (){
+LRUCache.prototype.saveIDBCache = async function (){
   let data = {
     capacity : this.capacity,
     map : this.map,
     dll : this.dll,
     graphqlEndpoint: this.graphqlEndpoint
   };
-  localforage.setItem('LightQL', data, (err, value) => {
+  await localforage.setItem('LightQL', data, (err, value) => {
     if (err) {
       return false;
     } else {
@@ -66,13 +66,12 @@ LRUCache.prototype.saveIDBCache = function (){
 }
 
 //A function that allows the user to request data for a specific graphQL query. It implements our Cache's LRU eviction policy and Lazy-Loading caching pattern
-LRUCache.prototype.get = async function(query, variables) {
+LRUCache.prototype.get = function(query, variables) {
   //Writes LightQL Cache to IndexedDB
   this.saveIDBCache();
   //If our Cache is not empty, pull relevant data structures stored in IndexedDB into our LightQL cache
-  if(this.map.size > 0){
-     this.getIDBCache();
-   }
+  this.getIDBCache();
+
   //Determines whether this.map and this.DLL have the same number of nodes and throws an error if not
   if (this.equalSize() === false) {
     throw new Error({log: 'Hashmap and linked list are out of sync and no longer have the same number of nodes'});
@@ -92,14 +91,14 @@ When making a specific query, the application will hit the cache first; if the d
 */
   if (this.map.has(query)) {
     let currNode = this.map.get(query);
-    
+    console.log('I have the key')
     this.dll.remove(currNode);
     this.dll.add(currNode);
     this.saveIDBCache();
-    
     return currNode.value;
   } else {
-     return await fetch(this.graphqlEndpoint, {
+    return new Promise ((resolve, reject) =>{
+       fetch(this.graphqlEndpoint, {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
 					'Accept' : 'application/json',
@@ -111,13 +110,15 @@ When making a specific query, the application will hit the cache first; if the d
 			})
 			.then((res) => res.json())
 			.then((data) => {
+        console.log('in fetch request')
         const actualData = data.data;
         this.put(query, actualData);
         this.saveIDBCache();
-        return actualData;
+        resolve(actualData);
 			})
 			.catch((err) => console.log(`Error in data fetch: ` + err));
-		}
+		});
+  }
 };
 		
 

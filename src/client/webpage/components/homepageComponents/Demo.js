@@ -1,54 +1,82 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useLayoutEffect, EffectCallback, DependencyList, useRef } from 'react';
 import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import 'chart.js/auto';
 import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
-// import months from '../Utils';
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
+//usestate is a hook with class components there with init value being passed in for state 
+
+
 
 const Demo = () => {
 
-  const [pulledData, setPulledData] = useState('');
+	const [pulledData, setPulledData] = useState('data is loading...');
 	const [user, setUser] = useState('');
+	const [chartData, setChartData] = useState({
+		datasets: []
+	});
+	// const [click, setClick] = useState(0);
+  	// const initialRender = useRef(true);
 
-	let arr = JSON.stringify(pulledData).split(',')
-	let queryArr = JSON.stringify(pulledData).split('}');
+	// useLayoutEffect( () => {
+	// 	if (initialRender.current) {
+	// 		initialRender.current = false;
+	// 	} else {
+	// 		const cacheGet = cache.get(`
+	// 			{
+	// 				user {
+	// 				user_name,
+	// 				song_name,
+	// 				movie_name
+	// 				}
+	// 			}`);
+	// 	console.log(cacheGet)
+	// 	setPulledData(cacheGet);
+	// 	// console.log(pulledData)
+	// 	}
+	// }, [click]);
+	const queryStr = `{
+		user {
+		user_name,
+		song_name,
+		movie_name
+		}
+	}`
 
 	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
 
-	const queryStr = 
-	`	{
-		user {
-			user_name,
-			song_name,
-			movie_name
-		}
-	}`;
-
 	const callLightQL = async () => {
-		const cacheGet = await cache.get(queryStr)
-		// cache.get(queryStr);
-		.then(() => {
-			const userData = cacheGet.user;
-			setPulledData(JSON.stringify(userData, null, 2));
-		})
+		let start, end;
+		if (pulledData === 'data is loading...') {
+			start = performance.now();
 
-	//const useEffect = async () => {
-		//const cacheGet = await cache.get(`{
-			//user {
-			//user_name,
-			//song_name,
-			//movie_name
-			//}
-		//}`);
-		//return JSON.stringify(cacheGet)
-	//}
-	//let cacheGet = '';
-	//const setPull = () => {
-		//setPulledData(JSON.stringify(cacheGet, null, 2));
+			const cacheGet = await cache.get(queryStr);
+			console.log('cacheGet:', cacheGet.user);
+			end = performance.now();
+			setPulledData(JSON.stringify(cacheGet.user, null, 2));
+			
+			
+			console.log(`Execution time before: ${end - start} ms`);
+		} else {
+			start = performance.now();
+			cache.get(queryStr);
+			end = performance.now();
+			console.log(`Execution time after: ${end - start} ms`);
+		}
+		return;
 	}
+	
+	//include press and setpressed 
+
+	// let cacheGet = '';
+
+	// const setPull = () => {
+	// 	setPulledData(JSON.stringify(cacheGet, null, 2));
+	// }
+
+	const incrementCounter = () => setClick(click + 1);
 
 	return (
 		<div id='demo-body'> 
@@ -56,9 +84,7 @@ const Demo = () => {
 			<button 
 				id='demo-btn' 
 				className='button-text'
-				onClick={() => {
-					setPulledData(JSON.stringify(useEffect()))
-				}}
+				onClick={callLightQL}
 				>Run the demo
 			</button>
 			{/* <form htmlFor='input-box'>
@@ -104,7 +130,7 @@ const Demo = () => {
 					</ul> */}
 				</section>
 			</section>
-			{/* <section id='chart-container'>
+			<section id='chart-container'>
 				<Chart 
 					name='Chart tracking caching speed'
 					id='line-chart' 
@@ -114,7 +140,7 @@ const Demo = () => {
 					}}
 					type='line' 
 					data={chartData}/>
-			</section> */}
+			</section>
 		</div>
 	)
 }

@@ -26,6 +26,17 @@ const AboutUs = () => {
                         headshot={cassidy} 
                     />
                     <SingleTile 
+                        emailIdName='cyrusEmail'
+                        name='Cyrus Yari' 
+                        email='cyrus.brk@gmail.com'
+                        emailAria="Click here to email Cyrus Yari"
+                        GHAria="Click here to view Cyrus Yari\'s Github"
+                        LIAria="Click here to view Cyrus Yari\'s LinkedIn"
+                        githubLink='https://github.com/cyrusyari'
+                        linkedInLink='https://www.linkedin.com/in/cyrusyari/'
+                        headshot={cyrus} 
+                    /> 
+                    <SingleTile 
                         emailIdName='drewEmail'
                         name='Drew Tucker' 
                         email='drewtucker19@gmail.com'
@@ -46,17 +57,6 @@ const AboutUs = () => {
                         githubLink='https://github.com/pheska'
                         linkedInLink='https://www.linkedin.com/in/pheska/'
                         headshot={pierce} 
-                    /> 
-                    <SingleTile 
-                        emailIdName='cyrusEmail'
-                        name='Cyrus Yari' 
-                        email='cyrus.brk@gmail.com'
-                        emailAria="Click here to email Cyrus Yari"
-                        GHAria="Click here to view Cyrus Yari\'s Github"
-                        LIAria="Click here to view Cyrus Yari\'s LinkedIn"
-                        githubLink='https://github.com/cyrusyari'
-                        linkedInLink='https://www.linkedin.com/in/cyrusyari/'
-                        headshot={cyrus} 
                     /> 
                     <SingleTile 
                         emailIdName='rheaEmail'
