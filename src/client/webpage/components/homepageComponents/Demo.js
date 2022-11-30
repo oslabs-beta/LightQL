@@ -41,15 +41,13 @@ const Demo = () => {
 	}`
 
 	const callLightQL = async () => {
-		const cacheGet = await cache.get(`{
-		user {
-		  user_name,
-		  song_name,
-		  movie_name
-		}
-	  }`);
-		const userData = cacheGet.user;
-		setPulledData(JSON.stringify(userData, null, 2));
+		const cacheGet = await cache.get(queryStr)
+		// cache.get(queryStr);
+		.then(() => {
+			const userData = cacheGet.user;
+			setPulledData(JSON.stringify(userData, null, 2));
+		})
+			
 	}
 
 	return (
