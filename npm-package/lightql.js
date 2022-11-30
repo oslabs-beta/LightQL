@@ -56,14 +56,14 @@ LRUCache.prototype.saveIDBCache = function (){
     map : this.map,
     dll : this.dll,
     graphqlEndpoint: this.graphqlEndpoint
-  }
-  localforage.setItem('LightQL', data, (err, result)=>{
+  };
+  localforage.setItem('LightQL', data, (err, value)=>{
     if(err){
       return false;
     }else{
       return true;
     }
-  })
+  });
 }
 
 //A function that allows the user to request data for a specific graphQL query. It implements our Cache's LRU eviction policy and Lazy-Loading caching pattern
@@ -93,7 +93,7 @@ When making a specific query, the application will hit the cache first; if the d
 */
   if (this.map.has(query)) {
     let currNode = this.map.get(query);
-
+    
     this.dll.remove(currNode);
     this.dll.add(currNode);
     this.saveIDBCache();
@@ -118,10 +118,10 @@ When making a specific query, the application will hit the cache first; if the d
         return actualData;
 			})
 			.catch((err) => console.log(`Error in data fetch: ` + err));
-		};
+		}
 };
 		
-    
+
 //A function that stores new queries and associated data into our LRU Cache. It maintains consistency between our underlying HashMap structure and Doubly-Linked List
 LRUCache.prototype.put = function (query, value) {
   if (this.equalSize() === false) {
