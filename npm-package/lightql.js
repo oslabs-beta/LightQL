@@ -21,7 +21,7 @@ LRUCache.prototype.equalSize = function() {
 //localforage get
 //this function retrives our cache from the IndexedDB Browser storage and gives access to our in-memory caching solution
 LRUCache.prototype.getIDBCache = function (){
-    localforage.getItem('LightQL', (err, value) =>{
+     localforage.getItem('LightQL', (err, value) =>{
       if(err){
         return false; 
       }else{
@@ -38,9 +38,7 @@ LRUCache.prototype.getIDBCache = function (){
           value.map.forEach((val, key) => {
             this.map.set(key, val);
           })
-        
           this.dll = new DoublyLinkedList();
-          
           let currNode = value.dll.head;
           while(currNode){
             this.dll.add(currNode);
@@ -60,24 +58,25 @@ LRUCache.prototype.saveIDBCache = function (){
     map : this.map,
     dll : this.dll,
     graphqlEndpoint: this.graphqlEndpoint
-  }
-  localforage.setItem('LightQL', data, (err, result)=>{
+  };
+  localforage.setItem('LightQL', data, (err, value)=>{
     if(err){
       return false;
     }else{
       return true;
     }
-  })
+  });
 }
 
 
 LRUCache.prototype.get = async function(key) {
+  // console.log('key ' + key)
+  // console.log('map ' + JSON.stringify(this.map))
   
-//Need a better way to make sure there is something in IDB beforehand 
-     if(this.map.size > 0){
-     this.saveIDBCache();
-     this.getIDBCache();
-   }
+//Need a better way to make sure there is something in IDB beforehand  
+  this.saveIDBCache(); 
+  this.getIDBCache();
+   
   //Error Checkers
   if (this.equalSize() === false) {
     console.log('Check hashmap and linked list');
@@ -91,6 +90,8 @@ LRUCache.prototype.get = async function(key) {
   if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
     throw new Error({log: 'Capacity is invalid'})
   }
+console.log(this.map);
+
   if (this.map.has(key)) {
     // the 3 lines of code below are essentially making it the head (the most recently used):
     console.log(" I have the key");
@@ -101,7 +102,7 @@ LRUCache.prototype.get = async function(key) {
     return currNode.value;
   } else {
     //LAZY LOADING IMPLEMENTATION
-     return await fetch(this.graphqlEndpoint, {
+      return await fetch(this.graphqlEndpoint, {
 				method: 'POST',
 				headers: {'Content-type' : 'application/json',
 					'Accept' : 'application/json',
@@ -121,7 +122,7 @@ LRUCache.prototype.get = async function(key) {
         return actualData;
 			})
 			.catch((err) => console.log(`Error in data fetch: ` + err));
-		};
+		}
 };
 		
 			// const gqlData = await response.json();
@@ -132,6 +133,8 @@ LRUCache.prototype.get = async function(key) {
 
 // we are either updating our node, or creating a new node:
 LRUCache.prototype.put = function (key, value) {
+  // console.log("PUT KEY", key)
+  // console.log("PUT VALUE", value)
   // if (this.equalSize() === false) {
   //   return console.log('Check hashmap and linked list');
   // }
@@ -173,6 +176,7 @@ LRUCache.prototype.put = function (key, value) {
     this.dll.add(newNode);
     //add the node to the hashmap
     this.map.set(key, newNode);
+    console.log("PUT MAP", this.map);
     return;
   }
 };
