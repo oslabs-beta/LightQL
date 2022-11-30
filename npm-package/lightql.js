@@ -1,6 +1,6 @@
 const localforage = require("localforage");
 
-// LRU Cache
+
 function LRUCache(capacity, graphqlEndpoint) {
     this.capacity = Math.floor(capacity);
     this.map = new Map();
@@ -9,26 +9,22 @@ function LRUCache(capacity, graphqlEndpoint) {
 }
 
 
-
 // Edge case handler to check if hashmap and dll are the same size:
 LRUCache.prototype.equalSize = function() {
-  // returns true if sizes are the same, false if not
   return this.map.size === this.dll.currCapacity;
 };
 
 
-
-//localforage get
 //this function retrives our cache from the IndexedDB Browser storage and gives access to our in-memory caching solution
 LRUCache.prototype.getIDBCache = function (){
      localforage.getItem('LightQL', (err, value) =>{
-      if(err){
+      if(err) {
         return false; 
-      }else{
-        if(!value){
+      } else {
+        if(!value) {
           return false;
         } 
-        else{
+        else {
           this.capacity = value.capacity;
           this.graphqlEndpoint = value.graphqlEndpoint;
           //build a custom function for the dll and the map to put them back in
@@ -40,7 +36,7 @@ LRUCache.prototype.getIDBCache = function (){
           })
           this.dll = new DoublyLinkedList();
           let currNode = value.dll.head;
-          while(currNode){
+          while(currNode) {
             this.dll.add(currNode);
             currNode = currNode.next;
           }
@@ -49,6 +45,8 @@ LRUCache.prototype.getIDBCache = function (){
       }
     })
 }
+
+
 
 //locaforage set 
 //A function to save the current Cache data structures in memory to INdexedDB using localforage
@@ -59,20 +57,18 @@ LRUCache.prototype.saveIDBCache = function (){
     dll : this.dll,
     graphqlEndpoint: this.graphqlEndpoint
   };
-  localforage.setItem('LightQL', data, (err, value)=>{
-    if(err){
+  localforage.setItem('LightQL', data, (err, value) => {
+    if (err) {
       return false;
-    }else{
+    } else {
       return true;
     }
   });
 }
 
 
-LRUCache.prototype.get = async function(key) {
-  // console.log('key ' + key)
-  // console.log('map ' + JSON.stringify(this.map))
-  
+
+LRUCache.prototype.get = async function(key) {  
 //Need a better way to make sure there is something in IDB beforehand  
   this.saveIDBCache(); 
   this.getIDBCache();
@@ -83,7 +79,7 @@ LRUCache.prototype.get = async function(key) {
     return;
   }
    // Checks if the grapql endpoint is null
-   if(!this.graphqlEndpoint){
+   if(!this.graphqlEndpoint) {
     throw new Error({log : 'Graphql Endpoint Argument is invalid or missing'})
   }
 // checks if the capacity is greater than 0, and it's interger
@@ -257,18 +253,6 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
 /// END OF OFFICIAL LINES OF CODE
 
 
-
-
-// const newCache = new LRUCache(3, 'http://localhost:3000/graphql');
-// newCache.get(`{
-//   user (){
-//     user_name,
-//     song_name,
-//     movie_name
-//   }`);
-// console.log(newCache)
-
-
 //Make a query that doesnt exist in the cache previously BUT does exist in the DB
 //Should go through the cache to the DB then add to the cache
 //newCache.get("Pierce")
@@ -296,29 +280,7 @@ DoublyLinkedList.prototype.remove = function (nodeToRemove) {
 
 
 
-// let newLink = new DoublyLinkedList();
-// const node1 = new DLLNode(1, 'a');
-// const node2 = new DLLNode(2, 'b');
-// const node3 = new DLLNode(3, 'c')
-// const node4 = new DLLNode(4, 'd');
-// newLink.add(node1);
-// console.log(newLink);
-// newLink.add(node2);
-// console.log(newLink);
-// newLink.add(node3);
-// console.log(newLink);
-// newLink.add(node4);
-// console.log(newLink);
 
-// console.log("This is the remove part");
-// newLink.remove(node4);
-// console.log(newLink);
-// newLink.remove(node1);
-// console.log(newLink);
-// newLink.remove(node2);
-// console.log(newLink);
-// newLink.remove(node3);
-// console.log(newLink);
 
 
 
