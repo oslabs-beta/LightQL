@@ -4,7 +4,7 @@ import 'chart.js/auto';
 import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
-import months from '../Utils';
+// import months from '../Utils';
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
@@ -25,7 +25,7 @@ const Demo = () => {
 			song_name,
 			movie_name
 		}
-	}`
+	}`;
 
 	const callLightQL = async () => {
 		const cacheGet = await cache.get(queryStr)
@@ -48,7 +48,7 @@ const Demo = () => {
 	//let cacheGet = '';
 	//const setPull = () => {
 		//setPulledData(JSON.stringify(cacheGet, null, 2));
-	//}
+	}
 
 	return (
 		<div id='demo-body'> 
@@ -104,7 +104,7 @@ const Demo = () => {
 					</ul> */}
 				</section>
 			</section>
-			<section id='chart-container'>
+			{/* <section id='chart-container'>
 				<Chart 
 					name='Chart tracking caching speed'
 					id='line-chart' 
@@ -114,9 +114,9 @@ const Demo = () => {
 					}}
 					type='line' 
 					data={chartData}/>
-			</section>
+			</section> */}
 		</div>
 	)
 }
-}
+
 export default Demo;
