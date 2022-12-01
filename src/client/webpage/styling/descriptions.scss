@@ -1,0 +1,87 @@
+$white: #ffffff;
+$blue: #11b5e4;
+$mauve: #957d95;
+$black: #323949;
+$title-font: 'B612', sans-serif;
+$body-font: 'Noto Serif', serif;
+$code-font: 'B612 Mono', monospace;
+
+#descriptions {
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info {
+    width: 49%;
+    height: 75%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    align-items: center;
+}
+
+.desc-titles {
+    font-family: $title-font;
+    color: $black;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.paragraph-text {
+    font-family: $body-font;
+    color: $black;
+    margin: 25px 15% 25px 15%;
+    line-height: 1.3rem;
+    font-size: 0.93rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+#separating-line {
+    height: 90%;
+    width: 4px;
+    background-color: rgba($black, 0.4);
+    border-radius: 100px;
+}
+
+#tech-stack {
+    width: 49%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#tech-stack-desc {
+    margin: 25px 15% 25px 15%;
+    text-align: center;
+}
+
+#icon-section {
+    display: grid;
+    width: 70%;
+    height: 90%;
+    margin-top: 5%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 10%;
+    justify-items: center;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tech-stack-logos {
+    width: auto;
+    height: 90px;
+}
+
+.icon-text {
+    font-family: $title-font;
+    color: $black;
+}

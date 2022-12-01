@@ -8,25 +8,28 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import '../styles.scss'
 // const db = require('../../../simulation/models');
 const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+console.log("cache:" + JSON.stringify(cache));
+
+
 const Demo = () => {
 
-    // const [pulledData, setPulledData] = useState([]);
+    const [pulledData, setPulledData] = useState([]);
 	const [user, setUser] = useState('');
 
 	let arr = JSON.stringify(pulledData).split(',')
 	let queryArr = JSON.stringify(pulledData).split('}');
 	
 	const queryStr = `{
-		user{
+		user {
 		  user_name,
 		  song_name,
 		  movie_name
 		}
 	  }`;
-	
+	console.log('get function: ', cache.get(queryStr));
 	//create an instance of cache and pass in the correct endpoint
 	
-	console.log("cache:" + JSON.stringify(cache));
+	
 	// const checkKey = (keyName) => {
 	// 	if (cache.get(keyName)) return;	
 	// }
@@ -36,21 +39,54 @@ const Demo = () => {
 	}
 	
     // need to do classic JS fetch request 
-	const testing = () => {
-		const [pulledData, setPulledData] = useState([]);
-		useEffect(() => { //same as component did mount and component did update aggregated
-		const fetchData =  async () => {
-			console.log(queryStr);
-			console.log('user: ' + user);
-			const retrieved = await cache.retrieve(queryStr);
-			//setPulledData(await cache.retrieve(queryStr));
+	 useEffect(() => { //same as component did mount and component did update aggregated
+	// 	const fetchData =  async () => {
+	// 		//console.log('queryStr:', queryStr);
+	// 		//console.log('user: ' + user);
+	// 		const fetchD = await fetch('http://localhost:3000/graphql', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			},
+	// 			body: JSON.stringify({query: queryStr})
+	// 		})
 			
-			setPulledData(retrieved);
-		}
-		fetchData();
-		console.log('queryStr:', cache.retrieve(queryStr))
-	}, [setPulledData])
-	}
+	// 		const fetchDataHere = await fetchD.json();
+	// 		//console.log('fetchDataHere:', fetchDataHere);
+	// 		//const retrieved = await cache.get(queryStr);
+	// 		//setPulledData(await cache.retrieve(queryStr));
+	// 		setPulledData(fetchDataHere);
+	// 	}
+		// fetchData();
+		//fetchData();
+		console.log('queryStr:', cache.get(queryStr));
+		setTimeout(() => {
+			console.log(cache.get(queryStr));
+		}, 1000);
+	}, [])
+	//console.log('setdadta:', pulledData);
+	// console.log('queryStr:', cache.get(queryStr));
+	// const callTime = () => {
+	// 	let start = performance.now();
+	// 	console.log('queryStr:', cache.get(queryStr));
+	// 	let end = performance.now();
+	// 	console.log(`Execution time after: ${end - start} ms`);
+	// 	return;
+	// }
+	// callTime();
+	// callTime();
+	
+	// let start = performance.now();
+	// //console.log('start:', start);
+	// console.log('queryStr:', cache.get(queryStr));
+	// let end = performance.now();
+	// //console.log('end:', end);
+	// console.log(`Execution time before: ${end - start} ms`);
+	// start = performance.now();
+	// console.log('queryStr:', cache.get(queryStr));
+	// end = performance.now();
+	// console.log(`Execution time after: ${end - start} ms`);
+
 	
 	//'
     //console.log(pulledData);
