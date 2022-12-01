@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import '../styling/docs.scss';
+import docsExample from '../../../assets/docs-example.png';
 
 const Docs = () => {
   // Button Text
@@ -8,18 +9,22 @@ const Docs = () => {
   const [buttonTextB, setButtonTextB] = useState('Copy');
   const [buttonTextC, setButtonTextC] = useState('Copy');
   const [buttonTextD, setButtonTextD] = useState('Copy');
-  const [buttonTextE, setButtonTextE] = useState('Copy');
 
-  const codestring = `
-    \napp.use('/graphql',
-    \n\tlightql({}, capacity, endpoint),
-    \n\texpressGraphQL({
-    \n\t\tschema: schema,    
-    \n\t\tgraphiql: true,
-    \n\t}) 
-  \n);`;
+  const graphqlQueryStr = `
+    \nconst graphqlQueryStr = 
+	  \n\t{
+    \n\t\tuser {
+    \n\t\t\tuser_name,
+	  \n\t\t\tsong_name,
+	  \n\t\t\tmovie_name
+	  \n\t\t}
+	\n\t};`;
 
-  const objy = `{}`;
+  const callTheCache = `const callLightQL = async () => {
+	  \n\tconst cacheGet = await cache.get(graphqlQueryStr, variables);		
+  \n}\n`;
+
+  const importStr = `import { LRUCache, DoublyLinkedList, DLLNode } from 'lightql-cache';`;
 
   return (
     <>
@@ -27,8 +32,8 @@ const Docs = () => {
         <main id="main">
           <div className="text-box">
             <div className="lightql-docs">
-              <h1 className='section-titles'>LightQL</h1>
-              <p className='section-paragraphs'>
+              <h1 className="section-titles">LightQL</h1>
+              <p className="section-paragraphs">
                 LightQL is an open-source developer tool that leverages the
                 pinpoint accuracy of GraphQL's queries and implements caching to
                 improve your website's query efficiency.
@@ -36,8 +41,8 @@ const Docs = () => {
             </div>
 
             <div id="using-lightql">
-              <p className='section-paragraphs'>Prerequisites:</p>
-              <ul className='section-paragraphs'>
+              <h4 className="section-paragraphs">Prerequisites:</h4>
+              <ul className="section-paragraphs">
                 <li>GraphQL schemas setup with your database.</li>
                 <li>
                   Fullstack Application where frontend makes query request to
@@ -47,159 +52,138 @@ const Docs = () => {
               <div id="breakline" className="divider"></div>
             </div>
 
-            <div id="gettingstarted" >
-              <h1 className='section-titles'>Getting Started</h1>
-              <p className='section-paragraphs'>
+            <div id="gettingstarted">
+              <h1 className="section-titles">Getting Started</h1>
+              <p className="section-paragraphs">
                 If this is your first time using LightQL, run the following
                 command in your terminal:
               </p>
               <div className="code-box">
-                  <pre className='blue-code-text'>npm install lightql-cache</pre>
-                  <button
-                    className="copy-button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        'npm install lightql-cache'
-                      ) && setButtonTextA('Copied!')
-                    }
-                  >
-                    {buttonTextA}
-                  </button>
+                <pre className="blue-code-text">npm install lightql-cache</pre>
+                <button
+                  className="copy-button"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      'npm install lightql-cache'
+                    ) && setButtonTextA('Copied!')
+                  }
+                >
+                  {buttonTextA}
+                </button>
               </div>
 
-              <p id="below" className='section-paragraphs'>
-                In your server file, you want to require our middleware to
-                handle GraphQL requests using the CommonJS format.
+              <p id="below" className="section-paragraphs">
+                In your frontend app’s file (e.g. your ***filename.js*** file),
+                you want to import our LightQL module to handle GraphQL requests
+                using the ES6 module format. This can also be done in your React
+                (.jsx), Typescript (.ts and .tsx), and similar file formats.
               </p>
 
               <div className="code-box">
-                  <pre className="blue-code-text">const lightql = require('lightql-cache');</pre>
-                  <button
-                    className="copy-button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        `const lightql = require('lightql-cache')`
-                      ) && setButtonTextB('Copied!')
-                    }
-                  >
-                    {buttonTextB}
-                  </button>
+                <pre className="blue-code-text">{importStr}</pre>
+                <button
+                  className="copy-button"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      `import { LRUCache, DoublyLinkedList, DLLNode } from 'lightql-cache';`
+                    ) && setButtonTextB('Copied!')
+                  }
+                >
+                  {buttonTextB}
+                </button>
               </div>
 
-              <p id="below" className='section-paragraphs'>
-                LightQL functionality depends on Express' built-in method
-                express.json() middleware function in order to parse incoming
-                JSON payloads.
-              </p>
-
-              <p id="below" className='section-paragraphs'>
-                If you haven't already set up your server file with Express, add
-                the following code to require Express:
+              <p id="below" className="section-paragraphs">
+                Next, create an instance of a cache using the de-structured
+                LRUCache object, passing in a capacity as the first argument.
+                The capacity must be an integer and greater than zero. You must
+                also pass in a valid GraphQL endpoint as a string as the second
+                argument. We have set a capacity of 3 in our example below:
               </p>
 
               <div className="code-box">
-                  <pre className="blue-code-text">
-                    const expressGraphQL =
-                    require('express-graphql').graphqlHTTP;
-                  </pre>
-                  <button
-                    className="copy-button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        `const expressGraphQL = require('express-graphql').graphqlHTTP;`
-                      ) && setButtonTextC('Copied!')
-                    }
-                  >
-                    {buttonTextC}
-                  </button>
+                <pre className="blue-code-text">
+                  const cache = new LRUCache(3,
+                  'http://localhost:3000/graphql');
+                </pre>
+                <button
+                  className="copy-button"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      `const cache = new LRUCache(3, 'http://localhost:3000/graphql');`
+                    ) && setButtonTextC('Copied!')
+                  }
+                >
+                  {buttonTextC}
+                </button>
               </div>
 
-              <p id="below" className='section-paragraphs'>
-                Add the following code to use the express.json() middleware
-                function:
+              <p className="section-paragraphs">
+                Now, to make your first query to the cache, you create a GraphQL
+                formatted query string based on your requirements, for example:
+              </p>
+              <div id="big-code-box" className="code-box">
+                <pre id="big-codestring" className="blue-code-text">
+                  {graphqlQueryStr}
+                </pre>
+              </div>
+
+              <p id="below" className="section-paragraphs">
+                Next, we invoke the get function associated with the named
+                variable you have for the LRUCache, and pass in your query
+                string and associate variables if necessary. The get function
+                always returns a promise, therefore it is best to generate an
+                async function that leverages the await syntax to resolve the
+                data returned from the cache.
               </p>
 
               <div className="code-box">
-                  <pre className="blue-code-text">app.use(express.json());</pre>
-                  <button
-                    className="copy-button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        `app.use(express.json());`
-                      ) && setButtonTextD('Copied!')
-                    }
-                  >
-                    {buttonTextD}
-                  </button>
+                <pre className="blue-code-text">{callTheCache}</pre>
+                <button
+                  className="copy-button"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      `const callLightQL = async () => {
+                        const cacheGet = await cache.get(graphqlQueryStr, variables);		
+                      }`
+                    ) && setButtonTextD('Copied!')
+                  }
+                >
+                  {buttonTextD}
+                </button>
               </div>
+
+              <p id="below" className="section-paragraphs">
+                Now, you are properly set up and can use the data as you wish!
+              </p>
+
+              <p id="below" className="section-paragraphs">
+                A quick example: imagine you had a React app that included
+                Chart.js functionality that you wanted to display on a specific
+                page. You could import LightQL cache to effectively retrieve
+                your data from your database, and then store it in your
+                client-side LightQL caching solution. Then, every time you
+                wanted to display the correct chart.js data, you could grab the
+                correct information from your LightQL cache with extremely low
+                latency time. Example code below:
+              </p>
+
+              <img className="image" src={docsExample} />
 
               <div id="breakline" className="divider"></div>
 
-              <div id="usinglightql" className="clientsidecache">
-                <h1 className='section-titles'>Using LightQL</h1>
-                <p className='section-paragraphs'>
-                  LightQL provides a middleware for caching using memory on the
-                  client-side with our custom cache that leverages an LRU
-                  eviction policy. The arguments you should input for this
-                  middleware are as follows:
-                </p>
-                <p className='section-paragraphs'>
-                  For the first parameter, simply pass in an empty object like
-                  so:
-                </p>
-                <p className="darker-blue-code-text">{objy}</p>
-
-                <p className='section-paragraphs'>
-                  Next, is the capacity you would like your cache to hold. This
-                  capacity refers to when our cache will begin evicting items.
-                  For example, if you set the capacity to 50, it will evict an
-                  item upon the 51st unique query. It should be noted that if
-                  you pass in a non-whole number, it will be rounded down for
-                  you. Non integers, negative numbers, and capacities below two
-                  will default to simply creating a GraphQL fetch without
-                  storing values in the cache.
-                </p>
-                <p className='section-paragraphs'>
-                  The third parameter is the endpoint at which you are actually
-                  using GraphQL. For example, this endpoint may be
-                </p>
-                <p className="darker-blue-code-text">http://localhost:3000/graphql</p>
-
-                <p className='section-paragraphs'>Now you are good to cache your GraphQL responses!</p>
-                <div id='big-code-box' className="code-box">
-                  <pre id='big-codestring' className="blue-code-text">{codestring}</pre>
-                  <button
-                      className="copy-button"
-                      onClick={() =>
-                        navigator.clipboard.writeText(
-                          `app.use( '/graphql', lightQL({}, capacity, endpoint), expressGraphQL({ schema: schema, graphiql: true, }) );`
-                        ) && setButtonTextE('Copied!')
-                      }
-                    >
-                      {buttonTextE}
-                    </button>
-                </div>
-                 
-
-                <p id="below" className='section-paragraphs'>
-                  Now, you have properly set up the middleware functions in
-                  order to use LightQL's caching tools!
-                </p>
-
-                <div id="builtwith">
-                  <div id="breakline" className="divider"></div>
-                  <h1 className='section-titles'>Technology Stack</h1>
-                  <ul className='section-paragraphs'>
-                    <li>GraphQL</li>
-                    <li>Typescript</li>
-                    <li>Node/Express</li>
-                    <li>AWS RDS</li>
-                    <li>React</li>
-                    <li>Chart.js</li>
-                    <li>Jest/Supertest</li>
-                    <li>Webpack</li>
-                  </ul>
-                </div>
+              <div id="builtwith">
+                <h1 className="section-titles">Technology Stack</h1>
+                <ul className="section-paragraphs">
+                  <li>GraphQL</li>
+                  <li>Typescript</li>
+                  <li>Node/Express</li>
+                  <li>AWS RDS</li>
+                  <li>React</li>
+                  <li>Chart.js</li>
+                  <li>Jest/Supertest</li>
+                  <li>Webpack</li>
+                </ul>
               </div>
             </div>
           </div>
