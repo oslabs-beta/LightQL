@@ -66,11 +66,11 @@ LRUCache.prototype.saveIDBCache = async function (){
 }
 
 //A function that allows the user to request data for a specific graphQL query. It implements our Cache's LRU eviction policy and Lazy-Loading caching pattern
-LRUCache.prototype.get = function(query, variables) {
+LRUCache.prototype.get = async function(query, variables) {
   //Writes LightQL Cache to IndexedDB
-  this.saveIDBCache();
+  await this.saveIDBCache();
   //If our Cache is not empty, pull relevant data structures stored in IndexedDB into our LightQL cache
-  this.getIDBCache();
+  await this.getIDBCache();
 
   //Determines whether this.map and this.DLL have the same number of nodes and throws an error if not
   if (this.equalSize() === false) {
