@@ -56,7 +56,7 @@ const Hero = () => {
                     </Link>
                 </section>
                 <aside id='hero-right'>
-                <img alt='' id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
+                    <img alt='' id='upper-right' className='hero-imgs' src={rightLines.default}></img> 
                 </aside>
             </div>
             
