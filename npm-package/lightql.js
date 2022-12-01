@@ -91,7 +91,6 @@ When making a specific query, the application will hit the cache first; if the d
 */
   if (this.map.has(query)) {
     let currNode = this.map.get(query);
-    console.log('I have the key')
     this.dll.remove(currNode);
     this.dll.add(currNode);
     this.saveIDBCache();
@@ -110,7 +109,6 @@ When making a specific query, the application will hit the cache first; if the d
 			})
 			.then((res) => res.json())
 			.then((data) => {
-        console.log('in fetch request')
         const actualData = data.data;
         this.put(query, actualData);
         this.saveIDBCache();
