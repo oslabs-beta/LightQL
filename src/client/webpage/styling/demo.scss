@@ -13,18 +13,27 @@ h1 {
 #demo-body {
     display: grid;
     grid-template-rows: 7% 7% auto;
-    justify-items: center;
+    place-items: center;
     height: 80vh;
     width: 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
 
-#page-title {
-    grid-row: inherit;
+.title-font {
     font-family: $title-font;
     font-weight: 700;
     color: $black;
+}
+
+.body-metric-font {
+    font-family: $body-font;
+    color: $black;
+    font-size: 0.95rem;
+    display: flex;
+    margin-bottom: 0;
+    margin-top: 25px;
+    font-weight: 400;
 }
 
 #demo-btn {
@@ -32,17 +41,18 @@ h1 {
     justify-content: center;
     align-items: center;
     border: 0.5px solid $black;
-    border-radius: 8px;
-    height: 60%;
-    width: auto;
-    justify-self: center;
+    border-radius: 20px;
+    padding: 4px 8px 4px 8px;
     background-color: $white;
-    padding: 2%;
-    margin-bottom: 20px;
     font-family: $body-font;
     font-size: 0.9rem;
+    box-shadow: 2px 0px 5px rgba($black, 0.5);
     text-decoration: none;
     color: $black;
+}
+
+#demo-btn:hover {
+    box-shadow: 5px 3px 5px rgba($black, 0.5);
 }
 
 .query-string {
@@ -50,22 +60,6 @@ h1 {
     line-height: 1.5rem;
     tab-size: 20px;
 }
-
-// #input-box {
-//     grid-row: inherit;
-//     font-family: $body-font;
-//     color: $black;
-//     height: 70%;
-//     border-color: $blue;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
-//     border-radius: 10px;
-// }
-
-// #input-box:focus {
-//     outline: none;
-//     box-shadow: 0px 0px 10px $blue; 
-// }
 
 #result-boxes {
     display: flex;
@@ -94,7 +88,7 @@ h1 {
     width: 50%;
     margin: 20px;
     margin-top: 20px;
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 20px;
     padding-top: 0;
     font-family: $code-font;
@@ -102,27 +96,55 @@ h1 {
 }
 
 #query-result::-webkit-scrollbar {
-    display: none;
+    height: 90%;
+    background-color: transparent;
+    width: 10px;
+}
+
+#query-result::-webkit-scrollbar-track {
+    border-radius: 20px;
+}
+
+#query-result::-webkit-scrollbar-thumb {
+    background-color: lighten($black, 40);
+    border-radius: 20px;
+    width: 10px;
   }
 
 #query-result {
-    overflow-y: scroll;
+    overflow-y: overlay;
+    scroll-margin: 20px;
 }
 
-.names {
-    font-weight: 700;
+#metrics-container {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.metrics {
+   height: 200px; 
+   margin: 0 20px 10px 20px;
 }
 
 #chart-container {
-    height: 200px;
     color: #11b5e4;
 	border-width: 20px,
 }
 
+#time-box {
+    width: 300px;
+    height: 90%;
+    background-color: lighten($black, 70);
+    padding: 30px;
+    border-radius: 8px;
+}
 
-#line-chart {
-    color: $black;
-    
+.time-stamp {
+    margin: 0;
+    margin-left: 10px;
+    font-weight: 700;;
 }
 
 @media screen and (min-width: 900px) {
