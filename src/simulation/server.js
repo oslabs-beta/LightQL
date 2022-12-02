@@ -29,7 +29,7 @@ const {LRUCache, DLLNode, DoublyLinkedList} = require('../../npm-package/lightql
 // construct a schema, using GraphQL schema language
 // 
 app.use(cors());
-
+app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -18,10 +18,9 @@ $code-font: 'B612 Mono', monospace;
   letter-spacing: 0.01em;
 }
 
-#text-box {
-    margin-top: -100px;
-    margin-left: 30px;
-    width: 75%;
+.image {
+    height: 80vh;
+    width: auto;
 }
 
 .section-titles {
@@ -37,6 +36,7 @@ $code-font: 'B612 Mono', monospace;
 .code-box {
     background-color: $black; 
     font-family: $code-font; 
+    margin: 25px 0 45px 0;
     font-size: 20px; 
     border-radius: 15px;
     display: grid;

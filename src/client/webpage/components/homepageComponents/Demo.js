@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState, useLayoutEffect, EffectCallback,
 import lightql, { LRUCache } from '../../../../../npm-package/lightql';
 import 'chart.js/auto';
 import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
+import { motion } from 'framer-motion';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
 
@@ -12,31 +13,15 @@ ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const Demo = () => {
 
-	const [pulledData, setPulledData] = useState('data is loading...');
+	const [pulledData, setPulledData] = useState('Waiting for user to submit GraphQL query');
 	const [user, setUser] = useState('');
+	const [timeArr, setTimeArr] = useState([]);
 	const [chartData, setChartData] = useState({
 		datasets: []
 	});
-	// const [click, setClick] = useState(0);
-  	// const initialRender = useRef(true);
+	const [uncachedTime, setUncachedTime] = useState('')
+	const [currentTime, setCurrentTime] = useState('');
 
-	// useLayoutEffect( () => {
-	// 	if (initialRender.current) {
-	// 		initialRender.current = false;
-	// 	} else {
-	// 		const cacheGet = cache.get(`
-	// 			{
-	// 				user {
-	// 				user_name,
-	// 				song_name,
-	// 				movie_name
-	// 				}
-	// 			}`);
-	// 	console.log(cacheGet)
-	// 	setPulledData(cacheGet);
-	// 	// console.log(pulledData)
-	// 	}
-	// }, [click]);
 	const queryStr = `{
 		user {
 		user_name,
@@ -45,71 +30,73 @@ const Demo = () => {
 		}
 	}`
 
-	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+	
+	useLayoutEffect(() => {
+		const labels = [];
+		for (let i = 0; i < timeArr.length; i++) {
+			if (i === 0) {
+				labels.push('uncached data')
+			} else {
+				labels.push('cached data')
+			}
+		}
+
+		setChartData({
+			labels: labels,
+			datasets: [{
+				label: 'Query Run Time',
+				data: timeArr,
+				fill: false,
+				borderColor: '#11b5e4',
+				tension: 0.1
+			}]
+		});
+		}, [timeArr]	
+	)
+
+
+	const cache = new LRUCache(3, 'http://lightql.onrender.com/graphql');
 
 	const callLightQL = async () => {
 		let start, end;
-		if (pulledData === 'data is loading...') {
+		if (pulledData === 'Waiting for user to submit GraphQL query') {
 			start = performance.now();
-
 			const cacheGet = await cache.get(queryStr);
 			console.log('cacheGet:', cacheGet.user);
 			end = performance.now();
 			setPulledData(JSON.stringify(cacheGet.user, null, 2));
-			
-			
-			console.log(`Execution time before: ${end - start} ms`);
+			console.log(`Execution time before: ${(end - start).toFixed(2)} ms`);
+			setTimeArr((timeArr) => [...timeArr, (end - start).toFixed(2)]);
+			setUncachedTime(`${(end - start).toFixed(2)}` + ' ms')
 		} else {
 			start = performance.now();
 			cache.get(queryStr);
 			end = performance.now();
-			console.log(`Execution time after: ${end - start} ms`);
+			console.log(`Execution time after: ${(end - start)} ms`);
+			setTimeArr((timeArr) => [...timeArr, (end - start).toFixed(2)]);
+			setCurrentTime(`${(end - start).toFixed(2)}` + ' ms');
 		}
 		return;
 	}
-	
-	//include press and setpressed 
-
-	// let cacheGet = '';
-
-	// const setPull = () => {
-	// 	setPulledData(JSON.stringify(cacheGet, null, 2));
-	// }
-
-	const incrementCounter = () => setClick(click + 1);
 
 	return (
 		<div id='demo-body'> 
-			<h1 id='page-title'>Watch it work!</h1>
-			<button 
+			<h1 id='page-title' className='title-font'>Watch it work!</h1>
+			<motion.button 
 				id='demo-btn' 
 				className='button-text'
-				onClick={callLightQL}
-				>Run the demo
-			</button>
-			{/* <form htmlFor='input-box'>
-				<select 
-				aria-label='Whose favorites would you like to see?'
-				name='User Selector'
-				id='input-box'
-				type='text'
-				value={user}
-				onChange={(e) => {
-					setUser(e.target.value);
-					callQuery();
-					// console.log('e.target.value: ' + e.target.value)
+				onClick={() => {
+					callLightQL();
 				}}
-				>
-					<option value='' hidden default disabled>
-						Whose favorites would you like to see?
-					</option>
-					<option value='Drew'>Drew</option>
-					<option value='Cyrus'>Cyrus</option>
-					<option value='Rhea'>Rhea</option>
-					<option value='Pierce'>Pierce</option>
-					<option value='Cassidy'>Cassidy</option>
-				</select>
-			</form> */}
+				whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ 
+                    type: "spring", 
+                    stiffness: 400, 
+                    damping: 17 
+                }}
+				>Run the demo
+			</motion.button>
 			<section id='result-boxes'>
 				<section id='cache' className='data-box'>
 					<h2 className='result-box-titles'>Query:</h2>
@@ -120,27 +107,28 @@ const Demo = () => {
 					<pre >
 						<code className='query-string'>{pulledData}</code>
 					</pre>
-					{/* <ul>
-					{arr.map((data, i = -1) => {
-						i += 1;
-							if (data[0] === '{' || data[0] === "[") {
-								return <li className='names' key={i}>{data}<br /></li>
-								} return <li className='data' key={i}>{data}<br /></li>
-							})}
-					</ul> */}
 				</section>
 			</section>
-			<section id='chart-container'>
-				<Chart 
-					name='Chart tracking caching speed'
-					id='line-chart' 
-					options={{
-						responsive: true,
-						maintainAspectRatio: true
-					}}
-					type='line' 
-					data={chartData}/>
+			<section id='metrics-container'>
+				<section id='chart-container' className='metrics'>
+					<Chart 
+						style={{height: '90%'}}
+						name='Chart tracking caching speed'
+						id='line-chart' 
+						options={{
+							responsive: true,
+							maintainAspectRatio: true
+						}}
+						type='line' 
+						data={chartData}/>
+				</section>
+				<section id='time-box' className='metrics'>
+					<h1 className='title-font'>Run Time Statistics</h1>
+					<h6 className='body-metric-font'>Uncached Run Time: <p className='time-stamp'>{uncachedTime}</p></h6>
+					<h6 className='body-metric-font'>Cached Run Time: <p className='time-stamp'>{currentTime}</p></h6>
+				</section>
 			</section>
+			
 		</div>
 	)
 }
