@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/simulation/server.js",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon ./src/simulation/server.js",
-    "build": "webpack --config=webpack.config.js"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
