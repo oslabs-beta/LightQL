@@ -4,6 +4,7 @@
   "description": "A lightweight, ultra-fast client-side cache for GraphQL.",
   "main": "./client/index.js",
   "scripts": {
+    "start": "node ./src/simulation/server.js",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon ./src/simulation/server.js",
     "build": "webpack --mode production"
   },
