@@ -9,6 +9,8 @@ $code-font: 'B612 Mono', monospace;
 html {
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
+    overflow-y: overlay;
 }
 
 body {
