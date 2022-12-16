@@ -41,3 +41,28 @@ $code-font: 'B612 Mono', monospace;
     min-width: 2em;
     min-height: 2em;
 }
+
+@media screen and (max-width: 420px) {
+    #three-box-layout {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        width: 80%;
+    }
+    #one-box-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0 0 0;
+        width: 100%;
+        background-color: rgba($black, 0.05);
+        border-radius: 20px;
+    }
+    #box-paragraph {
+        width: 80%;
+    }
+}
