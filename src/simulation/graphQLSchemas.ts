@@ -1,6 +1,5 @@
 const db = require('./models.js');
 
-
 const {
     GraphQLSchema,
     GraphQLObjectType,
