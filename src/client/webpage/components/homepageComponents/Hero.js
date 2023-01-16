@@ -37,7 +37,7 @@ const Hero = () => {
             This is LightQL.
           </h1>
           <p id="description-text" className="text">
-            An ultra-fast, lightweight client-side cache for GraphQL.
+            A lightspeed, lightweight client-side cache for GraphQL.
           </p>
           <span id="clipboard-docs">
             <section id="copy-npm">
