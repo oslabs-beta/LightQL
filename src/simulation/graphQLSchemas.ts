@@ -1,4 +1,4 @@
-const db = require('./models.js');
+const db = require('./models.ts');
 
 const {
     GraphQLSchema,
@@ -28,9 +28,9 @@ const RootQueryType = new GraphQLObjectType({
     fields: () => ({
         user: {
             type: new GraphQLList(User1),
-            resolve: async (parentValue: string, args: string) => {
-                const query = `SELECT * FROM user_info1 WHERE user_name = '${args}';`;
-                console.log(query);
+            resolve: async (parentValue: string, args: object) => {
+                const query = `SELECT * FROM user_info1`;
+                //console.log(query);
                 const data = await db.query(query);
                 return data.rows;
             },

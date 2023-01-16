@@ -7,8 +7,8 @@ const pool = new Pool({
   connectionString: uri,
 });
 
-module.exports = {
-  query: (text, params, callback) => {
+export = {
+  query: (text: string, params: any, callback: any) => {
     console.log('executed query', text);
     return pool.query(text, params, callback);
   },

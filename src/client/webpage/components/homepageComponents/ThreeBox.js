@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../styling/boxes.scss';
-import OneBox from './OneBox';
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import OneBox from './OneBox.js';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt.js';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined.js';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined.js';
 
 const ThreeBox = () => {
   const easyTitle = 'Easy to use';
