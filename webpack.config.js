@@ -1,5 +1,5 @@
 const path = require('path');
-const HTMLWebpackPlugin = require ('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -40,12 +40,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
+				test: /\.ts?$/,
 				use: 'ts-loader',
 				exclude: /node_modules/,
 			},
 			{
-				test: /.js$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',

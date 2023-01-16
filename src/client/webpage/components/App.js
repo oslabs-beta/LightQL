@@ -7,8 +7,8 @@ import '../styling/sitewide.scss';
 import Homepage from './Homepage.js';
 import Docs from './Docs.js';
 import AboutUs from './AboutUs.js';
-import Demo from './homepageComponents/Demo'
-import GitHubIcon from '@mui/icons-material/GitHub';
+import Demo from './homepageComponents/Demo.js'
+import GitHubIcon from '@mui/icons-material/GitHub.js';
 
 const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')

@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste.js';
 import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
