@@ -10,6 +10,11 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	
+	devtool: 'inline-source-map',
+  	resolve: {
+    	extensions: ['.tsx', '.ts', '.js'],
+  	},
+
 	devServer: {
 		historyApiFallback: true,
 		hot: true,
@@ -34,6 +39,11 @@ module.exports = {
 	],
 	module: {
 		rules: [
+			{
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
 			{
 				test: /.js$/,
 				exclude: /node_modules/,
