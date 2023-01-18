@@ -148,7 +148,57 @@ h1 {
 }
 
 @media screen and (min-width: 900px) {
+    #demo-body {
+        display: grid;
+        grid-template-rows: 7% 7% auto;
+        place-items: center;
+        height: auto;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
     .data-box {
         width: 400px;
+    }
+}
+
+@media screen and (min-height: 700px) {
+    .data-box {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    #demo-body {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    #result-boxes {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-self: center;
+        width: 90%;
+        line-height: 2rem;
+    }
+    .data-box {
+        height: 40vh;
+        width: 90%;
+        margin: 20px;
+        margin-top: 20px;
+    }
+    #metrics-container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
     }
 }
