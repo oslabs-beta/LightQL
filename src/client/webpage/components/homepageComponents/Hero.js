@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste.js';
 import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
@@ -37,7 +36,7 @@ const Hero = () => {
             This is LightQL.
           </h1>
           <p id="description-text" className="text">
-            An ultra-fast, lightweight client-side cache for GraphQL.
+            A lightspeed, lightweight client-side cache for GraphQL.
           </p>
           <span id="clipboard-docs">
             <section id="copy-npm">

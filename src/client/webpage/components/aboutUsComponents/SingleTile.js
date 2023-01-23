@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../styling/aboutUs.scss';
 import { motion } from 'framer-motion';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub.js';
+import LinkedInIcon from '@mui/icons-material/LinkedIn.js';
 
 
 const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headshot, githubLink, linkedInLink}) => {

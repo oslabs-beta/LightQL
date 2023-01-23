@@ -1,0 +1,60 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "codedeploy.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        },
+        {
+            "Sid": "CodeDeployAccessPolicy",
+            "Effect": "Allow",
+            "Action": [
+              "autoscaling:*",
+              "codedeploy:*",
+              "ec2:*",
+              "lambda:*",
+              "ecs:*",
+              "elasticloadbalancing:*",
+              "iam:AddRoleToInstanceProfile",
+              "iam:AttachRolePolicy",
+              "iam:CreateInstanceProfile",
+              "iam:CreateRole",
+              "iam:DeleteInstanceProfile",
+              "iam:DeleteRole",
+              "iam:DeleteRolePolicy",
+              "iam:GetInstanceProfile",
+              "iam:GetRole",
+              "iam:GetRolePolicy",
+              "iam:ListInstanceProfilesForRole",
+              "iam:ListRolePolicies",
+              "iam:ListRoles",
+              "iam:PutRolePolicy",
+              "iam:RemoveRoleFromInstanceProfile",
+              "s3:*",
+              "ssm:*"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "CodeDeployRolePolicy",
+            "Effect": "Allow",
+            "Action": [
+              "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::803481308388:role/CodeDeployServiceRole"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [                
+              "cloudformation:*"        
+            ],
+            "Resource": "*"
+          }
+    ]
+}

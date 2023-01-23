@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleTile from './aboutUsComponents/SingleTile';
+import SingleTile from './aboutUsComponents/SingleTile.js';
 import '../styling/aboutUs.scss';
 
 const cassidy = require('../../../assets/cassidy.png')
