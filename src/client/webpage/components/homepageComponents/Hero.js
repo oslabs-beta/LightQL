@@ -1,8 +1,6 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
@@ -37,7 +35,7 @@ const Hero = () => {
             This is LightQL.
           </h1>
           <p id="description-text" className="text">
-            An ultra-fast, lightweight client-side cache for GraphQL.
+            A lightspeed, lightweight client-side cache for GraphQL.
           </p>
           <span id="clipboard-docs">
             <section id="copy-npm">
@@ -47,13 +45,15 @@ const Hero = () => {
               <p id="npm-link" className="npm-text">
                 npm install lightql-cache
               </p>
-              <ContentPasteIcon
+              <i class="bi bi-clipboard"
                 id="clipboard-icon"
                 onClick={() =>
                   navigator.clipboard.writeText('npm install lightql-cache')
                 }
                 sx={{ color: '#323949' }}
-              ></ContentPasteIcon>
+              >
+
+              </i>
             </section>
             <Link to="/docs" id="blue-docs-link">
               <button id="blue-docs-button" className="button-text">

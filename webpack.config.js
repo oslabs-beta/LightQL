@@ -1,5 +1,5 @@
 const path = require('path');
-const HTMLWebpackPlugin = require ('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -10,6 +10,11 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	
+	devtool: 'inline-source-map',
+  	resolve: {
+    	extensions: ['.tsx', '.ts', '.js'],
+  	},
+
 	devServer: {
 		historyApiFallback: true,
 		hot: true,
@@ -35,7 +40,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /.js$/,
+				test: /\.ts?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',

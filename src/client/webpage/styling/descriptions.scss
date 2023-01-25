@@ -85,3 +85,42 @@ $code-font: 'B612 Mono', monospace;
     font-family: $title-font;
     color: $black;
 }
+
+@media screen and (max-width: 420px) {
+    #descriptions {
+        height: auto;
+        margin: 50px 0 50px 0;
+        display: flex;
+        flex-direction: column;
+    }
+    #info {
+        width: 80%;
+        display: grid;
+        grid-template-rows: 50% 50%;
+        align-items: center;
+    }
+    .paragraph-text {
+        margin: 15px 0 40px 0;
+    }
+    #tech-stack {
+        width: 90%;
+        height: 100%;
+        padding: 30px 0 30px 0;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba($black, 0.05);
+        border-radius: 20px;
+    }
+    #tech-stack-desc {
+        margin: 15px 0 40px 0;
+        width: 79%;
+    }
+    #icon-section {
+        display: grid;
+        width: 100%;
+        margin-top: 0;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+        grid-row-gap: 5%;
+    }
+}

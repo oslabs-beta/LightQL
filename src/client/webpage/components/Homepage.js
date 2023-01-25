@@ -1,8 +1,8 @@
 import React from 'react';
 import Hero from './homepageComponents/Hero.js';
-import ThreeBox from './homepageComponents/ThreeBox';
-import Descriptions from './homepageComponents/Descriptions';
-import Demo from './homepageComponents/Demo';
+import ThreeBox from './homepageComponents/ThreeBox.js';
+import Descriptions from './homepageComponents/Descriptions.js';
+import Demo from './homepageComponents/Demo.js';
 import '../styling/sitewide.scss';
 
 const Homepage = () => {

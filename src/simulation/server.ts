@@ -1,5 +1,7 @@
 const path = require('path');
-const express = require('express');
+//const express = require('express');
+import express, { Request, Response, NextFunction, response } from 'express';
+import type { ErrorRequestHandler } from 'express';
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const lightQL = require('../../npm-package/lightql.js');
 const schema = require('./graphQLSchemas');
@@ -33,8 +35,8 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../../dist/index.html'));
+app.get('/', (req: Request, res: Response) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 app.use('/graphql', expressGraphQL({
@@ -43,12 +45,17 @@ app.use('/graphql', expressGraphQL({
   graphiql: true})
 );
 
+type ErrObject = {
+  log: string;
+  status: number;
+  message: { err: string };
+};
 
   // unknown route handler:
   //app.use((req, res) => res.status(404).send('Cannot get route'));
 
   // global error handler:
-  app.use((err, req, res, next) => {
+  app.use((err: ErrObject, req: Request, res: Response, next: NextFunction) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',
       status: 500,
