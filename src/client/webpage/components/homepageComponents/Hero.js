@@ -40,12 +40,15 @@ const Hero = () => {
           </p>
           <span id="clipboard-docs">
             <section id="copy-npm">
-              <p id="dollar-sign" className="npm-text">
-                $
-              </p>
-              <p id="npm-link" className="npm-text">
-                npm install lightql-cache
-              </p>
+              <section id='link-group'>
+                <p id="dollar-sign" className="npm-text">
+                  $
+                </p>
+                <p id="npm-link" className="npm-text">
+                  npm install lightql-cache
+                </p>
+              </section>
+
               <ContentPasteIcon
                 id="clipboard-icon"
                 onClick={() =>
