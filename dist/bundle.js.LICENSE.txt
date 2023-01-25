@@ -1,4 +1,11 @@
 /*!
+    localForage -- Offline Storage, Improved
+    Version 1.10.0
+    https://localforage.github.io/localForage
+    (c) 2013-2017 Mozilla, Apache License 2.0
+*/
+
+/*!
  * @kurkle/color v0.2.1
  * https://github.com/kurkle/color#readme
  * (c) 2022 Jukka Kurkela
@@ -12,19 +19,11 @@
  * Released under the MIT License
  */
 
-/**
- * @license React
- * react-dom.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
 
 /**
  * @license React
- * react-jsx-runtime.production.min.js
+ * react-dom.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -53,7 +52,7 @@
  */
 
 /**
- * @remix-run/router v1.0.3
+ * @remix-run/router v1.0.4
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -64,7 +63,7 @@
  */
 
 /**
- * React Router DOM v6.4.3
+ * React Router DOM v6.4.4
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -75,7 +74,7 @@
  */
 
 /**
- * React Router v6.4.3
+ * React Router v6.4.4
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -83,10 +82,4 @@
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */
-
-/** @license MUI v5.10.14
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
  */

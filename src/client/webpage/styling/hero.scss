@@ -61,10 +61,9 @@ $code-font: 'B612 Mono', monospace;
     display: flex;
     width: 100%;
     justify-content: center;
-    height: 6vh
+    height: 6vh;
+    gap: 2%;
 }
-
-
 
 #copy-npm {
     background-color: rgba($black, .1);
@@ -73,24 +72,28 @@ $code-font: 'B612 Mono', monospace;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 40%;
-    
+    gap: 5%;
+    width: 42%;
+    max-width: 360px;
+}
+
+#link-group {
+    width: 100%;
+    display: flex;
+    gap: 2%;
 }
 
 #dollar-sign {
-    margin-left: 5%;
     color: rgba($black, .7);
 }
 
 #npm-link {
     color: $black;
-    margin: 0.6em;
-    margin-right: 25%;
+
 }
 
 .npm-text {
     font-family: $code-font;
-    margin: 0;
 }
 
 #clipboard-icon {
@@ -105,8 +108,6 @@ $code-font: 'B612 Mono', monospace;
 #blue-docs-link {
     height: 100%;
     width: 20%;
-    margin-left: 2rem;
-    
 }
 
 #blue-docs-button {

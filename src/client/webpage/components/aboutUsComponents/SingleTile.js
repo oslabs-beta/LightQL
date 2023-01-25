@@ -1,8 +1,6 @@
 import React from 'react';
 import '../../styling/aboutUs.scss';
 import { motion } from 'framer-motion';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
 const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headshot, githubLink, linkedInLink}) => {
@@ -50,7 +48,7 @@ const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headsh
                         }}
                         href={githubLink}
                         target="_blank">
-                        <GitHubIcon className='au-icons' sx={{color: '#323949'}}></GitHubIcon>
+                        <i class="bi bi-github" style={{fontSize: '2rem', color: '#323949'}}></i>
                     </motion.a>
                     <motion.a 
                         aria-label={LIAria}
@@ -64,7 +62,7 @@ const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headsh
                         }}
                         href={linkedInLink}
                         target="_blank">
-                        <LinkedInIcon id='linkedin-icon' className='au-icons' sx={{color: '#323949'}}></LinkedInIcon>
+                        <i class="bi bi-linkedin" style={{fontSize: '2rem', color: '#323949'}}></i>
                     </motion.a>
                 </section>
                 </section>

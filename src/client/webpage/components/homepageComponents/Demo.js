@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, useLayoutEffect, EffectCallback, DependencyList, useRef } from 'react';
-import lightql, { LRUCache } from '../../../../../npm-package/lightql';
+import lightql, { LRUCache } from '../../../../../npm-package/lightql.js';
 import 'chart.js/auto';
 import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
@@ -55,7 +55,7 @@ const Demo = () => {
 	)
 
 
-	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+	const cache = new LRUCache(3, 'https://lightql-i8h6.onrender.com/graphql');
 
 	const callLightQL = async () => {
 		let start, end;
