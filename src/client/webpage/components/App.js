@@ -8,7 +8,6 @@ import Homepage from './Homepage.js';
 import Docs from './Docs.js';
 import AboutUs from './AboutUs.js';
 import Demo from './homepageComponents/Demo.js'
-import GitHubIcon from '@mui/icons-material/GitHub.js';
 
 const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
@@ -79,9 +78,9 @@ const App = () => {
 						}}
 						href="https://github.com/oslabs-beta/LightQL"
 						target="_blank"
-
-					>
-						<GitHubIcon sx={{ color: '#323949' }} className='top-right-icons'></GitHubIcon>
+						
+						>
+						<i class="bi bi-github" style={{fontSize: '1.45rem', color: '#323949'}}></i>
 					</motion.a>
 					<motion.a
 						name='NPM Link'

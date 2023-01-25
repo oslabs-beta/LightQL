@@ -35,13 +35,8 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-<<<<<<< HEAD:src/simulation/server.js
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../../dist/index.html'));
-=======
 app.get('/', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
->>>>>>> efe27084fa4f6cb942e071d6b2a0abc0548cd9f6:src/simulation/server.ts
 });
 
 app.use('/graphql', expressGraphQL({

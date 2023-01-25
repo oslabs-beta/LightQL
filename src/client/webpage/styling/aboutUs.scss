@@ -124,11 +124,7 @@ $code-font: 'B612 Mono', monospace;
     color: $black;
 }
 
-.au-icons {
-    transform: scale(1.4);
-    margin: 0 10px;
-}
-
-#linkedin-icon {
-    transform: scale(1.65);
+#contact-icons {
+    display: flex;
+    gap: 10px;
 }
