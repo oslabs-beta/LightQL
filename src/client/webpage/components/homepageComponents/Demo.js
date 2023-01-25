@@ -55,7 +55,7 @@ const Demo = () => {
 	)
 
 
-	const cache = new LRUCache(3, 'http://localhost:3000/graphql');
+	const cache = new LRUCache(3, 'https://lightql-i8h6.onrender.com/graphql');
 
 	const callLightQL = async () => {
 		let start, end;

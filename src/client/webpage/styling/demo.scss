@@ -14,7 +14,8 @@ h1 {
     display: grid;
     grid-template-rows: 7% 7% auto;
     place-items: center;
-    height: 80vh;
+    height: fit-content;
+    padding: 5% 0 5% 0;
     width: 100%;
     margin-top: auto;
     margin-bottom: auto;
