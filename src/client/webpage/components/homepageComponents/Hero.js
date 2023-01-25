@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste.js';
 import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
@@ -46,13 +45,15 @@ const Hero = () => {
               <p id="npm-link" className="npm-text">
                 npm install lightql-cache
               </p>
-              <ContentPasteIcon
+              <i class="bi bi-clipboard"
                 id="clipboard-icon"
                 onClick={() =>
                   navigator.clipboard.writeText('npm install lightql-cache')
                 }
                 sx={{ color: '#323949' }}
-              ></ContentPasteIcon>
+              >
+
+              </i>
             </section>
             <Link to="/docs" id="blue-docs-link">
               <button id="blue-docs-button" className="button-text">

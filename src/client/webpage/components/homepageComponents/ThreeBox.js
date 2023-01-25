@@ -1,11 +1,13 @@
 import React from 'react';
 import '../../styling/boxes.scss';
 import OneBox from './OneBox.js';
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt.js';
-import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined.js';
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined.js';
 
 const ThreeBox = () => {
+
+  const ElectricBoltIcon = <i class="bi bi-lightning-charge"></i>
+  const ThumbUpAltOutlinedIcon = <i class="bi bi-hand-thumbs-up"></i>
+  const ArchiveOutlinedIcon = <i class="bi bi-archive"></i>
+
   const easyTitle = 'Easy to use';
   const fastTitle = 'Ultra-fast';
   const mutationTitle = 'Persistent cache data';
