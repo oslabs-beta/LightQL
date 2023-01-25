@@ -19,6 +19,7 @@ $code-font: 'B612 Mono', monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
+    row-gap: 5%;
     text-align: center;
     padding-top: 30px;
 }
@@ -29,17 +30,11 @@ $code-font: 'B612 Mono', monospace;
 
 #box-paragraph {
     font-family: $body-font;
+    margin: 0;
 }
 
 .text-color {
     color: $black;
-}
-
-.box-icons {
-    color: $black;
-    margin-bottom: 1rem;
-    min-width: 2em;
-    min-height: 2em;
 }
 
 @media screen and (max-width: 420px) {
