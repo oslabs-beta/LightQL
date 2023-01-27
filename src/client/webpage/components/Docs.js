@@ -30,8 +30,7 @@ const Docs = () => {
     <>
       <div id="docsbody">
         <main id="main">
-          <div className="text-box">
-            <div className="lightql-docs">
+            <div id="lightql-docs">
               <h1 className="section-titles">LightQL</h1>
               <p className="section-paragraphs">
                 LightQL is an open-source developer tool that leverages the
@@ -186,7 +185,6 @@ const Docs = () => {
                 </ul>
               </div>
             </div>
-          </div>
         </main>
       </div>
     </>
