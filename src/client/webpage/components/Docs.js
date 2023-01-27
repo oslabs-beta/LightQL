@@ -30,6 +30,7 @@ const Docs = () => {
     <>
       <div id="docsbody">
         <main id="main">
+          <div className="text-box">
             <div id="lightql-docs">
               <h1 className="section-titles">LightQL</h1>
               <p className="section-paragraphs">
@@ -185,6 +186,7 @@ const Docs = () => {
                 </ul>
               </div>
             </div>
+          </div>
         </main>
       </div>
     </>
