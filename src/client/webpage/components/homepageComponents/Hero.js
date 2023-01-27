@@ -37,7 +37,7 @@ const Hero = () => {
           <p id="description-text" className="text">
             A lightspeed, lightweight client-side cache for GraphQL.
           </p>
-          <span id="clipboard-docs">
+          <section id="clipboard-docs">
             <section id="copy-npm">
               <p id="dollar-sign" className="npm-text">
                 $
@@ -55,12 +55,12 @@ const Hero = () => {
 
               </i>
             </section>
-            <Link to="/docs" id="blue-docs-link">
-              <button id="blue-docs-button" className="button-text">
+            <Link to="/docs" id="docs-link">
+              <button id="docs-button" className="button-text">
                 Read our docs
               </button>
             </Link>
-          </span>
+          </section>
           <Link to="/aboutUs" id="demo-link">
             <p>Contact us</p>
           </Link>

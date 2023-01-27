@@ -1,10 +1,4 @@
-$white: #ffffff;
-$blue: #11b5e4;
-$mauve: #957d95;
-$black: #323949;
-$title-font: 'B612', sans-serif;
-$body-font: 'Noto Serif', serif;
-$code-font: 'B612 Mono', monospace;
+@import './sitewide.scss';
 
 #three-box-layout {
     height: 45vh;
@@ -26,10 +20,13 @@ $code-font: 'B612 Mono', monospace;
 
 #box-title {
     font-family: $title-font;
+    user-select: none;
+
 }
 
 #box-paragraph {
     font-family: $body-font;
+    user-select: none;
     margin: 0;
 }
 
@@ -37,27 +34,31 @@ $code-font: 'B612 Mono', monospace;
     color: $black;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 830px) {
     #three-box-layout {
         height: auto;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        margin-top: 70px;
-        margin-bottom: 70px;
-        width: 80%;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 2% 0;
+        margin: 0;
     }
+
     #one-box-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin: 20px 0 0 0;
-        width: 100%;
-        background-color: rgba($black, 0.05);
+        gap: 10px;
+        height: auto;
+        padding: 10% 5%;
+        width: 70%;
         border-radius: 20px;
     }
+
     #box-paragraph {
-        width: 80%;
+        width: 95%;
     }
 }
