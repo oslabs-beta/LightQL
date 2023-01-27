@@ -93,3 +93,16 @@
     margin-top: 0;
     margin-bottom: 40px;
 }
+
+@media screen and (max-width: 830px) {
+    #main {
+        margin: 0;
+        align-items: center;
+      }
+    
+      #text-box {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+      }
+}
