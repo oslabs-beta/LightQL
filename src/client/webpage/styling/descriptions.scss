@@ -26,6 +26,7 @@ $code-font: 'B612 Mono', monospace;
     color: $black;
     font-size: 1.8rem;
     text-align: center;
+    user-select: none;
 }
 
 .paragraph-text {
@@ -36,6 +37,7 @@ $code-font: 'B612 Mono', monospace;
     font-size: 0.93rem;
     letter-spacing: 0.02em;
     text-align: center;
+    user-select: none;
 }
 
 #separating-line {
@@ -51,22 +53,22 @@ $code-font: 'B612 Mono', monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #tech-stack-desc {
     margin: 25px 15% 25px 15%;
     text-align: center;
+    user-select: none;
 }
 
 #icon-section {
     display: grid;
-    width: 70%;
-    height: 90%;
+    width: 45%;
+    height: 60%;
     margin-top: 5%;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
-    grid-row-gap: 10%;
     justify-items: center;
 }
 
@@ -86,30 +88,39 @@ $code-font: 'B612 Mono', monospace;
     color: $black;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 830px) {
     #descriptions {
         height: auto;
         margin: 50px 0 50px 0;
         display: flex;
         flex-direction: column;
+        background-color: rgba($black, 0.05);
+        border-radius: 20px;
+        margin: 0 10%;
+        padding-top: 8%;
     }
+
+    .desc-titles {
+        font-size: 1.5rem;
+    }
+
     #info {
         width: 80%;
         display: grid;
         grid-template-rows: 50% 50%;
         align-items: center;
     }
+
     .paragraph-text {
         margin: 15px 0 40px 0;
     }
+
     #tech-stack {
         width: 90%;
         height: 100%;
         padding: 30px 0 30px 0;
         display: flex;
         flex-direction: column;
-        background-color: rgba($black, 0.05);
-        border-radius: 20px;
     }
     #tech-stack-desc {
         margin: 15px 0 40px 0;
@@ -117,10 +128,17 @@ $code-font: 'B612 Mono', monospace;
     }
     #icon-section {
         display: grid;
-        width: 100%;
+        width: 80%;
         margin-top: 0;
         grid-template-columns: 50% 50%;
         grid-template-rows: 50% 50%;
         grid-row-gap: 5%;
+    }
+
+    #separating-line {
+        height: 5px;
+        width: 80%;
+        background-color: rgba($black, 0.4);
+        border-radius: 100px;
     }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste.js';
 import { Link, Route, Routes } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
@@ -38,7 +37,7 @@ const Hero = () => {
           <p id="description-text" className="text">
             A lightspeed, lightweight client-side cache for GraphQL.
           </p>
-          <span id="clipboard-docs">
+          <section id="clipboard-docs">
             <section id="copy-npm">
               <p id="dollar-sign" className="npm-text">
                 $
@@ -46,20 +45,22 @@ const Hero = () => {
               <p id="npm-link" className="npm-text">
                 npm install lightql-cache
               </p>
-              <ContentPasteIcon
+              <i class="bi bi-clipboard"
                 id="clipboard-icon"
                 onClick={() =>
                   navigator.clipboard.writeText('npm install lightql-cache')
                 }
                 sx={{ color: '#323949' }}
-              ></ContentPasteIcon>
+              >
+
+              </i>
             </section>
-            <Link to="/docs" id="blue-docs-link">
-              <button id="blue-docs-button" className="button-text">
+            <Link to="/docs" id="docs-link">
+              <button id="docs-button" className="button-text">
                 Read our docs
               </button>
             </Link>
-          </span>
+          </section>
           <Link to="/aboutUs" id="demo-link">
             <p>Contact us</p>
           </Link>

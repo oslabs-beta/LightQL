@@ -26,10 +26,6 @@
   "homepage": "https://github.com/oslabs-beta/LightQL#readme",
   "dependencies": {
     "@cubejs-client/core": "^0.31.15",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.15",
-    "@mui/material": "^5.10.15",
     "chart.js": "^4.0.1",
     "concurrently": "^7.5.0",
     "cors": "^2.8.5",
@@ -38,8 +34,6 @@
     "express-graphql": "^0.12.0",
     "framer-motion": "^7.6.7",
     "graphql": "^15.8.0",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^4.10.0",
     "localforage": "^1.10.0",
     "node-fetch": "^3.3.0",
     "pg": "^8.8.0",
@@ -51,7 +45,10 @@
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scroll": "^1.8.8",
-    "source-map-loader": "^4.0.1"
+    "schema-utils": "^4.0.0",
+    "source-map-loader": "^4.0.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
