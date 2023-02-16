@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../styling/boxes.scss';
-import OneBox from './OneBox.js';
+import OneBox from './OneBox';
 
 const ThreeBox = () => {
 
-  const ElectricBoltIcon = <i class="bi bi-lightning-charge" style={{fontSize: '2rem', color: '#323949'}}></i>
-  const ThumbUpAltOutlinedIcon = <i class="bi bi-hand-thumbs-up" style={{fontSize: '2rem', color: '#323949'}}></i>
-  const ArchiveOutlinedIcon = <i class="bi bi-archive" style={{fontSize: '2rem', color: '#323949'}}></i>
+  const ElectricBoltIcon = <i className="bi bi-lightning-charge" style={{fontSize: '2rem', color: '#323949'}}></i>
+  const ThumbUpAltOutlinedIcon = <i className="bi bi-hand-thumbs-up" style={{fontSize: '2rem', color: '#323949'}}></i>
+  const ArchiveOutlinedIcon = <i className="bi bi-archive" style={{fontSize: '2rem', color: '#323949'}}></i>
 
   const easyTitle = 'Easy to use';
   const fastTitle = 'Ultra-fast';

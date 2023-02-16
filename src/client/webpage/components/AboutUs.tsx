@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleTile from './aboutUsComponents/SingleTile.js';
+import SingleTile from './aboutUsComponents/SingleTile';
 import '../styling/aboutUs.scss';
 
 const cassidy = require('../../../assets/cassidy.png')
@@ -20,7 +20,7 @@ const AboutUs = () => {
                         email='cassidyrose56@gmail.com'
                         emailAria="Click here to email Cassidy Johnson"
                         GHAria="Click here to view Cassidy Johnson\'s Github"
-                        LIAAria="Click here to view Cassidy Johnson\'s LinkedIn"
+                        LIAria="Click here to view Cassidy Johnson\'s LinkedIn"
                         githubLink='https://github.com/cassidyrose56'
                         linkedInLink='https://www.linkedin.com/in/cassidy-r-johnson/'
                         headshot={cassidy} 
@@ -42,7 +42,7 @@ const AboutUs = () => {
                         email='drewtucker19@gmail.com'
                         emailAria="Click here to email Drew Tucker"
                         GHAria="Click here to view Drew Tucker\'s Github"
-                        LIAAria="Click here to view Drew Tucker\'s LinkedIn"
+                        LIAria="Click here to view Drew Tucker\'s LinkedIn"
                         githubLink='https://github.com/Drew-tucker33'
                         linkedInLink='https://www.linkedin.com/in/drew-t-4369199b/'
                         headshot={drew} 
@@ -53,7 +53,7 @@ const AboutUs = () => {
                         email='pierceheska@gmail.com'
                         emailAria="Click here to email Pierce Heska"
                         GHAria="Click here to view Pierce Heska\'s Github"
-                        LIAAria="Click here to view Pierce Heska\'s LinkedIn"
+                        LIAria="Click here to view Pierce Heska\'s LinkedIn"
                         githubLink='https://github.com/pheska'
                         linkedInLink='https://www.linkedin.com/in/pheska/'
                         headshot={pierce} 
@@ -64,7 +64,7 @@ const AboutUs = () => {
                         email='rheawu1212@gmail.com'
                         emailAria="Click here to email Rhea Wu"
                         GHAria="Click here to view Rhea Wu\'s Github"
-                        LIAAria="Click here to view Rhea Wu\'s LinkedIn"
+                        LIAria="Click here to view Rhea Wu\'s LinkedIn"
                         githubLink='https://github.com/rheawu1212'
                         linkedInLink='https://www.linkedin.com/in/rheawu-tech/'
                         headshot={rhea} 
