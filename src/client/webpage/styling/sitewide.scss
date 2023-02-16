@@ -58,12 +58,6 @@ body {
     align-items: center;
 }
 
-#placeholder {
-    width: 40px;
-    height: 20px;
-    background-color: #11b5e4;
-}
-
 .nav-btns {
     font-family: $title-font;
     color: $black;
@@ -110,4 +104,19 @@ body {
 #footer-text {
     font-family: $body-font;
     color: $black;
+}
+
+@media screen and (max-width: 830px) {
+    #navbar {
+        grid-template-columns: 60% auto 25%;
+    }
+
+    #left-nav {
+        padding-left: 20px;
+    }
+
+    #right-nav {
+        justify-content: center;
+        gap: 15px;
+    }
 }

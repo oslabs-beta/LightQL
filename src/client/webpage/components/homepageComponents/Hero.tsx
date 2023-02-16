@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 let leftLines = require('../../../../assets/lower-left-lines.png');
 let rightLines = require('../../../../assets/upper-right-lines.png');
@@ -45,12 +45,12 @@ const Hero = () => {
               <p id="npm-link" className="npm-text">
                 npm install lightql-cache
               </p>
-              <i class="bi bi-clipboard"
+              <i className="bi bi-clipboard"
                 id="clipboard-icon"
                 onClick={() =>
                   navigator.clipboard.writeText('npm install lightql-cache')
                 }
-                sx={{ color: '#323949' }}
+                style={{ color: '#323949' }}
               >
 
               </i>

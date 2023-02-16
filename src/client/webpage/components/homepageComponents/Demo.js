@@ -1,20 +1,18 @@
-import React, { Component, useEffect, useState, useLayoutEffect, EffectCallback, DependencyList, useRef } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import lightql, { LRUCache } from '../../../../../npm-package/lightql.js';
 import 'chart.js/auto';
-import { Chart, getDatasetAtEvent } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import '../../styling/demo.scss';
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
-//usestate is a hook with class components there with init value being passed in for state 
 
 
 
 const Demo = () => {
 
 	const [pulledData, setPulledData] = useState('Waiting for user to submit GraphQL query');
-	const [user, setUser] = useState('');
 	const [timeArr, setTimeArr] = useState([]);
 	const [chartData, setChartData] = useState({
 		datasets: []
@@ -51,8 +49,7 @@ const Demo = () => {
 				tension: 0.1
 			}]
 		});
-		}, [timeArr]	
-	)
+	}, [timeArr]);
 
 
 	const cache = new LRUCache(3, 'https://lightql-i8h6.onrender.com/graphql');
@@ -113,7 +110,6 @@ const Demo = () => {
 				<section id='chart-container' className='metrics'>
 					<Chart 
 						style={{height: '90%'}}
-						name='Chart tracking caching speed'
 						id='line-chart' 
 						options={{
 							responsive: true,
