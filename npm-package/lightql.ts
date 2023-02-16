@@ -74,15 +74,15 @@ LRUCache.prototype.get = async function(query, variables) {
 
   //Determines whether this.map and this.DLL have the same number of nodes and throws an error if not
   if (this.equalSize() === false) {
-    throw new Error({log: 'Hashmap and linked list are out of sync and no longer have the same number of nodes'});
+    throw new Error('Hashmap and linked list are out of sync and no longer have the same number of nodes');
   }
    //Checks if the grapQL endpoint is valid and throws an error if not
   if(!this.graphqlEndpoint){
-    throw new Error({log : 'Graphql Endpoint Argument is invalid or missing'})
+    throw new Error('Graphql Endpoint Argument is invalid or missing')
   }
   //Checks capacity constraints : capacity must be an integer and greater than 0.
   if(this.capacity <= 0 || !this.capacity || typeof this.capacity !== 'number') {
-    throw new Error({log: 'Capacity is invalid'})
+    throw new Error('Capacity is invalid')
   }
 
 /*LAZY LOADING IMPLEMENTATION
