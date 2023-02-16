@@ -1,21 +1,18 @@
 import React from 'react';
 // import lightql, { LRUCache } from '../../../../npm-package/lightql';
-import { browserHistory } from 'react-router'
 import { Link, Route, Routes } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styling/sitewide.scss';
-import Homepage from './Homepage.js';
-import Docs from './Docs.js';
-import AboutUs from './AboutUs.js';
-import Demo from './homepageComponents/Demo.js'
+import Homepage from './Homepage';
+import Docs from './Docs';
+import AboutUs from './AboutUs';
+import Demo from './homepageComponents/Demo';
 
 const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
 const npmLogo = require('../../../assets/npm-vector.png')
 
 const App = () => {
-
-
 	return (
 		<>
 			<section id='navbar'>
@@ -23,8 +20,7 @@ const App = () => {
 					<Link to='/'>
 						<motion.img
 							whileHover={{
-								rotate: -20,
-								bounce: 2
+								rotate: -20
 							}}
 							id='navbar-logo'
 							src={logo.default}
@@ -70,7 +66,7 @@ const App = () => {
 				</section>
 				<section id='right-nav'>
 					<motion.a
-						name='Github Link'
+						// name='Github Link'
 						aria-label='Click to access our Github repository'
 						whileHover={{
 							type: "bounce",
@@ -80,10 +76,10 @@ const App = () => {
 						target="_blank"
 						
 						>
-						<i class="bi bi-github" style={{fontSize: '1.45rem', color: '#323949'}}></i>
+						<i className="bi bi-github" style={{fontSize: '1.45rem', color: '#323949'}}></i>
 					</motion.a>
 					<motion.a
-						name='NPM Link'
+						// name='NPM Link'
 						aria-label='Click to view our NPM package on npmjs.com'
 						whileHover={{
 							type: "bounce",
@@ -128,7 +124,6 @@ const App = () => {
 			</section>
 		</>
 	)
-
-}
+};
 
 export default App;
