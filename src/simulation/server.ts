@@ -3,7 +3,7 @@ const path = require('path');
 import express, { Request, Response, NextFunction, response } from 'express';
 import type { ErrorRequestHandler } from 'express';
 const expressGraphQL = require('express-graphql').graphqlHTTP;
-const lightQL = require('../../npm-package/lightql.js');
+const lightQL = require('../../npm-package/lightql');
 const schema = require('./graphQLSchemas');
 const app = express();
 const cors = require('cors');

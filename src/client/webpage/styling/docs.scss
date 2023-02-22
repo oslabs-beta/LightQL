@@ -40,7 +40,6 @@
     font-family: $code-font;
     grid-column: 1 / 2;
     margin-left: 25px;
-    // overflow-x: visible;
 }
 
 .copy-button {
@@ -77,6 +76,10 @@
 }
 
 @media screen and (max-width: 830px) {
+    #main {
+        margin-right: 10vw;
+    }
+
       #text-box {
         display: flex;
         flex-direction: column;
@@ -89,7 +92,8 @@
      }
     
     .code-box {
-        margin: 25px 0 45px 0;
+        margin: 25px 0;
+        padding: 0 10px;
         font-size: 20px; 
         border-radius: 15px;
         display: grid;
@@ -98,7 +102,8 @@
     }
     
     .blue-code-text {
-        font-size: 18px;
+        font-size: 0.8rem;
+        overflow-x: auto;
         grid-column: 1 / 2;
         margin-right: 0;
         margin-left: 0;
@@ -119,25 +124,5 @@
         border: 1px solid $blue;
         cursor: pointer;
         font-family: $code-font;
-    }
-    
-    .copy-button:hover {
-        background-color: $blue;
-        color: #fff;
-    }
-    
-    .divider {
-        border-top: 3px solid; 
-        color: $light-grey;
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-    
-    #big-codestring {
-        line-height: 1rem;
-        margin-top: 0;
-        margin-bottom: 40px;
     }
 }
