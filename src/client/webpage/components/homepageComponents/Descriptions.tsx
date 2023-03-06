@@ -6,7 +6,7 @@ const typescriptLogo = require('../../../../assets/typescript-logo.png');
 const graphqlLogo = require('../../../../assets/graphql-logo.png');
 const localForageLogo = require('../../../../assets/local-forage.png');
 
-const Descriptions = () => {
+const Descriptions: React.FC = () => {
   return (
     <div id="descriptions">
       <section id="info">
@@ -88,3 +88,6 @@ const Descriptions = () => {
 };
 
 export default Descriptions;
+
+// changes made during ts transition
+    // added React.FC type

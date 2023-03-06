@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styling/boxes.scss';
 import OneBox from './OneBox';
 
-const ThreeBox = () => {
+const ThreeBox: React.FC = () => {
 
   const ElectricBoltIcon = <i className="bi bi-lightning-charge" style={{fontSize: '2rem', color: '#323949'}}></i>
   const ThumbUpAltOutlinedIcon = <i className="bi bi-hand-thumbs-up" style={{fontSize: '2rem', color: '#323949'}}></i>
@@ -33,3 +33,6 @@ const ThreeBox = () => {
 };
 
 export default ThreeBox;
+
+// changes made during ts transition
+    // added React.FC type

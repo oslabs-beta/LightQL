@@ -5,7 +5,7 @@ import Descriptions from './homepageComponents/Descriptions';
 import Demo from './homepageComponents/Demo';
 import '../styling/sitewide.scss';
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
     return (
     <div id='site-flex'>
       <Hero />
@@ -17,3 +17,6 @@ const Homepage = () => {
 }
 
 export default Homepage;
+
+// changes made during ts transition
+    // added React.FC type

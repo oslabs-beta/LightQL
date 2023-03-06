@@ -8,7 +8,7 @@ const pierce = require('../../../assets/pierce.png');
 const cyrus = require('../../../assets/cyrus.png');
 const rhea = require('../../../assets/rhea.png');
 
-const AboutUs = () => {
+const AboutUs: React.FC = () => {
 
     return (
         <div id='about-us-page-layout'>

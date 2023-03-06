@@ -1,7 +1,13 @@
 import React from 'react';
 import '../../styling/boxes.scss';
 
-const OneBox = ({icon, title, text}) => {
+interface Props {
+    icon: React.ReactNode;
+    title: string;
+    text: string;
+}
+
+const OneBox: React.FC<Props> = ({ icon, title, text }) => {
 
     return (
         <div id='one-box-layout'>
@@ -13,3 +19,6 @@ const OneBox = ({icon, title, text}) => {
 }
 
 export default OneBox;
+
+// changes made during ts transition
+    // added props interface and React.FC type

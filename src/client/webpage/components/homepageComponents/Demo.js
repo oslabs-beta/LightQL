@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
-import lightql, { LRUCache } from '../../../../../npm-package/lightql.ts';
+import { LRUCache } from '../../../../../npm-package/lightql.ts';
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { motion } from 'framer-motion';

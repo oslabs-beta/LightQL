@@ -11,7 +11,7 @@ const logo = require('../../../assets/nobg-LightQL.png')
 const blackLogo = require('../../../assets/black-logo.png')
 const npmLogo = require('../../../assets/npm-vector.png')
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<>
 			<section id='navbar'>
@@ -65,7 +65,6 @@ const App = () => {
 				</section>
 				<section id='right-nav'>
 					<motion.a
-						// name='Github Link'
 						aria-label='Click to access our Github repository'
 						whileHover={{
 							type: "bounce",
@@ -78,7 +77,6 @@ const App = () => {
 						<i className="bi bi-github" style={{fontSize: '1.45rem', color: '#323949'}}></i>
 					</motion.a>
 					<motion.a
-						// name='NPM Link'
 						aria-label='Click to view our NPM package on npmjs.com'
 						whileHover={{
 							type: "bounce",
@@ -126,3 +124,6 @@ const App = () => {
 };
 
 export default App;
+
+// changes made during ts transition
+    // added React.FC type

@@ -3,8 +3,7 @@ import { useState } from 'react';
 import '../styling/docs.scss';
 import docsExample from '../../../assets/docs-example.png';
 
-const Docs = () => {
-  // Button Text
+const Docs: React.FC = () => {
   const [buttonTextA, setButtonTextA] = useState('Copy');
   const [buttonTextB, setButtonTextB] = useState('Copy');
   const [buttonTextC, setButtonTextC] = useState('Copy');
@@ -194,3 +193,6 @@ const Docs = () => {
 };
 
 export default Docs;
+
+// changes made during ts transition
+    // added React.FC type

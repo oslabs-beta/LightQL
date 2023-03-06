@@ -1,14 +1,20 @@
-const db = require('./models.ts');
+import db from './models';
 
 const {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
     GraphQLList,
-    GraphQLID,
     GraphQLInt,
     GraphQLNonNull
 } = require('graphql');
+
+interface User {
+    song_name: string;
+    movie_name: string;
+    user_id: number;
+    user_name: string;
+}
 
 const User1 = new GraphQLObjectType({
     name: 'User1',
@@ -28,9 +34,8 @@ const RootQueryType = new GraphQLObjectType({
     fields: () => ({
         user: {
             type: new GraphQLList(User1),
-            resolve: async (parentValue: string, args: object) => {
+            resolve: async (parentValue: string, args: object): Promise<User[]> => {
                 const query = `SELECT * FROM user_info1`;
-                //console.log(query);
                 const data = await db.query(query);
                 return data.rows;
             },
@@ -43,4 +48,9 @@ const schema = new GraphQLSchema({
     type: User1
 });
 
-module.exports = schema;
+export default schema;
+
+// changes made in ts transition:
+    // added User interface to describe the data returned by the resolve function on line 37
+    // added type notations to func params and return type of resolve function
+    // changed module.exports to export statement on line 52

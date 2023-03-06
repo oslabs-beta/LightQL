@@ -3,11 +3,11 @@ import '../../styling/hero.scss';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-let leftLines = require('../../../../assets/lower-left-lines.png');
-let rightLines = require('../../../../assets/upper-right-lines.png');
-let logo = require('../../../../assets/nobg-LightQL.png');
+const leftLines = require('../../../../assets/lower-left-lines.png');
+const rightLines = require('../../../../assets/upper-right-lines.png');
+const logo = require('../../../../assets/nobg-LightQL.png');
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <div id="hero-layout">
       <div id="hero">
@@ -79,3 +79,6 @@ const Hero = () => {
 };
 
 export default Hero;
+
+// changes made during ts transition
+    // added React.FC type

@@ -1,10 +1,8 @@
-/*localForage is a fast and simple storage library for Javascript. localForage leverages asynchronous storage thorugh IndexedDB, a JS-based object-oriented database that runs in your browser,
-with a simple, localStorage-like API.LightQL leverages localForage and IndexedDB to persist cached data between sessions. Whenever you run a query through LightQL, the capacity, HashMap, Doubly-Linked List,
-and graphqlEndpoint are loaded into memory if available through the localForage method: localforage.setItem(). Additionally, before returning data to users, LighQL writes our cache data stuctures and graphqlEndpoint to our persistent memory in IndexedDB through the localForage method: localforage.getItem().
+/*localForage is a fast and simple storage library for Javascript. localForage leverages asynchronous storage thorugh IndexedDB, a JS-based object-oriented database that runs in your browser, with a simple, localStorage-like API. LightQL leverages localForage and IndexedDB to persist cached data between sessions. Whenever you run a query through LightQL, the capacity, HashMap, Doubly-Linked List, and graphqlEndpoint are loaded into memory if available through the localForage method: localforage.setItem(). Additionally, before returning data to users, LighQL writes our cache data stuctures and graphqlEndpoint to our persistent memory in IndexedDB through the localForage method: localforage.getItem().
 */
 const localforage = require("localforage");
 
-//LRUCache function creates an instance of the LiqhQL cache. A capacity and graphQL endpoint are necessary arguments to pass in.
+//LRUCache function creates an instance of the LightQL cache. A capacity and graphQL endpoint are necessary arguments to pass in.
 function LRUCache(capacity, graphqlEndpoint) {
   this.capacity = Math.floor(capacity);
   this.map = new Map();
@@ -85,7 +83,7 @@ LRUCache.prototype.get = async function(query, variables) {
     throw new Error('Capacity is invalid')
   }
 
-/*LAZY LOADING IMPLEMENTATION
+/* LAZY LOADING IMPLEMENTATION
 Lazy loading is a caching strategy that loads data into the cache only when necessary to improve performance and save system resources. 
 When making a specific query, the application will hit the cache first; if the data for the query is present, the cache returns the data to your application. If the data is missing, then the cache will be responsible for pulling the data from the main database/data store. The returned data will then be written to the cache, and can quickly be retrieved the next time it's requested.
 */

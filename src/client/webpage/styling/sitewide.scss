@@ -6,6 +6,10 @@ $black: #323949;
 $title-font: 'B612', sans-serif;
 $body-font: 'Noto Serif', serif;
 $code-font: 'B612 Mono', monospace;
+$default-padding: 3%;
+$default-border: 0.5px solid $black;
+$default-border-radius: 8px;
+$box-shadow-light: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15);
 
 html {
     height: 100vh;

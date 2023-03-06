@@ -2,8 +2,19 @@ import React from 'react';
 import '../../styling/aboutUs.scss';
 import { motion } from 'framer-motion';
 
+interface Props {
+    emailIdName: string;
+    name: string;
+    email: string;
+    emailAria: string;
+    GHAria: string;
+    LIAria: string;
+    headshot: {default: string};
+    githubLink: string;
+    linkedInLink: string;
+}
 
-const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headshot, githubLink, linkedInLink}) => {
+const SingleTile: React.FC<Props> = ({emailIdName, name, email, emailAria, GHAria, LIAria, headshot, githubLink, linkedInLink}) => {
 
     let emailTo = `mailto: ${email}`;
 
@@ -69,3 +80,6 @@ const SingleTile = ({emailIdName, name, email, emailAria, GHAria, LIAria, headsh
 }
 
 export default SingleTile;
+
+// changes made during ts transition
+    // added props interface and React.FC type
