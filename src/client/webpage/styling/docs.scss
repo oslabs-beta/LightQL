@@ -5,18 +5,13 @@
   margin-right: 18vw;
   margin-top: 3vh;
   margin-bottom: 5vh;
-  display: flex;
-  justify-content: center;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
   user-select: none;
 }
 
 .image {
-    height: 80vh;
-    width: auto;
-}
+    height: auto;
+    width: 80vw;
+ }
 
 .section-titles {
     font-family: $title-font;
@@ -26,66 +21,52 @@
 .section-paragraphs {
     font-family: $body-font;
     color: $black;
+    letter-spacing: 0.02rem;
+    line-height: 1.5rem;
 }
 
 .code-box {
     background-color: $black; 
-    font-family: $code-font; 
-    margin: 25px 0 45px 0;
-    font-size: 20px; 
+    font-family: $code-font;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: auto 100px;
     align-items: center;
 }
 
 .blue-code-text {
-    color: lighten($blue, 20%);
-    font-size: 18px;
+    color: $white;
+    font-size: 1.1rem;
     font-family: $code-font;
     grid-column: 1 / 2;
-    margin-right: 25px;
-    margin-left: 25px;
-}
-
-.darker-blue-code-text {
-    color: darken($blue, 5%);
-    font-size: 18px;
-    font-family: $code-font;
-    grid-column: 1 / 2;
-    margin-right: 25px;
     margin-left: 25px;
 }
 
 .copy-button {
     grid-column: 2 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 8px;
-    font-size: 15px;
-    height: 31px;
-    width: 70%;
+    font-size: 1.05rem;
+    padding: 5px 0;
+    width: 60%;
+    min-width: 60px;
     justify-self: center;
     background-color: $white;
     color: darken($blue, 5%);
     border: 1px solid $blue;
     cursor: pointer;
-    font-family: $code-font;
+    font-family: $body-font;
 }
 
 .copy-button:hover {
     background-color: $blue;
-    color: #fff;
+    color: $white;
+    border: 1px solid $white;
 }
 
 .divider {
     border-top: 3px solid; 
     color: $light-grey;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin: 50px 0;
 }
 
 #big-codestring {
@@ -96,13 +77,52 @@
 
 @media screen and (max-width: 830px) {
     #main {
-        margin: 0;
-        align-items: center;
-      }
-    
+        margin-right: 10vw;
+    }
+
       #text-box {
         display: flex;
         flex-direction: column;
         width: 100vw;
       }
+
+      .image {
+        height: auto;
+        width: 80vw;
+     }
+    
+    .code-box {
+        margin: 25px 0;
+        padding: 0 10px;
+        font-size: 20px; 
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 90% 10%;
+        align-items: center;
+    }
+    
+    .blue-code-text {
+        font-size: 0.8rem;
+        overflow-x: auto;
+        grid-column: 1 / 2;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    
+    .copy-button {
+        grid-column: 2 / 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 15px;
+        height: 31px;
+        width: 70%;
+        justify-self: center;
+        background-color: $white;
+        color: darken($blue, 5%);
+        border: 1px solid $blue;
+        cursor: pointer;
+        font-family: $code-font;
+    }
 }

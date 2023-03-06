@@ -2,7 +2,7 @@
   "name": "lightql",
   "version": "1.0.0",
   "description": "A lightweight, ultra-fast client-side cache for GraphQL.",
-  "main": "./src/client/index.js",
+  "main": "./src/client/index.tsx",
   "scripts": {
     "start": "npx ts-node ./src/simulation/server.ts",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon --watch './**/*.ts' --exec 'ts-node' ./src/simulation/server.ts",
@@ -47,6 +47,7 @@
     "react-scroll": "^1.8.8",
     "schema-utils": "^4.0.0",
     "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.2",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
   },
@@ -57,6 +58,8 @@
     "@types/express": "^4.17.15",
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@typescript-eslint/parser": "^5.48.1",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.2",
